@@ -41,6 +41,9 @@ namespace Kentor.PU_Adapter
         {
         }
 
+        /// <summary>
+        /// Längden på svarssträngen, räknat fr.o.m. detta fält t.o.m det avslutande underlinetecknet.
+        /// </summary>
         public int Field_Svarslängd
         {
             get
@@ -49,11 +52,47 @@ namespace Kentor.PU_Adapter
             }
         }
 
+        /// <summary>
+        /// Status från anropet
+        /// </summary>
         public ReturnCode Field_Returkod
         {
             get
             {
                 return (ReturnCode)int.Parse(pknodData.Substring(4, 4));
+            }
+        }
+
+        /// <summary>
+        /// Personnummer från anropssträngen på formen SSÅÅMMDDNNNC eller reservnummer från anropssträngen på formen 99ÅÅÅÅNNNNNC
+        /// </summary>
+        public string Field_Personnummer_Reservnummer
+        {
+            get
+            {
+                return pknodData.Substring(8, 12);
+            }
+        }
+
+        /// <summary>
+        /// Personens aktuellaste identitet på formen SSÅÅMMDDNNNN. Kan vara annat än identiteten i anropet. 
+        /// </summary>
+        public string Field_Aktuellt_Personnummer
+        {
+            get
+            {
+                return pknodData.Substring(28, 12);
+            }
+        }
+
+        /// <summary>
+        /// Personidentitetstyp
+        /// </summary>
+        public PersonType Field_PersonIDTyp
+        {
+            get
+            {
+                return (PersonType)int.Parse(pknodData.Substring(40, 1));
             }
         }
     }

@@ -71,5 +71,26 @@ namespace Kentor.PU_Adapter.Test
             var pknodDataFail = new PknodData(TolvanFelaktigtLän);
             pknodDataFail.Field_Returkod.Should().Be(Enums.ReturnCode.Län_felaktigt);
         }
+
+        [TestMethod]
+        public void TestPersonnummer()
+        {
+            var pknodData = new PknodData(TolvanPknodResult);
+            pknodData.Field_Personnummer_Reservnummer.Should().Be("191212121212");
+        }
+
+        [TestMethod]
+        public void TestAktuelltPersonnummer()
+        {
+            var pknodData = new PknodData(TolvanPknodResult);
+            pknodData.Field_Aktuellt_Personnummer.Should().Be("191212121212");
+        }
+
+        [TestMethod]
+        public void TestPersonnummerPersonIdTyp()
+        {
+            var pknodData = new PknodData(TolvanPknodResult);
+            pknodData.Field_PersonIDTyp.Should().Be(Enums.PersonType.Uppgift_från_RSV__ordinarie_personnummer);
+        }
     }
 }
