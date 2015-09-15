@@ -75,7 +75,7 @@ namespace Kentor.PU_Adapter
         }
 
         /// <summary>
-        /// Personens aktuellaste identitet på formen SSÅÅMMDDNNNN. Kan vara annat än identiteten i anropet. 
+        /// Personens aktuellaste identitet på formen SSÅÅMMDDNNNN. Kan vara annat än identiteten i anropet.
         /// </summary>
         public string Field_Aktuellt_Personnummer
         {
@@ -119,7 +119,7 @@ namespace Kentor.PU_Adapter
         }
 
         /// <summary>
-        /// Aktuellt postnummer (postnummer för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen) 
+        /// Aktuellt postnummer (postnummer för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen)
         /// </summary>
         public string Field_Postnummer
         {
@@ -130,13 +130,60 @@ namespace Kentor.PU_Adapter
         }
 
         /// <summary>
-        /// Aktuell postadress (postadress för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen) 
+        /// Aktuell postadress (postadress för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen)
         /// </summary>
         public string Field_Postort
         {
             get
             {
                 return pknodData.Substring(109, 13).Trim();
+            }
+        }
+
+        /// <summary>
+        /// Länskod
+        /// </summary>
+        public string Field_Län
+        {
+            get
+            {
+                return pknodData.Substring(173, 2);
+            }
+        }
+        /// <summary>
+        /// Kommunkod
+        /// </summary>
+        public string Field_Kommun
+        {
+            get
+            {
+                return pknodData.Substring(175, 2);
+            }
+        }
+        /// <summary>
+        /// Församlingskod
+        /// </summary>
+        public string Field_Församling
+        {
+            get
+            {
+                return pknodData.Substring(177, 2);
+            }
+        }
+
+        /// <summary>
+        /// Avgångskod
+        /// </summary>
+        public Avgångskod? Field_Avgångskod
+        {
+            get
+            {
+                var code = pknodData.Substring(185, 1);
+                if (code == " ")
+                {
+                    return null;
+                }
+                return (Avgångskod)int.Parse(code);
             }
         }
     }

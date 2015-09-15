@@ -18,6 +18,13 @@ namespace Kentor.PU_Adapter.Test
                 return "07040112" + TolvanPknodResult.Substring(8);
             }
         }
+        private string TolvanAvliden
+        {
+            get
+            {
+                return TolvanPknodResult.Substring(0, 145) + "19120101" + TolvanPknodResult.Substring(153, 185 - 153) + "1" + TolvanPknodResult.Substring(186);
+            }
+        }
 
         [TestMethod]
         public void LengthFieldReadsOk()
@@ -107,6 +114,25 @@ namespace Kentor.PU_Adapter.Test
             pknodData.Field_Adress.Should().Be("TOLVAR STIGEN");
             pknodData.Field_Postnummer.Should().Be("12345");
             pknodData.Field_Postort.Should().Be("STOCKHOLM");
+        }
+
+        [TestMethod]
+        public void TestLKF()
+        {
+            var pknodData = new PknodData(TolvanPknodResult);
+            pknodData.Field_Län.Should().Be("01"); // Stockholms län
+            pknodData.Field_Kommun.Should().Be("80"); // Stockholm
+            pknodData.Field_Församling.Should().Be("19"); // Västermalm
+        }
+
+        [TestMethod]
+        public void TestAvgångskod()
+        {
+            var pknodData = new PknodData(TolvanPknodResult);
+            pknodData.Field_Avgångskod.Should().BeNull();
+
+            var pknodDataAvliden = new PknodData(TolvanAvliden);
+            pknodDataAvliden.Field_Avgångskod.Should().Be(Enums.Avgångskod.Avliden);
         }
     }
 }
