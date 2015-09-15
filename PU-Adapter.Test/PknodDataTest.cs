@@ -105,6 +105,9 @@ namespace Kentor.PU_Adapter.Test
         {
             var pknodData = new PknodData(TolvanPknodResult);
             pknodData.Field_Namn.Should().Be("TOLVANSSON, TOLVAN");
+
+            var pknodPlusData = new PknodPlusData(TolvanPknodPlusResult);
+            pknodPlusData.Field_Namn.Should().Be("Tolvansson, Tolvan");
         }
 
         [TestMethod]
