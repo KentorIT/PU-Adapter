@@ -24,6 +24,10 @@ namespace Kentor.PU_Adapter
             {
                 throw new ArgumentException("PKNOD length parameter does not match content length", nameof(pknodData));
             }
+            if(pknodData.Last() != '_')
+            {
+                throw new ArgumentException("Invalid end marker", nameof(pknodData));
+            }
         }
 
         public int Field_Svarslängd

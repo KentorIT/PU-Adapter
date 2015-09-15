@@ -43,5 +43,15 @@ namespace Kentor.PU_Adapter.Test
             a6.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD Data should be exactly 1327 bytes"));
 
         }
+
+        [TestMethod]
+        public void MakeSureEndingCharacterIsUnderscore()
+        {
+            Action a1 = () => new PknodData(TolvanPknodResult.Replace("_", "-"));
+            a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("Invalid end marker"));
+
+            Action a2 = () => new PknodPlusData(TolvanPknodPlusResult.Replace("_", "-"));
+            a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("Invalid end marker"));
+        }
     }
 }
