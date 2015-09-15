@@ -5,14 +5,10 @@ using System.Text;
 
 namespace Kentor.PU_Adapter
 {
-    public class PknodPlusData : PknodBaseData
+    public class PknodPlusData : PknodData
     {
-        public PknodPlusData(string pknodData) : base(pknodData)
+        public PknodPlusData(string pknodData) : base(pknodData, 1327)
         {
-            if (pknodData.Length != 1327)
-            {
-                throw new ArgumentException("PKNOD Data should be exactly 1327 bytes", nameof(pknodData));
-            }
         }
     }
 }

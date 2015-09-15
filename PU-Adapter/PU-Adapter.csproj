@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PknodBaseData.cs" />
     <Compile Include="PknodPlusData.cs" />
     <Compile Include="PknodData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,13 +5,46 @@ using System.Text;
 
 namespace Kentor.PU_Adapter
 {
-    public class PknodData : PknodBaseData
+    public class PknodData
     {
-        public PknodData(string pknodData) : base(pknodData)
+        protected readonly string pknodData;
+
+        protected PknodData(string pknodData, int dataLength)
         {
-            if (pknodData.Length != 704)
+            this.pknodData = pknodData;
+
+            if (pknodData == null)
             {
-                throw new ArgumentException("PKNOD Data should be exactly 704 bytes", nameof(pknodData));
+                throw new ArgumentNullException(nameof(pknodData));
+            }
+            if (string.IsNullOrWhiteSpace(pknodData))
+            {
+                throw new ArgumentException("PKNOD data can't be empty", nameof(pknodData));
+            }
+            if (pknodData.Length != this.Field_Svarslängd)
+            {
+                throw new ArgumentException("PKNOD length parameter does not match content length", nameof(pknodData));
+            }
+            if (pknodData.Last() != '_')
+            {
+                throw new ArgumentException("Invalid end marker", nameof(pknodData));
+            }
+
+            if (pknodData.Length != dataLength)
+            {
+                throw new ArgumentException("PKNOD Data should be exactly " + dataLength.ToString() + " bytes", nameof(pknodData));
+            }
+        }
+
+        public PknodData(string pknodData) : this(pknodData, 704)
+        {
+        }
+
+        public int Field_Svarslängd
+        {
+            get
+            {
+                return int.Parse(pknodData.Substring(0, 4));
             }
         }
     }
