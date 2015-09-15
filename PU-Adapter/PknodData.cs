@@ -95,5 +95,49 @@ namespace Kentor.PU_Adapter
                 return (PersonType)int.Parse(pknodData.Substring(40, 1));
             }
         }
+
+        /// <summary>
+        /// Aktuellt namn = efternamn och ev. mellannamn, samtliga förnamn (tilltalsnamnet inom // om sådant finns anmält).
+        /// </summary>
+        public string Field_Namn
+        {
+            get
+            {
+                return pknodData.Substring(41, 36).Trim();
+            }
+        }
+
+        /// <summary>
+        /// Aktuell gatuadress (gatuadress för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen)
+        /// </summary>
+        public string Field_Adress
+        {
+            get
+            {
+                return pknodData.Substring(77, 27).Trim();
+            }
+        }
+
+        /// <summary>
+        /// Aktuellt postnummer (postnummer för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen) 
+        /// </summary>
+        public string Field_Postnummer
+        {
+            get
+            {
+                return pknodData.Substring(104, 5).Trim();
+            }
+        }
+
+        /// <summary>
+        /// Aktuell postadress (postadress för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen) 
+        /// </summary>
+        public string Field_Postort
+        {
+            get
+            {
+                return pknodData.Substring(109, 13).Trim();
+            }
+        }
     }
 }

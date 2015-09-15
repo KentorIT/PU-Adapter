@@ -92,5 +92,21 @@ namespace Kentor.PU_Adapter.Test
             var pknodData = new PknodData(TolvanPknodResult);
             pknodData.Field_PersonIDTyp.Should().Be(Enums.PersonType.Uppgift_från_RSV__ordinarie_personnummer);
         }
+
+        [TestMethod]
+        public void TestNamn()
+        {
+            var pknodData = new PknodData(TolvanPknodResult);
+            pknodData.Field_Namn.Should().Be("TOLVANSSON, TOLVAN");
+        }
+
+        [TestMethod]
+        public void TestAdress()
+        {
+            var pknodData = new PknodData(TolvanPknodResult);
+            pknodData.Field_Adress.Should().Be("TOLVAR STIGEN");
+            pknodData.Field_Postnummer.Should().Be("12345");
+            pknodData.Field_Postort.Should().Be("STOCKHOLM");
+        }
     }
 }
