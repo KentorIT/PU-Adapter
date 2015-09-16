@@ -99,7 +99,7 @@ namespace Kentor.PU_Adapter
         /// <summary>
         /// Aktuellt namn = efternamn och ev. mellannamn, samtliga förnamn (tilltalsnamnet inom // om sådant finns anmält).
         /// </summary>
-        public string Field_Namn
+        public virtual string Field_Namn
         {
             get
             {
@@ -132,7 +132,7 @@ namespace Kentor.PU_Adapter
         /// <summary>
         /// Aktuell postadress (postadress för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen)
         /// </summary>
-        public string Field_Postort
+        public virtual string Field_Postort
         {
             get
             {

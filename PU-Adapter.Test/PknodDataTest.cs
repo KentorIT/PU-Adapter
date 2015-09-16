@@ -22,9 +22,27 @@ namespace Kentor.PU_Adapter.Test
         {
             get
             {
-                return TolvanPknodResult.Substring(0, 145) + "19120101" + TolvanPknodResult.Substring(153, 185 - 153) + "1" + TolvanPknodResult.Substring(186);
+                var sb = new System.Text.StringBuilder(TolvanPknodResult);
+                sb.Remove(145, 8).Insert(145, "19120101").Remove(185, 1).Insert(185, "1");
+                return sb.ToString();
             }
         }
+
+        private string TolvanWithPlusAddress
+        {
+            get
+            {
+                // Tolvan does not have a PlusAddress in PU, but we fake it here for testing purposes.
+                // When using the PU-Adapter, make sure to use PKNOD address if PKNODPLUS address is empty
+                var sb = new System.Text.StringBuilder(TolvanPknodPlusResult);
+                sb
+                    .Remove(954, "TOLVAN PLUS STIGEN".Length).Insert(954, "TOLVAN PLUS STIGEN")
+                    .Remove(994, "STOCKHOLMPLUS".Length).Insert(994, "STOCKHOLMPLUS")
+                    .Remove(989, 5).Insert(989, "98765");
+                return sb.ToString();
+            }
+        }
+
 
         [TestMethod]
         public void LengthFieldReadsOk()
@@ -136,6 +154,27 @@ namespace Kentor.PU_Adapter.Test
 
             var pknodDataAvliden = new PknodData(TolvanAvliden);
             pknodDataAvliden.Field_Avgångskod.Should().Be(Enums.Avgångskod.Avliden);
+        }
+
+
+        //TODO: plustester
+
+
+        [TestMethod]
+        public void TestPlusNamn()
+        {
+            var pknodPlusData = new PknodPlusData(TolvanPknodPlusResult);
+            pknodPlusData.Field_Förnamn.Should().Be("Tolvan");
+            pknodPlusData.Field_Efternamn.Should().Be("Tolvansson");
+        }
+
+        [TestMethod]
+        public void TestPlusAdress()
+        {
+            var pknodPlusData = new PknodPlusData(TolvanWithPlusAddress);
+            pknodPlusData.Field_Folkbokföringspostort.Should().Be("STOCKHOLMPLUS");
+            pknodPlusData.Field_Folkbokföringspostnummer.Should().Be("98765");
+            pknodPlusData.Field_Folkbokföringsutdelningsadress2.Should().Be("TOLVAN PLUS STIGEN");
         }
     }
 }
