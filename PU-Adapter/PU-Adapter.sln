@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter", "PU-Adapter.cs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter.Test", "..\PU-Adapter.Test\PU-Adapter.Test.csproj", "{0001F014-DA7A-4DD2-B0E8-CF5204DA29B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter.CommandLine", "PU-Adapter.CommandLine\PU-Adapter.CommandLine.csproj", "{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0001F014-DA7A-4DD2-B0E8-CF5204DA29B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0001F014-DA7A-4DD2-B0E8-CF5204DA29B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0001F014-DA7A-4DD2-B0E8-CF5204DA29B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
