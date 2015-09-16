@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +14,9 @@ namespace Kentor.PU_Adapter.CommandLine
         static void Main(string[] args)
         {
             var fetcher = new PU_Adapter.PknodFetcher();
+            //Change SSL checks so that all checks pass
+            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
+
             while (true)
             {
                 Console.WriteLine("Enter person number");
