@@ -23,7 +23,7 @@ namespace Kentor.PU_Adapter.Test
             get
             {
                 var sb = new System.Text.StringBuilder(TolvanPknodResult);
-                sb.Remove(145, 8).Insert(145, "19120101").Remove(185, 1).Insert(185, "1");
+                sb.OverWrite(145, "19120101").OverWrite(185, "1");
                 return sb.ToString();
             }
         }
@@ -36,9 +36,9 @@ namespace Kentor.PU_Adapter.Test
                 // When using the PU-Adapter, make sure to use PKNOD address if PKNODPLUS address is empty
                 var sb = new System.Text.StringBuilder(TolvanPknodPlusResult);
                 sb
-                    .Remove(954, "TOLVAN PLUS STIGEN".Length).Insert(954, "TOLVAN PLUS STIGEN")
-                    .Remove(994, "STOCKHOLMPLUS".Length).Insert(994, "STOCKHOLMPLUS")
-                    .Remove(989, 5).Insert(989, "98765");
+                    .OverWrite(954, "TOLVAN PLUS STIGEN")
+                    .OverWrite(994, "STOCKHOLMPLUS")
+                    .OverWrite(989, "98765");
                 return sb.ToString();
             }
         }

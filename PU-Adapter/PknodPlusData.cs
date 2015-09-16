@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+#pragma warning disable 0809 // (Warning CS0809  Obsolete member 'nnnn' overrides non-obsolete member 'nnnn') // We want to mark the members as obsolete only when you actually use the PLUS version
+
 namespace Kentor.PU_Adapter
 {
     public class PknodPlusData : PknodData
@@ -62,7 +64,7 @@ namespace Kentor.PU_Adapter
         /// <summary>
         /// Folkbokföring co-adress
         /// </summary>
-        public string Field_Folkbokföring_co_adress 
+        public string Field_Folkbokföring_co_adress
         {
             get
             {
