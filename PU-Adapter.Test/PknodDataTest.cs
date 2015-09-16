@@ -10,6 +10,7 @@ namespace Kentor.PU_Adapter.Test
     {
         private const string TolvanPknodResult = @"07040000191212121212191212121912121212121TOLVANSSON, TOLVAN                  TOLVAR STIGEN              12345STOCKHOLM                           00000000000000000000    0000018019200244  200801162008011600000000                                                                                                                                                                                    00000000000000000000        132204  03132204  V[STRA KUNGSHOLMEN            17101648M22V[STRA KUNGSHOLMEN                                STOCKHOLM/EKER\     1734    CENTRALA STOCKHOLMS PSYKIATRIS1329999                                               8                                                              _";
         private const string TolvanPknodPlusResult = @"13270000191212121212191212121912121212121Tolvansson, Tolvan                  TOLVAR STIGEN              12345STOCKHOLM                           00000000000000000000    0000018019200244  200801162008011600000000                                                                                                                                                                                    00000000000000000000        132204  03132204  Västra Kungsholmen            17101648M22Västra Kungsholmen                                Stockholm/Ekerö     1734    Centrala Stockholms psykiatris1329999                                               8                                                               Tolvan                                                                                                                  Tolvansson                                                                                                                                                                                                                                                                                                                                                                                                                                                                                000000000000  000000000000  _";
+        private const string InvalidPersonNumberResult = @"13270020                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      _";
 
         private string TolvanFelaktigtLän
         {
@@ -175,6 +176,13 @@ namespace Kentor.PU_Adapter.Test
             pknodPlusData.Field_Folkbokföringspostort.Should().Be("STOCKHOLMPLUS");
             pknodPlusData.Field_Folkbokföringspostnummer.Should().Be("98765");
             pknodPlusData.Field_Folkbokföringsutdelningsadress2.Should().Be("TOLVAN PLUS STIGEN");
+        }
+
+        [TestMethod]
+        public void TestInvalidPersonNumber()
+        {
+            var pknodPlusData = new PknodPlusData(InvalidPersonNumberResult);
+            pknodPlusData.Field_Returkod.Should().Be(Enums.ReturnCode.Felaktigt_format_på_inmatat_personnummer);
         }
     }
 }
