@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter", "PU-Adapter.csproj", "{B9228B32-5ED6-48D4-8EDB-93666A8336E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter", "PU-Adapter\PU-Adapter.csproj", "{B9228B32-5ED6-48D4-8EDB-93666A8336E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter.Test", "..\PU-Adapter.Test\PU-Adapter.Test.csproj", "{0001F014-DA7A-4DD2-B0E8-CF5204DA29B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter.Test", "PU-Adapter.Test\PU-Adapter.Test.csproj", "{0001F014-DA7A-4DD2-B0E8-CF5204DA29B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter.CommandLine", "PU-Adapter.CommandLine\PU-Adapter.CommandLine.csproj", "{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67A19EAD-8DA9-4E80-A81E-1DC884FD95D6}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -55,7 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PU-Adapter.csproj">
+    <ProjectReference Include="..\PU-Adapter\PU-Adapter.csproj">
       <Project>{b9228b32-5ed6-48d4-8edb-93666a8336e0}</Project>
       <Name>PU-Adapter</Name>
     </ProjectReference>
