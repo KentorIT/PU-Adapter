@@ -11,9 +11,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Adapter.CommandLine", "P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67A19EAD-8DA9-4E80-A81E-1DC884FD95D6}"
 	ProjectSection(SolutionItems) = preProject
+		CONTRIBUTORS.txt = CONTRIBUTORS.txt
 		LICENSE = LICENSE
 		README.md = README.md
+		VersionInfo.cs = VersionInfo.cs
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{E6A0FCCE-7C4E-4092-BE87-09BAEE48E347}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
