@@ -14,6 +14,17 @@ namespace Kentor.PU_Adapter.CommandLine
         static void Main(string[] args)
         {
             var fetcher = new PU_Adapter.PknodFetcher();
+            if (string.IsNullOrEmpty(fetcher.UserName))
+            {
+                Console.WriteLine("Inget användarnamn angivet i app.config, ange användarnamn");
+                fetcher.UserName = Console.ReadLine();
+            }
+            if (string.IsNullOrEmpty(fetcher.Password))
+            {
+                Console.WriteLine("Inget lösenord angivet i app.config, ange lösenord");
+                fetcher.Password = Console.ReadLine();
+                Console.Clear();
+            }
             //Change SSL checks so that all checks pass
             ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
 

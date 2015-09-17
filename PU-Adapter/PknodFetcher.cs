@@ -8,9 +8,9 @@ namespace Kentor.PU_Adapter
 {
     public class PknodFetcher
     {
-        public string Password { get; private set; }
-        public Uri PknodUrl { get; private set; }
-        public string UserName { get; private set; }
+        public string Password { get; set; }
+        public Uri PknodUrl { get; set; }
+        public string UserName { get; set; }
         public PknodFetcher()
         {
             this.PknodUrl = new Uri(Properties.Settings.Default.PknodUrl);
