@@ -157,9 +157,12 @@ namespace Kentor.PU_Adapter.Test
             pknodDataAvliden.Field_Avgångskod.Should().Be(Enums.Avgångskod.Avliden);
         }
 
-
-        //TODO: plustester
-
+        [TestMethod]
+        public void TestBasområde()
+        {
+            var pknodData = new PknodData(TolvanPknodResult);
+            pknodData.Field_Basområde.Should().Be("1329999");
+        }
 
         [TestMethod]
         public void TestPlusNamn()

@@ -160,6 +160,7 @@ namespace Kentor.PU_Adapter
                 return pknodData.Substring(175, 2);
             }
         }
+
         /// <summary>
         /// Församlingskod
         /// </summary>
@@ -184,6 +185,17 @@ namespace Kentor.PU_Adapter
                     return null;
                 }
                 return (Avgångskod)int.Parse(code);
+            }
+        }
+
+        /// <summary>
+        /// Basområde
+        /// </summary>
+        public string Field_Basområde
+        {
+            get
+            {
+                return pknodData.Substring(586, 8).Trim();
             }
         }
     }
