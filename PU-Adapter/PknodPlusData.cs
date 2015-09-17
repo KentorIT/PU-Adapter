@@ -19,7 +19,7 @@ namespace Kentor.PU_Adapter
         /// <remarks>
         /// Replaced by <see cref="Field_Förnamn"/>, <see cref="Field_Mellannamn"/> and <see cref="Field_Efternamn"/>
         /// </remarks>
-        [Obsolete("See " + nameof(Field_Förnamn) + ", " + nameof(Field_Mellannamn) + " and " + nameof(Field_Efternamn))]
+        [Obsolete("See " + /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"Field_Förnamn"/*)*/ + ", " + /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"Field_Mellannamn"/*)*/ + " and " + /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"Field_Efternamn"/*)*/)]
         public override string Field_Namn
         {
             get
@@ -111,7 +111,7 @@ namespace Kentor.PU_Adapter
         /// <remarks>
         /// Replaced by <see cref="Field_Folkbokföringspostort"/>
         /// </remarks>
-        [Obsolete("See " + nameof(Field_Folkbokföringspostort))]
+        [Obsolete("See " + /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"Field_Folkbokföringspostort"/*)*/)]
         public override string Field_Postort
         {
             get
