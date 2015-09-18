@@ -45,6 +45,8 @@
       <Link>VersionInfo.cs</Link>
     </Compile>
     <Compile Include="Enums\Avgångskod.cs" />
+    <Compile Include="Enums\Kommunkoder.cs" />
+    <Compile Include="Enums\Länskoder.cs" />
     <Compile Include="Enums\PersonType.cs" />
     <Compile Include="PknodFetcher.cs" />
     <Compile Include="PknodPlusInterpreter.cs" />

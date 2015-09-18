@@ -23,5 +23,20 @@ namespace Kentor.PU_Adapter
             }
         }
 
+        public Enums.Länskoder Län
+        {
+            get
+            {
+                return (Enums.Länskoder)int.Parse(pknodData.Field_Län);
+            }
+        }
+
+        public Enums.Kommunkoder Kommun
+        {
+            get
+            {
+                return (Enums.Kommunkoder)int.Parse(pknodData.Field_Län + pknodData.Field_Kommun);
+            }
+        }
     }
 }

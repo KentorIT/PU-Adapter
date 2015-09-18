@@ -51,7 +51,7 @@ namespace Kentor.PU_Adapter.Test
                 var sb = new System.Text.StringBuilder(TolvanPknodResult);
                 sb
                     .OverWrite(040, "2") // 2 = Utomlänspatient, ordinarie personnummer
-                    .OverWrite(173, "08");// Kalmar
+                    .OverWrite(173, "0821 ");// Kalmar / Högsby
                 return sb.ToString();
             }
         }
