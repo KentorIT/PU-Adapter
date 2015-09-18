@@ -47,6 +47,8 @@
     <Compile Include="Enums\Avgångskod.cs" />
     <Compile Include="Enums\PersonType.cs" />
     <Compile Include="PknodFetcher.cs" />
+    <Compile Include="PknodPlusInterpreter.cs" />
+    <Compile Include="PknodInterpreter.cs" />
     <Compile Include="PknodPlusData.cs" />
     <Compile Include="PknodData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

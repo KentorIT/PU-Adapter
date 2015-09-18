@@ -8,60 +8,23 @@ namespace Kentor.PU_Adapter.Test
     [TestClass]
     public class PknodDataTest
     {
-        private const string TolvanPknodResult = @"07040000191212121212191212121912121212121TOLVANSSON, TOLVAN                  TOLVAR STIGEN              12345STOCKHOLM                           00000000000000000000    0000018019200244  200801162008011600000000                                                                                                                                                                                    00000000000000000000        132204  03132204  V[STRA KUNGSHOLMEN            17101648M22V[STRA KUNGSHOLMEN                                STOCKHOLM/EKER\     1734    CENTRALA STOCKHOLMS PSYKIATRIS1329999                                               8                                                              _";
-        private const string TolvanPknodPlusResult = @"13270000191212121212191212121912121212121Tolvansson, Tolvan                  TOLVAR STIGEN              12345STOCKHOLM                           00000000000000000000    0000018019200244  200801162008011600000000                                                                                                                                                                                    00000000000000000000        132204  03132204  Västra Kungsholmen            17101648M22Västra Kungsholmen                                Stockholm/Ekerö     1734    Centrala Stockholms psykiatris1329999                                               8                                                               Tolvan                                                                                                                  Tolvansson                                                                                                                                                                                                                                                                                                                                                                                                                                                                                000000000000  000000000000  _";
-        private const string InvalidPersonNumberResult = @"13270020                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      _";
-
-        private string TolvanFelaktigtLän
-        {
-            get
-            {
-                return "07040112" + TolvanPknodResult.Substring(8);
-            }
-        }
-        private string TolvanAvliden
-        {
-            get
-            {
-                var sb = new System.Text.StringBuilder(TolvanPknodResult);
-                sb.OverWrite(145, "19120101").OverWrite(185, "1");
-                return sb.ToString();
-            }
-        }
-
-        private string TolvanWithPlusAddress
-        {
-            get
-            {
-                // Tolvan does not have a PlusAddress in PU, but we fake it here for testing purposes.
-                // When using the PU-Adapter, make sure to use PKNOD address if PKNODPLUS address is empty
-                var sb = new System.Text.StringBuilder(TolvanPknodPlusResult);
-                sb
-                    .OverWrite(954, "TOLVAN PLUS STIGEN")
-                    .OverWrite(994, "STOCKHOLMPLUS")
-                    .OverWrite(989, "98765");
-                return sb.ToString();
-            }
-        }
-
-
         [TestMethod]
         public void LengthFieldReadsOk()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Svarslängd.Should().Be(704);
 
-            var pknodPlusData = new PknodPlusData(TolvanPknodPlusResult);
+            var pknodPlusData = new PknodPlusData(CommonData.TolvanPknodPlusResult);
             pknodPlusData.Field_Svarslängd.Should().Be(1327);
         }
 
         [TestMethod]
         public void CantCreateInvalidLengths()
         {
-            Action a1 = () => new PknodData(TolvanPknodResult + "PAD");
+            Action a1 = () => new PknodData(CommonData.TolvanPknodResult + "PAD");
             a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter does not match content length"));
 
-            Action a2 = () => new PknodPlusData(TolvanPknodPlusResult + "PAD");
+            Action a2 = () => new PknodPlusData(CommonData.TolvanPknodPlusResult + "PAD");
             a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter does not match content length"));
 
             Action a3 = () => new PknodData(null);
@@ -81,58 +44,58 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void MakeSureEndingCharacterIsUnderscore()
         {
-            Action a1 = () => new PknodData(TolvanPknodResult.Replace("_", "-"));
+            Action a1 = () => new PknodData(CommonData.TolvanPknodResult.Replace("_", "-"));
             a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("Invalid end marker"));
 
-            Action a2 = () => new PknodPlusData(TolvanPknodPlusResult.Replace("_", "-"));
+            Action a2 = () => new PknodPlusData(CommonData.TolvanPknodPlusResult.Replace("_", "-"));
             a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("Invalid end marker"));
         }
 
         [TestMethod]
         public void TestReturnCode()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Returkod.Should().Be(Enums.ReturnCode.Tjänsten_utförd);
 
-            var pknodDataFail = new PknodData(TolvanFelaktigtLän);
+            var pknodDataFail = new PknodData(CommonData.TolvanFelaktigtLän);
             pknodDataFail.Field_Returkod.Should().Be(Enums.ReturnCode.Län_felaktigt);
         }
 
         [TestMethod]
         public void TestPersonnummer()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Personnummer_Reservnummer.Should().Be("191212121212");
         }
 
         [TestMethod]
         public void TestAktuelltPersonnummer()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Aktuellt_Personnummer.Should().Be("191212121212");
         }
 
         [TestMethod]
         public void TestPersonnummerPersonIdTyp()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_PersonIDTyp.Should().Be(Enums.PersonType.Uppgift_från_RSV__ordinarie_personnummer);
         }
 
         [TestMethod]
         public void TestNamn()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Namn.Should().Be("TOLVANSSON, TOLVAN");
 
-            var pknodPlusData = new PknodPlusData(TolvanPknodPlusResult);
+            var pknodPlusData = new PknodPlusData(CommonData.TolvanPknodPlusResult);
             pknodPlusData.Field_Namn.Should().Be("Tolvansson, Tolvan");
         }
 
         [TestMethod]
         public void TestAdress()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Adress.Should().Be("TOLVAR STIGEN");
             pknodData.Field_Postnummer.Should().Be("12345");
             pknodData.Field_Postort.Should().Be("STOCKHOLM");
@@ -141,7 +104,7 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void TestLKF()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Län.Should().Be("01"); // Stockholms län
             pknodData.Field_Kommun.Should().Be("80"); // Stockholm
             pknodData.Field_Församling.Should().Be("19"); // Västermalm
@@ -150,24 +113,24 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void TestAvgångskod()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Avgångskod.Should().BeNull();
 
-            var pknodDataAvliden = new PknodData(TolvanAvliden);
+            var pknodDataAvliden = new PknodData(CommonData.TolvanAvliden);
             pknodDataAvliden.Field_Avgångskod.Should().Be(Enums.Avgångskod.Avliden);
         }
 
         [TestMethod]
         public void TestBasområde()
         {
-            var pknodData = new PknodData(TolvanPknodResult);
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Basområde.Should().Be("1329999");
         }
 
         [TestMethod]
         public void TestPlusNamn()
         {
-            var pknodPlusData = new PknodPlusData(TolvanPknodPlusResult);
+            var pknodPlusData = new PknodPlusData(CommonData.TolvanPknodPlusResult);
             pknodPlusData.Field_Förnamn.Should().Be("Tolvan");
             pknodPlusData.Field_Efternamn.Should().Be("Tolvansson");
         }
@@ -175,7 +138,7 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void TestPlusAdress()
         {
-            var pknodPlusData = new PknodPlusData(TolvanWithPlusAddress);
+            var pknodPlusData = new PknodPlusData(CommonData.TolvanWithPlusAddress);
             pknodPlusData.Field_Folkbokföringspostort.Should().Be("STOCKHOLMPLUS");
             pknodPlusData.Field_Folkbokföringspostnummer.Should().Be("98765");
             pknodPlusData.Field_Folkbokföringsutdelningsadress2.Should().Be("TOLVAN PLUS STIGEN");
@@ -184,7 +147,7 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void TestInvalidPersonNumber()
         {
-            var pknodPlusData = new PknodPlusData(InvalidPersonNumberResult);
+            var pknodPlusData = new PknodPlusData(CommonData.InvalidPersonNumberResult);
             pknodPlusData.Field_Returkod.Should().Be(Enums.ReturnCode.Felaktigt_format_på_inmatat_personnummer);
         }
     }
