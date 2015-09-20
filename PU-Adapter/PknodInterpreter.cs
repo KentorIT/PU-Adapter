@@ -38,5 +38,28 @@ namespace Kentor.PU_Adapter
                 return (Enums.Kommunkoder)int.Parse(pknodData.Field_Län + pknodData.Field_Kommun);
             }
         }
+
+        protected virtual string FörnamnString
+        {
+            get
+            {
+                return pknodData.Field_Namn.Split(',').Select(n => n.Trim()).Skip(1).FirstOrDefault();
+            }
+        }
+        public IEnumerable<string> Förnamn
+        {
+            get
+            {
+                return FörnamnString.Replace("/", " ").Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            }
+        }
+
+        public virtual string Efternamn
+        {
+            get
+            {
+                return pknodData.Field_Namn.Split(',').Select(n => n.Trim()).FirstOrDefault();
+            }
+        }
     }
 }

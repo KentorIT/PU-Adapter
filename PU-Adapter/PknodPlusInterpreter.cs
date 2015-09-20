@@ -13,5 +13,21 @@ namespace Kentor.PU_Adapter
         {
             this.pknodPlusData = pknodPlusData;
         }
+
+        protected override string FörnamnString
+        {
+            get
+            {
+                return pknodPlusData.Field_Förnamn;
+            }
+        }
+
+        public override string Efternamn
+        {
+            get
+            {
+                return pknodPlusData.Field_Efternamn;
+            }
+        }
     }
 }

@@ -56,5 +56,15 @@ namespace Kentor.PU_Adapter.Test
             }
         }
 
+        public static string TolvanWithTillsalsnamn
+        {
+            get
+            {
+                var sb = new System.Text.StringBuilder(TolvanPknodResult);
+                sb
+                    .OverWrite(041, "TOLVANSSON, TOLVAN/LARS/ERIK"); 
+                return sb.ToString();
+            }
+        }
     }
 }

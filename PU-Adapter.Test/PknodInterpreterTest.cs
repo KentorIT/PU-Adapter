@@ -8,7 +8,7 @@ namespace Kentor.PU_Adapter.Test
     public class PknodInterpreterTest
     {
         [TestMethod]
-        public void TestUtomlänare()
+        public void Utomlänare()
         {
             var pknodData = new PknodData(CommonData.TolvanPknodResult);
             var interpreter = new PknodInterpreter(pknodData);
@@ -22,6 +22,30 @@ namespace Kentor.PU_Adapter.Test
             interpreterKalmar.Län.Should().Be(Enums.Länskoder.Kalmar_län);
             interpreterKalmar.Kommun.Should().Be(Enums.Kommunkoder.Högsby);
         }
+
+        [TestMethod]
+        public void Efternamn()
+        {
+            var pknodData = new PknodData(CommonData.TolvanWithTillsalsnamn);
+            var interpreter = new PknodInterpreter(pknodData);
+            interpreter.Efternamn.Should().Be("TOLVANSSON");
+        }
+
+        [TestMethod]
+        public void Förnamn()
+        {
+            var pknodData = new PknodData(CommonData.TolvanWithTillsalsnamn);
+            var interpreter = new PknodInterpreter(pknodData);
+            interpreter.Förnamn.ShouldBeEquivalentTo(new[] { "TOLVAN", "LARS", "ERIK" });
+        }
+
+        //[TestMethod]
+        //public void Tilltalsnamn()
+        //{
+        //    var pknodData = new PknodData(CommonData.TolvanPknodResult);
+        //    var interpreter = new PknodInterpreter(pknodData);
+
+        //}
     }
 }
 
