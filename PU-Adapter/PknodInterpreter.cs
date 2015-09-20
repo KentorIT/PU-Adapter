@@ -46,11 +46,34 @@ namespace Kentor.PU_Adapter
                 return pknodData.Field_Namn.Split(',').Select(n => n.Trim()).Skip(1).FirstOrDefault();
             }
         }
+
+        private IEnumerable<string> FörnamnListRaw
+        {
+            get
+            {
+                var fornamnString = FörnamnString;
+                var firstSlash = fornamnString.IndexOf("/");
+                var lastSlash = fornamnString.LastIndexOf("/");
+                if (firstSlash >= 0)
+                {
+                    if (lastSlash < firstSlash)
+                    {
+                        throw new InvalidOperationException("Name strings contains only one slash");
+                    }
+                    var part1 = fornamnString.Substring(0, firstSlash);
+                    var part2 = fornamnString.Substring(firstSlash + 1, lastSlash - firstSlash - 1);
+                    var part3 = fornamnString.Substring(lastSlash + 1);
+                    fornamnString = part1 + " /" + part2.Trim() + "/ " + part3;
+                }
+
+                return fornamnString.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            }
+        }
         public IEnumerable<string> Förnamn
         {
             get
             {
-                return FörnamnString.Replace("/", " ").Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                return FörnamnListRaw.Select(f => f.Trim('/'));
             }
         }
 
@@ -61,5 +84,27 @@ namespace Kentor.PU_Adapter
                 return pknodData.Field_Namn.Split(',').Select(n => n.Trim()).FirstOrDefault();
             }
         }
+
+        public int TilltalsnamnIndex
+        {
+            get
+            {
+                var idx = FörnamnListRaw.ToList().FindIndex(f => f.StartsWith("/"));
+                if (idx >= 0)
+                {
+                    return idx;
+                }
+                return 0; // First namn is implicit "tilltalsnamn"
+            }
+        }
+
+        public string Tilltalsnamn
+        {
+            get
+            {
+                return Förnamn.Skip(TilltalsnamnIndex).FirstOrDefault();
+            }
+        }
+
     }
 }

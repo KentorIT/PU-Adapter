@@ -37,15 +37,20 @@ namespace Kentor.PU_Adapter.Test
             var pknodData = new PknodData(CommonData.TolvanWithTillsalsnamn);
             var interpreter = new PknodInterpreter(pknodData);
             interpreter.Förnamn.ShouldBeEquivalentTo(new[] { "TOLVAN", "LARS", "ERIK" });
+
+            var pknodPlusData = new PknodPlusData(CommonData.TolvanPlusWithTillsalsnamn);
+            var plusInterpreter = new PknodPlusInterpreter(pknodPlusData);
+            plusInterpreter.Förnamn.ShouldBeEquivalentTo(new[] { "Tolvan", "Lars", "Erik" });
         }
 
-        //[TestMethod]
-        //public void Tilltalsnamn()
-        //{
-        //    var pknodData = new PknodData(CommonData.TolvanPknodResult);
-        //    var interpreter = new PknodInterpreter(pknodData);
-
-        //}
+        [TestMethod]
+        public void Tilltalsnamn()
+        {
+            var pknodData = new PknodData(CommonData.TolvanWithTillsalsnamn);
+            var interpreter = new PknodInterpreter(pknodData);
+            interpreter.TilltalsnamnIndex.Should().Be(1);
+            interpreter.Tilltalsnamn.Should().Be("LARS");
+        }
     }
 }
 
