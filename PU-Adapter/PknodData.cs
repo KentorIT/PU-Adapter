@@ -198,5 +198,10 @@ namespace Kentor.PU_Adapter
                 return pknodData.Substring(586, 8).Trim();
             }
         }
+
+        public override string ToString()
+        {
+            return this.Field_Aktuellt_Personnummer + ": " + this.Field_Namn;
+        }
     }
 }
