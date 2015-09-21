@@ -1,6 +1,7 @@
 ﻿using Kentor.PU_Adapter.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -185,6 +186,24 @@ namespace Kentor.PU_Adapter
                     return null;
                 }
                 return (Avgångskod)int.Parse(code);
+            }
+        }
+
+
+        /// <summary>
+        /// Civilståndsdatum
+        /// </summary>
+        public DateTime? Field_Civilståndsdatum
+        {
+            get
+            {
+                var rawDate = pknodData.Substring(145, 8);
+                DateTime date;
+                if (DateTime.TryParseExact(rawDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    return date;
+                }
+                return null;
             }
         }
 

@@ -118,5 +118,24 @@ namespace Kentor.PU_Adapter
             }
         }
 
+        public bool Avliden
+        {
+            get
+            {
+                return pknodData.Field_Avgångskod == Enums.Avgångskod.Avliden;
+            }
+        }
+
+        public DateTime? AvlidenDatum
+        {
+            get
+            {
+                if (Avliden)
+                {
+                    return pknodData.Field_Civilståndsdatum;
+                }
+                return null;
+            }
+        }
     }
 }

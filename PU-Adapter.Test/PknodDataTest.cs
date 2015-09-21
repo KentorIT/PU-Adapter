@@ -113,11 +113,21 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void TestAvgångskod()
         {
-            var pknodData = new PknodData(CommonData.TolvanPknodResult);
+            var pknodData = new PknodPlusData(CommonData.TolvanPknodPlusResult);
             pknodData.Field_Avgångskod.Should().BeNull();
 
-            var pknodDataAvliden = new PknodData(CommonData.TolvanAvliden);
+            var pknodDataAvliden = new PknodPlusData(CommonData.AvlidenPerson);
             pknodDataAvliden.Field_Avgångskod.Should().Be(Enums.Avgångskod.Avliden);
+        }
+
+        [TestMethod]
+        public void TestCivilståndsdatum()
+        {
+            var pknodData = new PknodPlusData(CommonData.TolvanPknodPlusResult);
+            pknodData.Field_Civilståndsdatum.Should().Be(null);
+
+            var pknodDataAvliden = new PknodPlusData(CommonData.AvlidenPerson);
+            pknodDataAvliden.Field_Civilståndsdatum.Should().Be(new DateTime(2005, 02, 21));
         }
 
         [TestMethod]

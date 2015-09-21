@@ -19,13 +19,11 @@ namespace Kentor.PU_Adapter.Test
                 return "07040112" + TolvanPknodResult.Substring(8);
             }
         }
-        public static string TolvanAvliden
+        public static string AvlidenPerson
         {
             get
             {
-                var sb = new System.Text.StringBuilder(TolvanPknodResult);
-                sb.OverWrite(145, "19120101").OverWrite(185, "1");
-                return sb.ToString();
+                return TestPersonsPuData.PuDataList[20];
             }
         }
 

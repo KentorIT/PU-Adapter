@@ -67,6 +67,20 @@ namespace Kentor.PU_Adapter.Test
             interpreter.TilltalsnamnIndex.Should().Be(1);
             interpreter.Tilltalsnamn.Should().Be("LARS");
         }
+
+        [TestMethod]
+        public void TestAvliden()
+        {
+            var pknodData = new PknodPlusData(CommonData.TolvanPknodPlusResult);
+            var interpreter = new PknodPlusInterpreter(pknodData);
+            interpreter.Avliden.Should().BeFalse();
+            interpreter.AvlidenDatum.Should().Be(null);
+
+            var pknodDataAvliden = new PknodPlusData(CommonData.AvlidenPerson);
+            var avlidenInterpreted = new PknodPlusInterpreter(pknodDataAvliden);
+            avlidenInterpreted.Avliden.Should().BeTrue();
+            avlidenInterpreted.AvlidenDatum.Should().Be(new DateTime(2005, 02, 21));
+        }
     }
 }
 
