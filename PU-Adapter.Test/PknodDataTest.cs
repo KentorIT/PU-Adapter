@@ -160,5 +160,12 @@ namespace Kentor.PU_Adapter.Test
             var pknodPlusData = new PknodPlusData(CommonData.InvalidPersonNumberResult);
             pknodPlusData.Field_Returkod.Should().Be(Enums.ReturnCode.Felaktigt_format_på_inmatat_personnummer);
         }
+
+        [TestMethod]
+        public void SenastRegDatum()
+        {
+            var pknodData = new PknodData(CommonData.TolvanPknodResult);
+            pknodData.Field_SenasteRegDatum.Should().Be(new DateTime(2008, 01, 16));
+        }
     }
 }

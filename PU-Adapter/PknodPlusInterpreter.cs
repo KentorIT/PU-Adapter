@@ -18,7 +18,11 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodPlusData.Field_Förnamn;
+                if (!string.IsNullOrWhiteSpace(pknodPlusData.Field_Förnamn))
+                {
+                    return pknodPlusData.Field_Förnamn;
+                }
+                return base.FörnamnString;
             }
         }
 
@@ -26,7 +30,12 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodPlusData.Field_Efternamn;
+                if (!string.IsNullOrWhiteSpace(pknodPlusData.Field_Efternamn))
+                {
+                    return pknodPlusData.Field_Efternamn;
+                }
+                return base.Efternamn;
+
             }
         }
     }

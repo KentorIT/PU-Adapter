@@ -207,6 +207,24 @@ namespace Kentor.PU_Adapter
             }
         }
 
+
+        /// <summary>
+        /// Senaste datum för ändring av personuppgifterna 
+        /// </summary>
+        public DateTime? Field_SenasteRegDatum
+        {
+            get
+            {
+                var rawDate = pknodData.Substring(187, 8);
+                DateTime date;
+                if (DateTime.TryParseExact(rawDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    return date;
+                }
+                return null;
+            }
+        }
+
         /// <summary>
         /// Basområde
         /// </summary>
