@@ -71,7 +71,6 @@
     <Compile Include="StringBuilderEx.cs" />
     <Compile Include="PknodInterpreterTest.cs" />
     <Compile Include="CommonData.cs" />
-    <Compile Include="TestPersonsPuData.cs" />
     <Compile Include="RunAllTestpersons.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +80,10 @@
     <ProjectReference Include="..\PU-Adapter\PU-Adapter.csproj">
       <Project>{b9228b32-5ed6-48d4-8edb-93666a8336e0}</Project>
       <Name>PU-Adapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestData\TestData.csproj">
+      <Project>{73cb952a-a699-49d9-88a6-f1993983eb4b}</Project>
+      <Name>TestData</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kentor.PU_Adapter.CommandLine
+namespace Kentor.PU_Adapter.TestData
 {
     /// <summary>
     /// Testpersonnummer från skatteverket

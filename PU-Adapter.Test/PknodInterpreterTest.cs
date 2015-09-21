@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Kentor.PU_Adapter.TestData;
 
 namespace Kentor.PU_Adapter.Test
 {

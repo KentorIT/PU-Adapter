@@ -25,6 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{E6A0FCCE
 		nuget\ReleaseNotes.txt = nuget\ReleaseNotes.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU-Stub", "PU-Stub\PU-Stub.csproj", "{73742E0E-89AA-4150-B8B0-3C2B7815EC79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestData", "TestData\TestData.csproj", "{73CB952A-A699-49D9-88A6-F1993983EB4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31CEAC7B-03CB-4D52-96CF-0C97A6B37CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73742E0E-89AA-4150-B8B0-3C2B7815EC79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73742E0E-89AA-4150-B8B0-3C2B7815EC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73742E0E-89AA-4150-B8B0-3C2B7815EC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73742E0E-89AA-4150-B8B0-3C2B7815EC79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CB952A-A699-49D9-88A6-F1993983EB4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CB952A-A699-49D9-88A6-F1993983EB4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CB952A-A699-49D9-88A6-F1993983EB4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CB952A-A699-49D9-88A6-F1993983EB4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
