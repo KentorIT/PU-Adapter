@@ -8,6 +8,9 @@ namespace Kentor.PU_Adapter.Enums
 {
     public enum Länskoder
     {
+        [Description("LÄN SAKNAS ELLER ÄR FELAKTIGT")]
+        SAKNAS_ELLER_FELAKTIGT = -1,
+
         [Description("Stockholms län")]
         Stockholms_län = 01,
         [Description("Uppsala län")]

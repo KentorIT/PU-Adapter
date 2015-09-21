@@ -27,6 +27,10 @@ namespace Kentor.PU_Adapter
         {
             get
             {
+                if (string.IsNullOrWhiteSpace(pknodData.Field_Län))
+                {
+                    return Enums.Länskoder.SAKNAS_ELLER_FELAKTIGT;
+                }
                 return (Enums.Länskoder)int.Parse(pknodData.Field_Län);
             }
         }
@@ -35,6 +39,14 @@ namespace Kentor.PU_Adapter
         {
             get
             {
+                if (string.IsNullOrWhiteSpace(pknodData.Field_Län))
+                {
+                    return Enums.Kommunkoder.SAKNAS_ELLER_FELAKTIGT;
+                }
+                if (string.IsNullOrWhiteSpace(pknodData.Field_Kommun))
+                {
+                    return Enums.Kommunkoder.SAKNAS_ELLER_FELAKTIGT;
+                }
                 return (Enums.Kommunkoder)int.Parse(pknodData.Field_Län + pknodData.Field_Kommun);
             }
         }

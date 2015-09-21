@@ -24,6 +24,22 @@ namespace Kentor.PU_Adapter.Test
         }
 
         [TestMethod]
+        public void SaknarLän()
+        {
+            var pknodData = new PknodPlusData(TestPersonsPuData.PuDataList[33]); // 19300807-7723
+            var interpreter = new PknodInterpreter(pknodData);
+            interpreter.Län.Should().Be(Enums.Länskoder.SAKNAS_ELLER_FELAKTIGT);
+        }
+
+        [TestMethod]
+        public void SaknarKommun()
+        {
+            var pknodData = new PknodPlusData(TestPersonsPuData.PuDataList[33]); // 19300807-7723
+            var interpreter = new PknodInterpreter(pknodData);
+            interpreter.Kommun.Should().Be(Enums.Kommunkoder.SAKNAS_ELLER_FELAKTIGT);
+        }
+
+        [TestMethod]
         public void Efternamn()
         {
             var pknodData = new PknodData(CommonData.TolvanWithTillsalsnamn);

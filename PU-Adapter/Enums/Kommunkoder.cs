@@ -8,6 +8,9 @@ namespace Kentor.PU_Adapter.Enums
 {
     public enum Kommunkoder
     {
+        [Description("LÄN SAKNAS ELLER ÄR FELAKTIGT")]
+        SAKNAS_ELLER_FELAKTIGT = -1,
+
         // 01 Stockholms län
         [Description("Upplands Väsby")]
         Upplands_Väsby = 0114,

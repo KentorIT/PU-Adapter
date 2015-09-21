@@ -43,6 +43,10 @@
       <HintPath>..\PU-Adapter\packages\FluentAssertions.4.0.0\lib\net45\FluentAssertions.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +71,8 @@
     <Compile Include="StringBuilderEx.cs" />
     <Compile Include="PknodInterpreterTest.cs" />
     <Compile Include="CommonData.cs" />
+    <Compile Include="TestPersonsPuData.cs" />
+    <Compile Include="RunAllTestpersons.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

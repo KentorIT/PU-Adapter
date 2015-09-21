@@ -27,6 +27,7 @@ namespace Kentor.PU_Adapter
                 {
                     wc.Credentials = new NetworkCredential(UserName, Password);
                 }
+                personNumber = personNumber.Replace("-", "").Replace(" ", "");
                 var data = wc.DownloadData(new Uri(PknodUrl, "PKNODPLUS?arg=" + Uri.EscapeDataString(personNumber)));
                 var latin1 = Encoding.GetEncoding("ISO-8859-1");
 

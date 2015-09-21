@@ -30,12 +30,19 @@ namespace Kentor.PU_Adapter.CommandLine
 
             while (true)
             {
-                Console.WriteLine("Enter person number");
+                Console.WriteLine("Enter person number, or t to save all testperson numbers to file");
                 var input = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(input))
                 {
                     return;
                 }
+                if (input == "t")
+                {
+                    SaveAllTestPnrData(fetcher);
+                    Console.WriteLine("Done");
+                    break;
+                }
+
                 var result = fetcher.FetchPkNodplusString(input);
                 Console.WriteLine(result);
                 Console.WriteLine("----------------------------------------------");
@@ -44,6 +51,20 @@ namespace Kentor.PU_Adapter.CommandLine
                 Console.WriteLine(json);
                 Console.WriteLine("----------------------------------------------");
             }
+        }
+
+        private static void SaveAllTestPnrData(PU_Adapter.PknodFetcher fetcher)
+        {
+            var results = new List<string>();
+            foreach (var pnr in Testpersonnummer.Nummer)
+            {
+                var sw = System.Diagnostics.Stopwatch.StartNew();
+                var result = fetcher.FetchPkNodplusString(pnr);
+                sw.Stop();
+                Console.WriteLine("Time: " + sw.Elapsed);
+                results.Add(result);
+            }
+            System.IO.File.WriteAllLines("c:\\Temp\\TestPnrData.txt", results);
         }
     }
 }
