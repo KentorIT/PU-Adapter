@@ -18,7 +18,17 @@ namespace Kentor.PU_Adapter
             this.Password = Properties.Settings.Default.Password;
         }
 
-        public string FetchPkNodplusString(string personNumber)
+        public PknodPlusInterpreter FetchPknodPlusInterpreter(string personnummer)
+        {
+            return new PknodPlusInterpreter(FetchPknodPlusString(personnummer));
+        }
+
+        public PknodPlusData FetchPknodPlusData(string personnummer)
+        {
+            return new PknodPlusData(FetchPknodPlusString(personnummer));
+        }
+
+        public string FetchPknodPlusString(string personnummer)
         {
             try
             {
@@ -27,8 +37,8 @@ namespace Kentor.PU_Adapter
                 {
                     wc.Credentials = new NetworkCredential(UserName, Password);
                 }
-                personNumber = personNumber.Replace("-", "").Replace(" ", "");
-                var data = wc.DownloadData(new Uri(PknodUrl, "PKNODPLUS?arg=" + Uri.EscapeDataString(personNumber)));
+                personnummer = personnummer.Replace("-", "").Replace(" ", "");
+                var data = wc.DownloadData(new Uri(PknodUrl, "PKNODPLUS?arg=" + Uri.EscapeDataString(personnummer)));
                 var latin1 = Encoding.GetEncoding("ISO-8859-1");
 
                 // Data is in the format

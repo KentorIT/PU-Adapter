@@ -11,6 +11,11 @@ namespace Kentor.PU_Adapter
     {
         protected readonly string pknodData;
 
+        /// <summary>
+        /// The row pknod string
+        /// </summary>
+        public string Raw { get { return pknodData; } }
+
         protected PknodData(string pknodData, int dataLength)
         {
             this.pknodData = pknodData;

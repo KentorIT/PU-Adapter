@@ -9,9 +9,15 @@ namespace Kentor.PU_Adapter
     {
         private readonly PknodPlusData pknodPlusData;
 
+        public PknodPlusData PknodPlusData { get { return pknodPlusData; } }
+
         public PknodPlusInterpreter(PknodPlusData pknodPlusData) : base(pknodPlusData)
         {
             this.pknodPlusData = pknodPlusData;
+        }
+
+        public PknodPlusInterpreter(string pknodPlusString) : this(new PknodPlusData(pknodPlusString))
+        {
         }
 
         protected override string FörnamnString

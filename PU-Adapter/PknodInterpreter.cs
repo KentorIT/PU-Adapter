@@ -9,9 +9,15 @@ namespace Kentor.PU_Adapter
     {
         private readonly PknodData pknodData;
 
+        public PknodData PknodData { get { return pknodData; } }
+
         public PknodInterpreter(PknodData pknodData)
         {
             this.pknodData = pknodData;
+        }
+
+        public PknodInterpreter(string pknodString) : this(new PknodData(pknodString))
+        {
         }
 
         public bool Utomlänare

@@ -44,7 +44,7 @@ namespace Kentor.PU_Adapter.CommandLine
                     break;
                 }
 
-                var result = fetcher.FetchPkNodplusString(input);
+                var result = fetcher.FetchPknodPlusString(input);
                 Console.WriteLine(result);
                 Console.WriteLine("----------------------------------------------");
                 var parsedData = new PknodPlusData(result);
@@ -60,7 +60,7 @@ namespace Kentor.PU_Adapter.CommandLine
             foreach (var pnr in Testpersonnummer.Nummer)
             {
                 var sw = System.Diagnostics.Stopwatch.StartNew();
-                var result = fetcher.FetchPkNodplusString(pnr);
+                var result = fetcher.FetchPknodPlusString(pnr);
                 sw.Stop();
                 Console.WriteLine("Time: " + sw.Elapsed);
                 results.Add(result);

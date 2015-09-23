@@ -11,14 +11,12 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void Utomlänare()
         {
-            var pknodData = new PknodData(CommonData.TolvanPknodResult);
-            var interpreter = new PknodInterpreter(pknodData);
+            var interpreter = new PknodInterpreter(CommonData.TolvanPknodResult);
             interpreter.Utomlänare.Should().Be(false);
             interpreter.Län.Should().Be(Enums.Länskoder.Stockholms_län);
             interpreter.Kommun.Should().Be(Enums.Kommunkoder.Stockholm);
 
-            var kalmarLän = new PknodData(CommonData.TolvanWithKalmarLän);
-            var interpreterKalmar = new PknodInterpreter(kalmarLän);
+            var interpreterKalmar = new PknodInterpreter(CommonData.TolvanWithKalmarLän);
             interpreterKalmar.Utomlänare.Should().Be(true);
             interpreterKalmar.Län.Should().Be(Enums.Länskoder.Kalmar_län);
             interpreterKalmar.Kommun.Should().Be(Enums.Kommunkoder.Högsby);
@@ -27,32 +25,28 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void SaknarLän()
         {
-            var pknodData = new PknodPlusData(TestPersonsPuData.PuDataList[33]); // 19300807-7723
-            var interpreter = new PknodInterpreter(pknodData);
+            var interpreter = new PknodPlusInterpreter(TestPersonsPuData.PuDataList[33]); // 19300807-7723
             interpreter.Län.Should().Be(Enums.Länskoder.SAKNAS_ELLER_FELAKTIGT);
         }
 
         [TestMethod]
         public void SaknarKommun()
         {
-            var pknodData = new PknodPlusData(TestPersonsPuData.PuDataList[33]); // 19300807-7723
-            var interpreter = new PknodInterpreter(pknodData);
+            var interpreter = new PknodPlusInterpreter(TestPersonsPuData.PuDataList[33]); // 19300807-7723
             interpreter.Kommun.Should().Be(Enums.Kommunkoder.SAKNAS_ELLER_FELAKTIGT);
         }
 
         [TestMethod]
         public void Efternamn()
         {
-            var pknodData = new PknodData(CommonData.TolvanWithTillsalsnamn);
-            var interpreter = new PknodInterpreter(pknodData);
+            var interpreter = new PknodInterpreter(CommonData.TolvanWithTillsalsnamn);
             interpreter.Efternamn.Should().Be("TOLVANSSON");
         }
 
         [TestMethod]
         public void Förnamn()
         {
-            var pknodData = new PknodData(CommonData.TolvanWithTillsalsnamn);
-            var interpreter = new PknodInterpreter(pknodData);
+            var interpreter = new PknodInterpreter(CommonData.TolvanWithTillsalsnamn);
             interpreter.Förnamn.ShouldBeEquivalentTo(new[] { "TOLVAN", "LARS", "ERIK" });
 
             var pknodPlusData = new PknodPlusData(CommonData.TolvanPlusWithTillsalsnamn);
@@ -63,8 +57,7 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void Tilltalsnamn()
         {
-            var pknodData = new PknodData(CommonData.TolvanWithTillsalsnamn);
-            var interpreter = new PknodInterpreter(pknodData);
+            var interpreter = new PknodInterpreter(CommonData.TolvanWithTillsalsnamn);
             interpreter.TilltalsnamnIndex.Should().Be(1);
             interpreter.Tilltalsnamn.Should().Be("LARS");
         }
@@ -72,8 +65,7 @@ namespace Kentor.PU_Adapter.Test
         [TestMethod]
         public void TestAvliden()
         {
-            var pknodData = new PknodPlusData(CommonData.TolvanPknodPlusResult);
-            var interpreter = new PknodPlusInterpreter(pknodData);
+            var interpreter = new PknodPlusInterpreter(CommonData.TolvanPknodPlusResult);
             interpreter.Avliden.Should().BeFalse();
             interpreter.AvlidenDatum.Should().Be(null);
 
