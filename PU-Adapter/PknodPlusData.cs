@@ -3,29 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-#pragma warning disable 0809 // (Warning CS0809  Obsolete member 'nnnn' overrides non-obsolete member 'nnnn') // We want to mark the members as obsolete only when you actually use the PLUS version
-
 namespace Kentor.PU_Adapter
 {
     public class PknodPlusData : PknodData
     {
         public PknodPlusData(string pknodData) : base(pknodData, 1327)
         {
-        }
-
-        /// <summary>
-        /// Aktuellt namn = efternamn och ev. mellannamn, samtliga förnamn (tilltalsnamnet inom // om sådant finns anmält).
-        /// </summary>
-        /// <remarks>
-        /// Replaced by <see cref="Field_Förnamn"/>, <see cref="Field_Mellannamn"/> and <see cref="Field_Efternamn"/>
-        /// </remarks>
-        [Obsolete("See " + /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"Field_Förnamn"/*)*/ + ", " + /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"Field_Mellannamn"/*)*/ + " and " + /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"Field_Efternamn"/*)*/)]
-        public override string Field_Namn
-        {
-            get
-            {
-                return base.Field_Namn;
-            }
         }
 
         /// <summary>
@@ -102,21 +85,6 @@ namespace Kentor.PU_Adapter
             get
             {
                 return pknodData.Substring(989, 5).Trim();
-            }
-        }
-
-        /// <summary>
-        /// Aktuell postadress (postadress för särskild postadress om sådan finns anmäld, annars för folkbokföringsadressen)
-        /// </summary>
-        /// <remarks>
-        /// Replaced by <see cref="Field_Folkbokföringspostort"/>
-        /// </remarks>
-        [Obsolete("See " + /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"Field_Folkbokföringspostort"/*)*/)]
-        public override string Field_Postort
-        {
-            get
-            {
-                return base.Field_Postort;
             }
         }
 
