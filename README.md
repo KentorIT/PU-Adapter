@@ -1,7 +1,7 @@
 # PU-Adapter
 .NET adapter for fetching person data from PU
 Fetches PU data via HTTPS and parses the most important fields of the returned data in to an PknodPlusData object.
-The project also contains an PknodPlusInterpreter that provides a few higher level abstractions on top of the PknodPlusData.
+The project also contains a PknodPlusInterpreter that provides a few higher level abstractions on top of the PknodPlusData.
 
 ##Configuration
 In app settings
