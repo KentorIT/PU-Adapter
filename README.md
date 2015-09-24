@@ -31,10 +31,10 @@ and
     </applicationSettings>
 
 ##PU-Stub
-For testing purposes there is a Stub service. You can either host the PU-Stub project your self or use [http://pu-stub.azurewebsites.net/snod/]()
+For testing purposes there is a Stub service. You can either host the PU-Stub project your self or use http://pu-stub.azurewebsites.net/snod/
 The stub contains a few test persons authorized as test persons by the Swedish Skatteverket.
-An example is Tolvan Tolvansson [http://pu-stub.azurewebsites.net/snod/PKNODPLUS?arg=191212121212]().
-The list of available test person numbers and reserve numbers can be found on [https://github.com/KentorIT/PU-Adapter/blob/master/TestData/Testpersonnummer.cs]()
+An example is Tolvan Tolvansson [http://pu-stub.azurewebsites.net/snod/PKNODPLUS?arg=191212121212](http://pu-stub.azurewebsites.net/snod/PKNODPLUS?arg=191212121212).
+The list of available test person numbers and reserve numbers can be found on [https://github.com/KentorIT/PU-Adapter/blob/master/TestData/Testpersonnummer.cs](https://github.com/KentorIT/PU-Adapter/blob/master/TestData/Testpersonnummer.cs)
 
 To use the PU-stub, change the configuration to
 
