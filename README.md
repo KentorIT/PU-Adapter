@@ -3,6 +3,10 @@
 Fetches PU data via HTTPS and parses the most important fields of the returned data in to an PknodPlusData object.
 The project also contains a PknodPlusInterpreter that provides a few higher level abstractions on top of the PknodPlusData.
 
+## Installation
+
+Just install the NuGet package [Kentor.PU-Adapter](https://www.nuget.org/packages/Kentor.PU-Adapter)
+
 ##Configuration
 In app settings
 
