@@ -22,24 +22,24 @@ namespace Kentor.PU_Adapter
 
             if (pknodData == null)
             {
-                throw new ArgumentNullException(/* TODO: Restore when NuGet 3.2 is available __ nameof(*/"pknodData"/*)*/);
+                throw new ArgumentNullException(nameof(pknodData));
             }
             if (string.IsNullOrWhiteSpace(pknodData))
             {
-                throw new ArgumentException("PKNOD data can't be empty", /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"pknodData"/*)*/);
+                throw new ArgumentException("PKNOD data can't be empty", nameof(pknodData));
             }
             if (pknodData.Length != this.Field_Svarslängd)
             {
-                throw new ArgumentException("PKNOD length parameter does not match content length", /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"pknodData"/*)*/);
+                throw new ArgumentException("PKNOD length parameter does not match content length", nameof(pknodData));
             }
             if (pknodData.Last() != '_')
             {
-                throw new ArgumentException("Invalid end marker", /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"pknodData"/*)*/);
+                throw new ArgumentException("Invalid end marker", nameof(pknodData));
             }
 
             if (pknodData.Length != dataLength)
             {
-                throw new ArgumentException("PKNOD Data should be exactly " + dataLength.ToString() + " bytes", /* TODO: Restore when NuGet 3.2 is available __ nameof(*/"pknodData"/*)*/);
+                throw new ArgumentException("PKNOD Data should be exactly " + dataLength.ToString() + " bytes", nameof(pknodData));
             }
         }
 
