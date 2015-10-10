@@ -70,10 +70,19 @@ function Create-Nuspec($projectName)
 }
 
 Create-Nuspec("PU-Adapter")
+echo "Checking if nuget exists"
+If((Test-Path -Path $pwd\nuget\nuget.exe) -eq $false) {
+	"nuget.exe does not exist"
+	$webclient = New-Object System.Net.WebClient
+	$url = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+	$file = "$pwd\nuget\nuget.exe"
+	$webclient.DownloadFile($url,$file)
+	"nuget.exe downloaded"
+}
 
 echo "Building package..."
 
-nuget pack -build -outputdirectory nuget PU-Adapter\PU-Adapter.csproj
+.\nuget\nuget.exe pack -build -outputdirectory nuget PU-Adapter\PU-Adapter.csproj
 
 $version = Increment-PatchNumber
 Set-Version($version)
