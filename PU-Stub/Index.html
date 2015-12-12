@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Testpersoner PU-Stub</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.11.3.min.js">
+    </script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var translateType = function (typeId) {
+                if (typeId === 1)
+                    return "Pnr";
+                if (typeId === 3)
+                    return "ResNr";
+                return typeId;
+            };
+
+            var translateDate = function (d) {
+                if (d) {
+                    return new Date(d).toLocaleDateString();
+                }
+                return "";
+            };
+
+            $('#example').DataTable({
+                paging: false,
+                ajax:
+                {
+                    url: "./snod/AllPersons",
+                    dataType: "json",
+                    dataSrc: function (json) {
+                        var return_data = new Array();
+                        for (var i = 0; i < json.length; i++) {
+                            return_data.push(
+                              {
+                                  Field_Adress: json[i].Field_Adress,
+                                  Field_Aktuellt_Personnummer: json[i].Field_Aktuellt_Personnummer,
+                                  Field_Avgångskod: json[i].Field_Avgångskod,
+                                  Field_Basområde: json[i].Field_Basområde,
+                                  Field_Civilståndsdatum: translateDate(json[i].Field_Civilståndsdatum),
+                                  Field_Efternamn: json[i].Field_Efternamn,
+                                  Field_Folkbokföring_co_adress: json[i].Field_Folkbokföring_co_adress,
+                                  Field_Folkbokföringspostnummer: json[i].Field_Folkbokföringspostnummer,
+                                  Field_Folkbokföringspostort: json[i].Field_Folkbokföringspostort,
+                                  Field_Folkbokföringsutdelningsadress1: json[i].Field_Folkbokföringsutdelningsadress1,
+                                  Field_Folkbokföringsutdelningsadress2: json[i].Field_Folkbokföringsutdelningsadress2,
+                                  Field_Förnamn: json[i].Field_Förnamn,
+                                  Field_Församling: json[i].Field_Församling,
+                                  Field_Kommun: json[i].Field_Kommun,
+                                  Field_Län: json[i].Field_Län,
+                                  Field_Mellannamn: json[i].Field_Mellannamn,
+                                  Field_Namn: json[i].Field_Namn,
+                                  Field_PersonIDTyp: translateType(json[i].Field_PersonIDTyp),
+                                  Field_Personnummer_Reservnummer: json[i].Field_Personnummer_Reservnummer,
+                                  Field_Postnummer: json[i].Field_Postnummer,
+                                  Field_Postort: json[i].Field_Postort,
+                              }
+                              );
+                        }
+                        return return_data;
+                    }
+                },
+                columns: [
+                    { data: "Field_Personnummer_Reservnummer", title: "Personnummer/ Reservnummer" },
+                    { data: "Field_PersonIDTyp", title: "PersonIDTyp" },
+                    { data: "Field_Namn", title: "Namn" },
+                    { data: "Field_Adress", title: "Adress" },
+                    { data: "Field_Postnummer", title: "Postnummer" },
+                    { data: "Field_Postort", title: "Postort" },
+                    { data: "Field_Avgångskod", title: "Avgångskod" },
+                    { data: "Field_Basområde", title: "Basområde" },
+                    { data: "Field_Civilståndsdatum", title: "Civilståndsdatum" },
+                    //{ data: "Field_Folkbokföring_co_adress", title: "C/O adress" },
+                    //{ data: "Field_Folkbokföringspostnummer", title: "Postnummer" },
+                    //{ data: "Field_Folkbokföringspostort", title: "Postort" },
+                    //{ data: "Field_Folkbokföringsutdelningsadress1", title: "Utdelningsadress1" },
+                    //{ data: "Field_Folkbokföringsutdelningsadress2", title: "Utdelningsadress2" },
+                    { data: "Field_Församling", title: "Församling" },
+                    { data: "Field_Kommun", title: "Kommun" },
+                    { data: "Field_Län", title: "Län" },
+                    { data: "Field_Förnamn", title: "Förnamn" },
+                    { data: "Field_Mellannamn", title: "Mellannamn" },
+                    { data: "Field_Efternamn", title: "Efternamn" },
+                    { data: "Field_Aktuellt_Personnummer", title: "Aktuellt Personnummer" },
+                ]
+            });
+        });
+
+    </script>
+    <style>
+        .dataTables_wrapper .dataTables_filter {
+            float: none;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>PU-Stub</h1>
+    <h2>Testuppslag</h2>
+    <form action="snod/PKNODPLUS" method="get">
+        <label for="pnr">Testuppslag person/reservnummer</label>
+        <input id="pnr" type="text" name="arg" />
+        <button type="submit">Slå upp person</button>
+    </form>
+    <h1>Alla testpersoner</h1>
+    <table id="example" class="display" cellspacing="0"></table>
+</body>
+</html>

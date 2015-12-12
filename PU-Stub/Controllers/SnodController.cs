@@ -42,5 +42,12 @@ namespace PU_Stub.Controllers
             resp.Content = new StringContent(result, System.Text.Encoding.GetEncoding("ISO-8859-1"), "text/plain");
             return resp;
         }
+
+        [HttpGet]
+        public HttpResponseMessage AllPersons()
+        {
+            var allData = Kentor.PU_Adapter.TestData.TestPersonsPuData.PuDataList.Select(data => new PknodPlusData(data));
+            return this.Request.CreateResponse(HttpStatusCode.OK, allData);
+        }
     }
 }
