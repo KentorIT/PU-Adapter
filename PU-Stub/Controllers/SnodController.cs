@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace PU_Stub.Controllers
@@ -18,9 +19,9 @@ namespace PU_Stub.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage PKNODPLUS(string arg)
+        public async Task<HttpResponseMessage> PKNODPLUS(string arg)
         {
-            System.Threading.Thread.Sleep(30); // Introduce production like latency
+            await Task.Delay(30); // Introduce production like latency
 
             string result;
             if (!TestPersons.TryGetValue(arg, out result))
