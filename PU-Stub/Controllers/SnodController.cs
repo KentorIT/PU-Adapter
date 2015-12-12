@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -40,14 +41,26 @@ namespace PU_Stub.Controllers
             result = "0\n0\n1327\n" + result; // add magic initial lines, like production PU does
             var resp = new HttpResponseMessage(HttpStatusCode.OK);
             resp.Content = new StringContent(result, System.Text.Encoding.GetEncoding("ISO-8859-1"), "text/plain");
-            return resp;
+            return SetCacheOneDay(resp);
         }
 
         [HttpGet]
         public HttpResponseMessage AllPersons()
         {
             var allData = Kentor.PU_Adapter.TestData.TestPersonsPuData.PuDataList.Select(data => new PknodPlusData(data));
-            return this.Request.CreateResponse(HttpStatusCode.OK, allData);
+            var resp = this.Request.CreateResponse(HttpStatusCode.OK, allData);
+            return SetCacheOneDay(resp);
+        }
+
+        private HttpResponseMessage SetCacheOneDay(HttpResponseMessage response)
+        {
+            response.Headers.CacheControl = new CacheControlHeaderValue()
+            {
+                Public = true,
+                MaxAge = new TimeSpan(1, 0, 0, 0),
+            };
+
+            return response;
         }
     }
 }
