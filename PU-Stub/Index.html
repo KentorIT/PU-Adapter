@@ -60,6 +60,7 @@
                                   Field_Personnummer_Reservnummer: json[i].Field_Personnummer_Reservnummer,
                                   Field_Postnummer: json[i].Field_Postnummer,
                                   Field_Postort: json[i].Field_Postort,
+                                  Field_Födelsedatum: translateDate(json[i].Field_Födelsedatum),
                               }
                               );
                         }
@@ -71,6 +72,7 @@
                     { data: "Field_PersonIDTyp", title: "Typ" },
                     { data: "Field_Förnamn", title: "Förnamn" },
                     { data: "Field_Efternamn", title: "Efternamn" },
+                    { data: "Field_Födelsedatum", title: "Födelsedatum" },
                     { data: "Field_Adress", title: "Adress" },
                     { data: "Field_Postnummer", title: "Postnummer" },
                     { data: "Field_Postort", title: "Postort" },
