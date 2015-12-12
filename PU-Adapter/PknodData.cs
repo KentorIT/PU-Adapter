@@ -81,6 +81,23 @@ namespace Kentor.PU_Adapter
         }
 
         /// <summary>
+        /// Födelsedatum
+        /// </summary>
+        public DateTime? Field_Födelsedatum
+        {
+            get
+            {
+                var rawDate = pknodData.Substring(20, 8);
+                DateTime date;
+                if (DateTime.TryParseExact(rawDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    return date;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Personens aktuellaste identitet på formen SSÅÅMMDDNNNN. Kan vara annat än identiteten i anropet.
         /// </summary>
         public string Field_Aktuellt_Personnummer

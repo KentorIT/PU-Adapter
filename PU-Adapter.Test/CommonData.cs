@@ -29,6 +29,14 @@ namespace Kentor.PU_Adapter.Test
             }
         }
 
+        public static string TolvanWithReservnummer
+        {
+            get
+            {
+                return TestPersonsPuData.PuDataList[57];
+            }
+        }
+
         public static string TolvanWithPlusAddress
         {
             get

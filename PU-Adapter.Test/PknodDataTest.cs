@@ -76,6 +76,14 @@ namespace Kentor.PU_Adapter.Test
         }
 
         [TestMethod]
+        public void TestFödelsedatum()
+        {
+            var pknodData = new PknodPlusData(CommonData.TolvanWithReservnummer);
+            pknodData.Field_Aktuellt_Personnummer.Should().Be("992004391013"); // Make sure we got the expected row
+            pknodData.Field_Födelsedatum.Should().Be(new DateTime(1912, 12, 12));
+        }
+
+        [TestMethod]
         public void TestPersonnummerPersonIdTyp()
         {
             var pknodData = new PknodData(CommonData.TolvanPknodResult);
