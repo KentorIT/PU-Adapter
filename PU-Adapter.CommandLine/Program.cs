@@ -44,12 +44,36 @@ namespace Kentor.PU_Adapter.CommandLine
                     break;
                 }
 
-                var result = fetcher.FetchPknodPlusString(input);
+                var result = fetcher.FetchPknodString(input);
                 Console.WriteLine(result);
                 Console.WriteLine("----------------------------------------------");
-                var parsedData = new PknodPlusData(result);
-                var json = JsonConvert.SerializeObject(parsedData, Formatting.Indented);
-                Console.WriteLine(json);
+                var parsedData = new PknodData(result);
+                if (parsedData.Field_Returkod == Enums.ReturnCode.Tjänsten_utförd)
+                {
+                    var json = JsonConvert.SerializeObject(parsedData, Formatting.Indented);
+                    Console.WriteLine(json);
+                    Console.WriteLine("----------------------------------------------");
+                }
+                else
+                {
+                    Console.WriteLine("Error on fetch:");
+                    Console.WriteLine(parsedData.Field_Returkod.ToString());
+                }
+                Console.WriteLine("--Plus--");
+                var resultPlus = fetcher.FetchPknodPlusString(input);
+                Console.WriteLine(resultPlus);
+                Console.WriteLine("----------------------------------------------");
+                var parsedDataPlus = new PknodPlusData(resultPlus);
+                if (parsedDataPlus.Field_Returkod == Enums.ReturnCode.Tjänsten_utförd)
+                {
+                    var jsonPlus = JsonConvert.SerializeObject(parsedData, Formatting.Indented);
+                    Console.WriteLine(jsonPlus);
+                }
+                else
+                {
+                    Console.WriteLine("Error on fetch:");
+                    Console.WriteLine(parsedData.Field_Returkod.ToString());
+                }
                 Console.WriteLine("----------------------------------------------");
             }
         }
