@@ -30,6 +30,16 @@ namespace Kentor.PU_Adapter
 
         public string FetchPknodPlusString(string personnummer)
         {
+            return FetchFromPknod(personnummer, true);
+        }
+
+        public string FetchPknodString(string personnummer)
+        {
+            return FetchFromPknod(personnummer, false);
+        }
+
+        private string FetchFromPknod(string personnummer, bool plusString)
+        {
             try
             {
                 WebClient wc = new WebClient();
@@ -38,7 +48,7 @@ namespace Kentor.PU_Adapter
                     wc.Credentials = new NetworkCredential(UserName, Password);
                 }
                 personnummer = personnummer.Replace("-", "").Replace(" ", "");
-                var data = wc.DownloadData(new Uri(PknodUrl, "PKNODPLUS?arg=" + Uri.EscapeDataString(personnummer)));
+                var data = wc.DownloadData(new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer)));
                 var latin1 = Encoding.GetEncoding("ISO-8859-1");
 
                 // Data is in the format
