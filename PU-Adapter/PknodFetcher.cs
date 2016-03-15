@@ -42,13 +42,14 @@ namespace Kentor.PU_Adapter
         {
             try
             {
+                var requestUrl = new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer));
                 WebClient wc = new WebClient();
                 if (!string.IsNullOrEmpty(UserName))
                 {
                     wc.Credentials = new NetworkCredential(UserName, Password);
                 }
                 personnummer = personnummer.Replace("-", "").Replace(" ", "");
-                var data = wc.DownloadData(new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer)));
+                var data = wc.DownloadData(requestUrl);
                 var latin1 = Encoding.GetEncoding("ISO-8859-1");
 
                 // Data is in the format
