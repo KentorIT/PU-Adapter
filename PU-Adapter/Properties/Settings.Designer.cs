@@ -49,5 +49,14 @@ namespace Kentor.PU_Adapter.Properties {
                 return ((string)(this["Password"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AllowUnsafePuProdCert {
+            get {
+                return ((bool)(this["AllowUnsafePuProdCert"]));
+            }
+        }
     }
 }

@@ -80,7 +80,18 @@ namespace Kentor.PU_Adapter
         {
             if (certificate.GetCertHashString() == PuProdCertThumbPrint)
             {
-                return true;
+                if (Properties.Settings.Default.AllowUnsafePuProdCert)
+                {
+                    return true;
+                }
+                throw new ApplicationException(@"PU prod does have a self signed certificate.
+To allow the use of the well known self signed certificate add the setting
+      <setting name=""AllowUnsafePuProdCert"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+to your app/web.config
+This is not enabled by default to make sure you are aware that you trust a self signed certificate.
+");
             }
             return sslPolicyErrors == System.Net.Security.SslPolicyErrors.None;
         }
