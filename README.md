@@ -31,6 +31,9 @@ and
             <setting name="Password" serializeAs="String">
                 <value>MyPassword</value>
             </setting>
+            <setting name="AllowUnsafePuProdCert" serializeAs="String">
+                <value>False</value> <!-- Most likely you want to use the value True -->
+            </setting>
         </Kentor.PU_Adapter.Properties.Settings>
     </applicationSettings>
 
