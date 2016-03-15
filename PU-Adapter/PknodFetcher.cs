@@ -43,57 +43,37 @@ namespace Kentor.PU_Adapter
 
         private string FetchFromPknod(string personnummer, bool plusString)
         {
-            try
+            var requestUrl = new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer));
+            personnummer = personnummer.Replace("-", "").Replace(" ", "");
+            HttpWebRequest request = HttpWebRequest.CreateHttp(requestUrl);
+            if (!string.IsNullOrEmpty(UserName))
             {
-                var requestUrl = new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer));
-                personnummer = personnummer.Replace("-", "").Replace(" ", "");
-                HttpWebRequest request = HttpWebRequest.CreateHttp(requestUrl);
-                if (!string.IsNullOrEmpty(UserName))
-                {
-                    request.Credentials = new NetworkCredential(UserName, Password);
-                }
-                request.ServerCertificateValidationCallback += ValidateUntrustedCert;
+                request.Credentials = new NetworkCredential(UserName, Password);
+            }
+            request.ServerCertificateValidationCallback += ValidateUntrustedCert;
 
-                string data;
-                using (var response = request.GetResponse())
+            string data;
+            using (var response = request.GetResponse())
+            {
+                using (var stream = response.GetResponseStream())
                 {
-                    using (var stream = response.GetResponseStream())
+                    using (var sr = new StreamReader(stream, Encoding.GetEncoding("ISO-8859-1")))
                     {
-                        using (var sr = new StreamReader(stream, Encoding.GetEncoding("ISO-8859-1")))
-                        {
-                            data = sr.ReadToEnd();
-                        }
+                        data = sr.ReadToEnd();
                     }
                 }
-
-                // Data is in the format
-                // -----------------------------------------------------
-                //0
-                //0
-                //704
-                //07040000191212121212191212121912121212121TOLVANSSON, TOLVAN TOLVAR STIGEN              12345STOCKHOLM                           00000000000000000000    0000018019200244  200801162008011600000000                                                                                                                                                                                    00000000000000000000        132204  03132204  V[STRA KUNGSHOLMEN            17101648M22V[STRA KUNGSHOLMEN                                STOCKHOLM / EKER\     1734    CENTRALA STOCKHOLMS PSYKIATRIS1329999                                               8                                                              _
-                // -----------------------------------------------------
-                // (between the dashed lines). We need to pick the first long line. Lets say long as > 100 characters
-                var dataAsRows = data.Split(new[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-                return dataAsRows.Where(l => l.Length >= 100).FirstOrDefault();
             }
-            catch (WebException wex)
-            {
-                if (wex.InnerException is System.Security.Authentication.AuthenticationException && (wex.InnerException as System.Security.Authentication.AuthenticationException).Message == "The remote certificate is invalid according to the validation procedure.")
-                {
-                    throw new ApplicationException(@"PKNOD prod does have a self signed certificate. To ignore all certificate errors in your application add the following code in your application startup
-Use with caution, this is suceptible to man in the middle attacks.
 
-//Change SSL checks so that all checks pass
-ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
-", wex);
-                }
-                else
-                {
-                    // Just pass on
-                    throw;
-                }
-            }
+            // Data is in the format
+            // -----------------------------------------------------
+            //0
+            //0
+            //704
+            //07040000191212121212191212121912121212121TOLVANSSON, TOLVAN TOLVAR STIGEN              12345STOCKHOLM                           00000000000000000000    0000018019200244  200801162008011600000000                                                                                                                                                                                    00000000000000000000        132204  03132204  V[STRA KUNGSHOLMEN            17101648M22V[STRA KUNGSHOLMEN                                STOCKHOLM / EKER\     1734    CENTRALA STOCKHOLMS PSYKIATRIS1329999                                               8                                                              _
+            // -----------------------------------------------------
+            // (between the dashed lines). We need to pick the first long line. Lets say long as > 100 characters
+            var dataAsRows = data.Split(new[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            return dataAsRows.Where(l => l.Length >= 100).FirstOrDefault();
         }
 
         private static bool ValidateUntrustedCert(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
