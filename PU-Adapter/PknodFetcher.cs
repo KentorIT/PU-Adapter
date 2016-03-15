@@ -9,6 +9,8 @@ namespace Kentor.PU_Adapter
 {
     public class PknodFetcher
     {
+        private static string PuProdCertThumbPrint = "69FAB3533811F39A04CB14B0D5DA3DC6A6351776";
+
         public string Password { get; set; }
         public Uri PknodUrl { get; set; }
         public string UserName { get; set; }
@@ -50,6 +52,7 @@ namespace Kentor.PU_Adapter
                 {
                     request.Credentials = new NetworkCredential(UserName, Password);
                 }
+                request.ServerCertificateValidationCallback += ValidateUntrustedCert;
 
                 string data;
                 using (var response = request.GetResponse())
@@ -91,6 +94,15 @@ ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateV
                     throw;
                 }
             }
+        }
+
+        private static bool ValidateUntrustedCert(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        {
+            if (certificate.GetCertHashString() == PuProdCertThumbPrint)
+            {
+                return true;
+            }
+            return sslPolicyErrors == System.Net.Security.SslPolicyErrors.None;
         }
     }
 }

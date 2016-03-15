@@ -26,9 +26,7 @@ namespace Kentor.PU_Adapter.CommandLine
                 fetcher.Password = Console.ReadLine();
                 Console.Clear();
             }
-            //Change SSL checks so that all checks pass
-            ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(delegate { return true; });
-
+            
             while (true)
             {
                 Console.WriteLine("Enter person number, or t to save all testperson numbers to file");
