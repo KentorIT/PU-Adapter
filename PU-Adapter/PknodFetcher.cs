@@ -43,8 +43,12 @@ namespace Kentor.PU_Adapter
 
         private string FetchFromPknod(string personnummer, bool plusString)
         {
-            var requestUrl = new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer));
+            if (personnummer == null)
+            {
+                throw new ArgumentNullException(nameof(personnummer), "Personnummer can't be null");
+            }
             personnummer = personnummer.Replace("-", "").Replace(" ", "");
+            var requestUrl = new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer));
             HttpWebRequest request = HttpWebRequest.CreateHttp(requestUrl);
             if (!string.IsNullOrEmpty(UserName))
             {
