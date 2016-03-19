@@ -12,7 +12,7 @@ namespace PU_Stub.Controllers
 {
     public class SnodController : ApiController
     {
-        private static readonly IDictionary<string, string> TestPersons;
+        protected static readonly IDictionary<string, string> TestPersons;
         static SnodController()
         {
             TestPersons = Kentor.PU_Adapter.TestData.TestPersonsPuData.PuDataList
@@ -21,7 +21,7 @@ namespace PU_Stub.Controllers
 
         [HttpGet]
         [Route("~/snod/PKNODPLUS/")]
-        public async Task<HttpResponseMessage> PKNODPLUS(string arg)
+        public virtual async Task<HttpResponseMessage> PKNODPLUS(string arg)
         {
             await Task.Delay(30); // Introduce production like latency
 
@@ -32,7 +32,7 @@ namespace PU_Stub.Controllers
 
         [HttpGet]
         [Route("~/snod/PKNOD/")]
-        public async Task<HttpResponseMessage> PKNOD(string arg)
+        public virtual async Task<HttpResponseMessage> PKNOD(string arg)
         {
             await Task.Delay(30); // Introduce production like latency
             string result = GetTestPerson(arg);
@@ -69,7 +69,7 @@ namespace PU_Stub.Controllers
             return SetCacheOneDay(resp);
         }
 
-        private static string GetTestPerson(string arg)
+        protected virtual string GetTestPerson(string arg)
         {
             string result;
             if (!TestPersons.TryGetValue(arg, out result))
