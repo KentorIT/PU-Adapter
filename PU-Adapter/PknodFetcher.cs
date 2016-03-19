@@ -52,6 +52,7 @@ namespace Kentor.PU_Adapter
             HttpWebRequest request = HttpWebRequest.CreateHttp(requestUrl);
             if (!string.IsNullOrEmpty(UserName))
             {
+                request.PreAuthenticate = true;
                 request.Credentials = new NetworkCredential(UserName, Password);
             }
             request.ServerCertificateValidationCallback += ValidateUntrustedCert;
