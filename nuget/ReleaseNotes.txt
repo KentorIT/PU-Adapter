@@ -1,3 +1,4 @@
 V0.16
 Requires .NET 4.5
 Configurable trust of PU-Prod certificate with AllowUnsafePuProdCert setting in app/web.config
+PKNODH suppport from Patrik Ericsson
