@@ -44,6 +44,19 @@ namespace PU_Stub.Controllers
         }
 
         [HttpGet]
+        [Route("~/snod/PKNODH/")]
+        public virtual async Task<HttpResponseMessage> PKNODH(string arg)
+        {
+            await Task.Delay(30); // Introduce production like latency
+            string result = GetTestPerson(arg);
+            result = "0\n0\n704\n0704" + result.Substring(4, 699)
+                .ToUpper().Replace('Ö', '\\')
+                .Replace('Ä', '[')
+                .Replace('Å', ']') + "_"; // add magic initial lines, like production PU does
+            return SendResponse(result);
+        }
+
+        [HttpGet]
         public HttpResponseMessage AllPersons()
         {
             var allData = Kentor.PU_Adapter.TestData.TestPersonsPuData.PuDataList.Select(data => new PknodPlusData(data));

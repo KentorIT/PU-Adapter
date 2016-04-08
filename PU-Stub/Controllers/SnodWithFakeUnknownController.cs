@@ -24,9 +24,15 @@ namespace PU_Stub.Controllers
             return base.PKNOD(arg);
         }
 
+        [Route("~/SnodWithFakeUnknown/PKNODH/")]
+        public override Task<HttpResponseMessage> PKNODH(string arg)
+        {
+            return base.PKNOD(arg);
+        }
+
         protected override string GetTestPerson(string arg)
         {
-            if (arg.Length != 12)
+            if (arg.Length != 12 || arg.Length != 20)
             {
                 // Felaktigt format på inmatat personnummer
                 return "13270020                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      _";

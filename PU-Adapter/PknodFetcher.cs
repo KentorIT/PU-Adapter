@@ -31,6 +31,13 @@ namespace Kentor.PU_Adapter
             return new PknodPlusData(FetchPknodPlusString(personnummer));
         }
 
+        public PknodData FetchPkNodHData(string personnummer, DateTime datum)
+        {
+            var arg = personnummer + datum.ToString("yyyyMMdd");
+
+            return new PknodData(FetchPknodString(personnummer));
+        }
+
         public string FetchPknodPlusString(string personnummer)
         {
             return FetchFromPknod(personnummer, true);
@@ -48,7 +55,18 @@ namespace Kentor.PU_Adapter
                 throw new ArgumentNullException(nameof(personnummer), "Personnummer can't be null");
             }
             personnummer = personnummer.Replace("-", "").Replace(" ", "");
-            var requestUrl = new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer));
+
+            Uri requestUrl = null;
+
+            //Om strängen innehåller både personnummer och datum skall vi söka i PKNODH
+            if (personnummer.Length == 20)
+            {
+                requestUrl = new Uri(PknodUrl, "PKNODH" + "?arg=" + Uri.EscapeDataString(personnummer));
+            }
+            else
+            {
+                requestUrl = new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer));
+            }
             HttpWebRequest request = HttpWebRequest.CreateHttp(requestUrl);
             if (!string.IsNullOrEmpty(UserName))
             {
