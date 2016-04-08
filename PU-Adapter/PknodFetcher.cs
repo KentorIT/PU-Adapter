@@ -33,40 +33,42 @@ namespace Kentor.PU_Adapter
 
         public PknodData FetchPkNodHData(string personnummer, DateTime datum)
         {
-            var arg = personnummer + datum.ToString("yyyyMMdd");
-
-            return new PknodData(FetchPknodString(personnummer));
+            return new PknodData(FetchPknodHString(personnummer, datum));
         }
 
         public string FetchPknodPlusString(string personnummer)
         {
-            return FetchFromPknod(personnummer, true);
+            personnummer = VerifyAndFormatPersonNumber(personnummer);
+            return FetchFromPu(personnummer, "PKNODPLUS");
         }
 
         public string FetchPknodString(string personnummer)
         {
-            return FetchFromPknod(personnummer, false);
+            personnummer = VerifyAndFormatPersonNumber(personnummer);
+            return FetchFromPu(personnummer, "PKNOD");
+        }
+        public string FetchPknodHString(string personnummer, DateTime datum)
+        {
+            personnummer = VerifyAndFormatPersonNumber(personnummer);
+            var arg = personnummer + datum.ToString("yyyyMMdd");
+            return FetchFromPu(arg, "PKNODH");
         }
 
-        private string FetchFromPknod(string personnummer, bool plusString)
+        private static string VerifyAndFormatPersonNumber(string personnummer)
         {
             if (personnummer == null)
             {
                 throw new ArgumentNullException(nameof(personnummer), "Personnummer can't be null");
             }
             personnummer = personnummer.Replace("-", "").Replace(" ", "");
+            return personnummer;
+        }
 
-            Uri requestUrl = null;
+        private string FetchFromPu(string personnummer, string serviceName)
+        {
+            var requestUrl = new Uri(PknodUrl, serviceName + "?arg=" + Uri.EscapeDataString(personnummer));
+            Console.WriteLine(requestUrl);
 
-            //Om strängen innehåller både personnummer och datum skall vi söka i PKNODH
-            if (personnummer.Length == 20)
-            {
-                requestUrl = new Uri(PknodUrl, "PKNODH" + "?arg=" + Uri.EscapeDataString(personnummer));
-            }
-            else
-            {
-                requestUrl = new Uri(PknodUrl, (plusString ? "PKNODPLUS" : "PKNOD") + "?arg=" + Uri.EscapeDataString(personnummer));
-            }
             HttpWebRequest request = HttpWebRequest.CreateHttp(requestUrl);
             if (!string.IsNullOrEmpty(UserName))
             {

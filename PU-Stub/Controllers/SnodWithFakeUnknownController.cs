@@ -32,7 +32,7 @@ namespace PU_Stub.Controllers
 
         protected override string GetTestPerson(string arg)
         {
-            if (arg.Length != 12 || arg.Length != 20)
+            if (arg.Length != 12)
             {
                 // Felaktigt format på inmatat personnummer
                 return "13270020                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      _";

@@ -47,13 +47,17 @@ namespace PU_Stub.Controllers
         [Route("~/snod/PKNODH/")]
         public virtual async Task<HttpResponseMessage> PKNODH(string arg)
         {
-            await Task.Delay(30); // Introduce production like latency
-            string result = GetTestPerson(arg);
-            result = "0\n0\n704\n0704" + result.Substring(4, 699)
-                .ToUpper().Replace('Ö', '\\')
-                .Replace('Ä', '[')
-                .Replace('Å', ']') + "_"; // add magic initial lines, like production PU does
-            return SendResponse(result);
+            string pnr = null;
+            string dateString = null; // Parse, but currently we just skip this step
+            if (arg != null && arg.Length >= 12)
+            {
+                pnr = arg.Substring(0, 12);
+                dateString = arg.Substring(12);
+            }
+
+            // Just return the same result as PKNOD for now.
+            // In the future we could use the dateString to manipulate the response or create separate test data
+            return await PKNOD(pnr);
         }
 
         [HttpGet]

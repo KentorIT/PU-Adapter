@@ -26,7 +26,7 @@ namespace Kentor.PU_Adapter.CommandLine
                 fetcher.Password = Console.ReadLine();
                 Console.Clear();
             }
-            
+
             while (true)
             {
                 Console.WriteLine("Enter person number, or t to save all testperson numbers to file");
@@ -40,6 +40,14 @@ namespace Kentor.PU_Adapter.CommandLine
                     SaveAllTestPnrData(fetcher);
                     Console.WriteLine("Done");
                     break;
+                }
+
+                Console.WriteLine("Date for history");
+                var dateString = Console.ReadLine();
+                DateTime? historyDate = null;
+                if (!string.IsNullOrEmpty(dateString))
+                {
+                    historyDate = DateTime.Parse(dateString);
                 }
 
                 var result = fetcher.FetchPknodString(input);
@@ -58,24 +66,42 @@ namespace Kentor.PU_Adapter.CommandLine
                     Console.WriteLine(parsedData.Field_Returkod.ToString());
                 }
 
-                if (input.Length == 12)
+                Console.WriteLine("--Plus--");
+                var resultPlus = fetcher.FetchPknodPlusString(input);
+                Console.WriteLine(resultPlus);
+                Console.WriteLine("----------------------------------------------");
+                var parsedDataPlus = new PknodPlusData(resultPlus);
+                if (parsedDataPlus.Field_Returkod == Enums.ReturnCode.Tjänsten_utförd)
                 {
-                    Console.WriteLine("--Plus--");
-                    var resultPlus = fetcher.FetchPknodPlusString(input);
-                    Console.WriteLine(resultPlus);
+                    var jsonPlus = JsonConvert.SerializeObject(parsedData, Formatting.Indented);
+                    Console.WriteLine(jsonPlus);
+                }
+                else
+                {
+                    Console.WriteLine("Error on fetch:");
+                    Console.WriteLine(parsedData.Field_Returkod.ToString());
+                }
+
+                if (historyDate.HasValue)
+                {
+                    Console.WriteLine("--History--");
+                    var resultH = fetcher.FetchPknodHString(input, historyDate.Value);
+                    Console.WriteLine(resultH);
                     Console.WriteLine("----------------------------------------------");
-                    var parsedDataPlus = new PknodPlusData(resultPlus);
-                    if (parsedDataPlus.Field_Returkod == Enums.ReturnCode.Tjänsten_utförd)
+                    var parsedHData = new PknodData(resultH);
+                    if (parsedHData.Field_Returkod == Enums.ReturnCode.Tjänsten_utförd)
                     {
-                        var jsonPlus = JsonConvert.SerializeObject(parsedData, Formatting.Indented);
-                        Console.WriteLine(jsonPlus);
+                        var json = JsonConvert.SerializeObject(parsedHData, Formatting.Indented);
+                        Console.WriteLine(json);
+                        Console.WriteLine("----------------------------------------------");
                     }
                     else
                     {
                         Console.WriteLine("Error on fetch:");
-                        Console.WriteLine(parsedData.Field_Returkod.ToString());
+                        Console.WriteLine(parsedHData.Field_Returkod.ToString());
                     }
                 }
+
                 Console.WriteLine("----------------------------------------------");
             }
         }
