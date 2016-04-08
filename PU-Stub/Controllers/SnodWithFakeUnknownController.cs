@@ -24,6 +24,12 @@ namespace PU_Stub.Controllers
             return base.PKNOD(arg);
         }
 
+        [Route("~/SnodWithFakeUnknown/PKNODH/")]
+        public override Task<HttpResponseMessage> PKNODH(string arg)
+        {
+            return base.PKNOD(arg);
+        }
+
         protected override string GetTestPerson(string arg)
         {
             if (arg.Length != 12)
