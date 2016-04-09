@@ -27,7 +27,7 @@ namespace PU_Stub.Controllers
         [Route("~/SnodWithFakeUnknown/PKNODH/")]
         public override Task<HttpResponseMessage> PKNODH(string arg)
         {
-            return base.PKNOD(arg);
+            return base.PKNODH(arg);
         }
 
         protected override string GetTestPerson(string arg)
