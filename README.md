@@ -61,7 +61,28 @@ To use the PU-stub, change the configuration to
 
 
 ##Usage
-For reference usage, see the command line project
+
+Basic example
+
+    string pnr = "191212121212";
+    var fetcher = new PU_Adapter.PknodFetcher();
+    var result = fetcher.FetchPknodPlusData(pnr);
+    var rawString = result.Raw;
+    Console.WriteLine(result.Field_Namn);
+    Console.WriteLine(result.Field_Efternamn);
+    Console.WriteLine(result.Field_Adress);
+    var interpreter = new PknodPlusInterpreter(result);
+    Console.WriteLine(string.Join(", ", interpreter.Förnamn));
+    Console.WriteLine(interpreter.Tilltalsnamn);
+    Console.WriteLine(interpreter.TilltalsnamnIndex);
+
+The PU-Adapter can fetch from
+
+* PKNODPLUS - Latest API, correct casing, correct åäö, longer address fields, etc.
+* PKNOD - Legacy API, only UPPER CASE, ][\ instead of åäö, etc. Use only for backward compatibility reasons.
+* PKNODH - Fetch historic information. Result indentical to PKNOD, but with the information for a specific historical date.
+
+For more examples, see the PU-Adapter.CommandLine line project 
 
 The JSON formatted PknodPlusData response for 191212121212 is
 
