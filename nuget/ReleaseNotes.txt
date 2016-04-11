@@ -1,4 +1,7 @@
+V0.26
+Handle empty "First name"
+V0.24
+PKNODH suppport from Patrik Ericsson
 V0.16
 Requires .NET 4.5
 Configurable trust of PU-Prod certificate with AllowUnsafePuProdCert setting in app/web.config
-PKNODH suppport from Patrik Ericsson
