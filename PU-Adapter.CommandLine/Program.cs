@@ -73,13 +73,13 @@ namespace Kentor.PU_Adapter.CommandLine
                 var parsedDataPlus = new PknodPlusData(resultPlus);
                 if (parsedDataPlus.Field_Returkod == Enums.ReturnCode.Tjänsten_utförd)
                 {
-                    var jsonPlus = JsonConvert.SerializeObject(parsedData, Formatting.Indented);
+                    var jsonPlus = JsonConvert.SerializeObject(parsedDataPlus, Formatting.Indented);
                     Console.WriteLine(jsonPlus);
                 }
                 else
                 {
                     Console.WriteLine("Error on fetch:");
-                    Console.WriteLine(parsedData.Field_Returkod.ToString());
+                    Console.WriteLine(parsedDataPlus.Field_Returkod.ToString());
                 }
 
                 if (historyDate.HasValue)
