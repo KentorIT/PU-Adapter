@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Kentor.PU_Adapter.TestData;
+using System.Linq;
 
 namespace Kentor.PU_Adapter.Test
 {
@@ -60,6 +61,16 @@ namespace Kentor.PU_Adapter.Test
             var interpreter = new PknodInterpreter(CommonData.TolvanWithTillsalsnamn);
             interpreter.TilltalsnamnIndex.Should().Be(1);
             interpreter.Tilltalsnamn.Should().Be("LARS");
+        }
+
+
+        [TestMethod]
+        public void SaknarFornamn()
+        {
+            var interpreter = new PknodPlusInterpreter(CommonData.TolvanWithEmptyFörnamn);
+            interpreter.TilltalsnamnIndex.Should().Be(0);
+            interpreter.Tilltalsnamn.Should().BeNull();
+            interpreter.Förnamn.ShouldBeEquivalentTo(Enumerable.Empty<string>());
         }
 
         [TestMethod]

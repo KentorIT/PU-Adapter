@@ -70,6 +70,10 @@ namespace Kentor.PU_Adapter
             get
             {
                 var fornamnString = FörnamnString;
+                if (fornamnString == null)
+                {
+                    return Enumerable.Empty<string>();
+                }
                 var firstSlash = fornamnString.IndexOf("/");
                 var lastSlash = fornamnString.LastIndexOf("/");
                 if (firstSlash >= 0)

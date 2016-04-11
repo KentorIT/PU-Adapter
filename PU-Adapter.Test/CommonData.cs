@@ -52,6 +52,20 @@ namespace Kentor.PU_Adapter.Test
             }
         }
 
+        public static string TolvanWithEmptyFörnamn
+        {
+            get
+            {
+                // Tolvan does not have a PlusAddress in PU, but we fake it here for testing purposes.
+                // When using the PU-Adapter, make sure to use PKNOD address if PKNODPLUS address is empty
+                var sb = new System.Text.StringBuilder(TolvanPknodPlusResult);
+                sb
+                    .OverWrite(41, "Tolvansson        ")
+                    .OverWrite(704, "              ");
+                return sb.ToString();
+            }
+        }
+
         public static string TolvanWithKalmarLän
         {
             get
