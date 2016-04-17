@@ -1,3 +1,5 @@
+V0.28
+Handle badly truncated "Tilltalsnamn" and "Tilltalsnamn" with space in the name
 V0.26
 Handle empty "First name"
 V0.24
