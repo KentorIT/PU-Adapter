@@ -128,6 +128,41 @@ namespace Kentor.PU_Adapter.Test
             pknodDataAvliden.Field_Avgångskod.Should().Be(Enums.Avgångskod.Avliden);
         }
 
+        private static string TolvanInjectCivilstånd(string civilstånd)
+        {
+            var sb = new System.Text.StringBuilder(CommonData.TolvanPknodResult);
+            sb.OverWrite(145 - 1, civilstånd); // Civilstånd
+            return sb.ToString();
+        }
+
+        [TestMethod]
+        public void TestCivilstånd()
+        {
+            PknodData pknodData;
+            pknodData = new PknodData(TolvanInjectCivilstånd("A"));
+            pknodData.Field_Civilstånd.Should().Be(Enums.Civilstånd.A_Ogift);
+            pknodData = new PknodData(TolvanInjectCivilstånd("B"));
+            pknodData.Field_Civilstånd.Should().Be(Enums.Civilstånd.B_Gift);
+            pknodData = new PknodData(TolvanInjectCivilstånd("C"));
+            pknodData.Field_Civilstånd.Should().Be(Enums.Civilstånd.C_Änka_eller_änkling);
+            pknodData = new PknodData(TolvanInjectCivilstånd("D"));
+            pknodData.Field_Civilstånd.Should().Be(Enums.Civilstånd.D_Skild);
+            pknodData = new PknodData(TolvanInjectCivilstånd("E"));
+            pknodData.Field_Civilstånd.Should().Be(Enums.Civilstånd.E_Registrerad_partner);
+            pknodData = new PknodData(TolvanInjectCivilstånd("F"));
+            pknodData.Field_Civilstånd.Should().Be(Enums.Civilstånd.F_Skild_partner);
+            pknodData = new PknodData(TolvanInjectCivilstånd("G"));
+            pknodData.Field_Civilstånd.Should().Be(Enums.Civilstånd.G_Efterlevande_partner);
+            pknodData = new PknodData(TolvanInjectCivilstånd("6"));
+            pknodData.Field_Civilstånd.Should().Be(Enums.Civilstånd._6_Avliden_person);
+
+            pknodData = new PknodData(TolvanInjectCivilstånd(" "));
+            pknodData.Field_Civilstånd.Should().BeNull();
+            pknodData = new PknodData(TolvanInjectCivilstånd("Q"));
+            pknodData.Field_Civilstånd.Should().BeNull();
+
+        }
+
         [TestMethod]
         public void TestCivilståndsdatum()
         {

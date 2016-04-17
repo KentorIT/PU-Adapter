@@ -211,6 +211,36 @@ namespace Kentor.PU_Adapter
             }
         }
 
+        /// <summary>
+        /// Civilståndsdatum
+        /// </summary>
+        public Enums.Civilstånd? Field_Civilstånd
+        {
+            get
+            {
+                var rawDate = pknodData.Substring(144, 1);
+                switch (rawDate)
+                {
+                    case "A":
+                        return Enums.Civilstånd.A_Ogift;
+                    case "B":
+                        return Enums.Civilstånd.B_Gift;
+                    case "C":
+                        return Enums.Civilstånd.C_Änka_eller_änkling;
+                    case "D":
+                        return Enums.Civilstånd.D_Skild;
+                    case "E":
+                        return Enums.Civilstånd.E_Registrerad_partner;
+                    case "F":
+                        return Enums.Civilstånd.F_Skild_partner;
+                    case "G":
+                        return Enums.Civilstånd.G_Efterlevande_partner;
+                    case "6":
+                        return Enums.Civilstånd._6_Avliden_person;
+                }
+                return null;
+            }
+        }
 
         /// <summary>
         /// Civilståndsdatum
