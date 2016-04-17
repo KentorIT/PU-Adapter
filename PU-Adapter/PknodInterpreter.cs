@@ -76,15 +76,18 @@ namespace Kentor.PU_Adapter
                 }
                 var firstSlash = fornamnString.IndexOf("/");
                 var lastSlash = fornamnString.LastIndexOf("/");
+                var afterLastSlash = lastSlash + 1;
                 if (firstSlash >= 0)
                 {
-                    if (lastSlash < firstSlash)
+                    if (lastSlash == firstSlash)
                     {
-                        throw new InvalidOperationException("Name strings contains only one slash");
+                        // No end slash, assume tilltalsnamn is until the end of the string
+                        lastSlash = fornamnString.Length;
+                        afterLastSlash = lastSlash;
                     }
                     var part1 = fornamnString.Substring(0, firstSlash);
                     var part2 = fornamnString.Substring(firstSlash + 1, lastSlash - firstSlash - 1);
-                    var part3 = fornamnString.Substring(lastSlash + 1);
+                    var part3 = fornamnString.Substring(afterLastSlash);
                     fornamnString = part1 + " /" + part2.Trim() + "/ " + part3;
                 }
 

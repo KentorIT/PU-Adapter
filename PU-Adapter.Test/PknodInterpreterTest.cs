@@ -56,6 +56,15 @@ namespace Kentor.PU_Adapter.Test
         }
 
         [TestMethod]
+        public void FörnamnWithOnlyOneSlash()
+        {
+            // Badly truncated data
+            var interpreter = new PknodInterpreter(CommonData.TolvanWithOnlyOneSlashInTilltalsnamn);
+            interpreter.Förnamn.ShouldBeEquivalentTo(new[] { "TOLVAN", "LARS", "ERIK" });
+            interpreter.Tilltalsnamn.Should().Be("ERIK");
+        }
+
+        [TestMethod]
         public void Tilltalsnamn()
         {
             var interpreter = new PknodInterpreter(CommonData.TolvanWithTillsalsnamn);

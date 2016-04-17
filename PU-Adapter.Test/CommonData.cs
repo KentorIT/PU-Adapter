@@ -89,6 +89,20 @@ namespace Kentor.PU_Adapter.Test
             }
         }
 
+        /// <summary>
+        /// Badly truncated data
+        /// </summary>
+        public static string TolvanWithOnlyOneSlashInTilltalsnamn
+        {
+            get
+            {
+                var sb = new System.Text.StringBuilder(TolvanPknodResult);
+                sb
+                    .OverWrite(041, "TOLVANSSON, TOLVAN LARS/ERIK");
+                return sb.ToString();
+            }
+        }
+
         public static string TolvanPlusWithTillsalsnamn
         {
             get
