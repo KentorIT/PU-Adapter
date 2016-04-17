@@ -207,6 +207,7 @@ namespace Kentor.PU_Adapter
         /// <summary>
         /// Församlingskod
         /// </summary>
+        [Obsolete("Församling has been removed from PU")]
         public string Field_Församling
         {
             get

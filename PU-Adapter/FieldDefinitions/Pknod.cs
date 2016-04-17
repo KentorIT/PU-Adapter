@@ -109,11 +109,13 @@ namespace Kentor.PU_Adapter.FieldDefinitions
         /// <summary>
         /// Blankt (funktionen har upphört)
         /// </summary>
+        [Obsolete("Field has been removed from PU")]
         public static readonly FieldDefinition __deprecated__Telefon_hem__deprecated___0123 = new FieldDefinition(0123, 011);
 
         /// <summary>
         /// Blankt (funktionen har upphört)
         /// </summary>
+        [Obsolete("Field has been removed from PU")]
         public static readonly FieldDefinition __deprecated__Telefon_arbete__deprecated___0134 = new FieldDefinition(0134, 011);
 
         /// <summary>
@@ -168,6 +170,7 @@ namespace Kentor.PU_Adapter.FieldDefinitions
         /// <summary>
         /// Församlingskod
         /// </summary>
+        [Obsolete("Församling has been removed from PU")]
         public static readonly FieldDefinition Församling_0178 = new FieldDefinition(0178, 002);
 
         /// <summary>
@@ -251,11 +254,13 @@ namespace Kentor.PU_Adapter.FieldDefinitions
         /// <summary>
         /// Blankt (funktionen har upphört)
         /// </summary>
+        [Obsolete("Field has been removed from PU")]
         public static readonly FieldDefinition __deprecated__Tidigare_namn_1__deprecated___0280 = new FieldDefinition(0280, 036);
 
         /// <summary>
         /// Blankt (funktionen har upphört)
         /// </summary>
+        [Obsolete("Field has been removed from PU")]
         public static readonly FieldDefinition __deprecated__Tidigare_namn_2__deprecated___0316 = new FieldDefinition(0316, 036);
 
         /// <summary>
@@ -326,6 +331,7 @@ namespace Kentor.PU_Adapter.FieldDefinitions
         /// <summary>
         /// Blankt
         /// </summary>
+        [Obsolete("Field has been removed from PU")]
         public static readonly FieldDefinition __deprecated__Primärvårdsområde__deprecated___0499 = new FieldDefinition(0499, 030);
 
         /// <summary>
@@ -352,6 +358,7 @@ namespace Kentor.PU_Adapter.FieldDefinitions
         /// <summary>
         /// Blankt (funktionen har upphört)
         /// </summary>
+        [Obsolete("Field has been removed from PU")]
         public static readonly FieldDefinition __deprecated__Husläkare__deprecated___0595 = new FieldDefinition(0595, 046);
 
         /// <summary>
@@ -364,16 +371,19 @@ namespace Kentor.PU_Adapter.FieldDefinitions
         /// <summary>
         /// Används ej.
         /// </summary>
+        [Obsolete("Not in use")]
         public static readonly FieldDefinition __deprecated__Statuskoder__deprecated___0642 = new FieldDefinition(0642, 010);
 
         /// <summary>
         /// Används ej.
         /// </summary>
+        [Obsolete("Not in use")]
         public static readonly FieldDefinition __deprecated__SQL_koder__deprecated___0652 = new FieldDefinition(0652, 045);
 
         /// <summary>
         /// Reservfält
         /// </summary>
+        [Obsolete("Not in use")]
         public static readonly FieldDefinition __deprecated__Reserv__deprecated___0697 = new FieldDefinition(0697, 007);
 
         /// <summary>

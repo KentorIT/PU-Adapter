@@ -115,7 +115,9 @@ namespace Kentor.PU_Adapter.Test
             var pknodData = new PknodData(CommonData.TolvanPknodResult);
             pknodData.Field_Län.Should().Be("01"); // Stockholms län
             pknodData.Field_Kommun.Should().Be("80"); // Stockholm
+#pragma warning disable CS0618 // Type or member is obsolete
             pknodData.Field_Församling.Should().Be("19"); // Västermalm
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         [TestMethod]
