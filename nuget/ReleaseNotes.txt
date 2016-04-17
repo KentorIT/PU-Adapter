@@ -1,3 +1,5 @@
+V0.30
+FieldDefinitions with position specification for all fields in the specification.
 V0.28
 Handle badly truncated "Tilltalsnamn" and "Tilltalsnamn" with space in the name
 V0.26
