@@ -47,6 +47,11 @@ namespace Kentor.PU_Adapter
         {
         }
 
+        public string GetStringFieldFromPosition(FieldDefinitions.FieldDefinition position)
+        {
+            return pknodData.Substring(position.StartPosition - 1, position.Length).Trim();
+        }
+
         /// <summary>
         /// Längden på svarssträngen, räknat fr.o.m. detta fält t.o.m det avslutande underlinetecknet.
         /// </summary>

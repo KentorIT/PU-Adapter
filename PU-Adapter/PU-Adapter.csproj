@@ -51,6 +51,9 @@
     <Compile Include="Enums\Kommunkoder.cs" />
     <Compile Include="Enums\Länskoder.cs" />
     <Compile Include="Enums\PersonType.cs" />
+    <Compile Include="FieldDefinitions\FieldDefinition.cs" />
+    <Compile Include="FieldDefinitions\PknodPlus.cs" />
+    <Compile Include="FieldDefinitions\Pknod.cs" />
     <Compile Include="PknodFetcher.cs" />
     <Compile Include="PknodPlusInterpreter.cs" />
     <Compile Include="PknodInterpreter.cs" />
