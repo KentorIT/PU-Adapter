@@ -52,6 +52,27 @@ namespace Kentor.PU_Adapter
             return pknodData.Substring(position.StartPosition - 1, position.Length).Trim();
         }
 
+        public int? GetIntFieldFromPosition(FieldDefinitions.FieldDefinition position)
+        {
+            var parsedString = GetStringFieldFromPosition(position);
+            if (string.IsNullOrWhiteSpace(parsedString))
+            {
+                return null;
+            }
+            return int.Parse(parsedString);
+        }
+
+        public DateTime? GetDateFieldFromPosition(FieldDefinitions.FieldDefinition position)
+        {
+            var rawDate = GetStringFieldFromPosition(position);
+            DateTime date;
+            if (DateTime.TryParseExact(rawDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                return date;
+            }
+            return null;
+        }
+
         /// <summary>
         /// Längden på svarssträngen, räknat fr.o.m. detta fält t.o.m det avslutande underlinetecknet.
         /// </summary>
@@ -59,7 +80,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return int.Parse(pknodData.Substring(0, 4));
+                return GetIntFieldFromPosition(FieldDefinitions.Pknod.Svarslängd_0001).Value;
             }
         }
 
@@ -70,7 +91,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return (ReturnCode)int.Parse(pknodData.Substring(4, 4));
+                return (ReturnCode)GetIntFieldFromPosition(FieldDefinitions.Pknod.Returkod_0005);
             }
         }
 
@@ -81,7 +102,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(8, 12);
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Pnr_Rnr_0009);
             }
         }
 
@@ -92,13 +113,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                var rawDate = pknodData.Substring(20, 8);
-                DateTime date;
-                if (DateTime.TryParseExact(rawDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-                {
-                    return date;
-                }
-                return null;
+                return GetDateFieldFromPosition(FieldDefinitions.Pknod.Födelsedatum_0021);
             }
         }
 
@@ -109,7 +124,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(28, 12);
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Aktuellt_pnr_0029);
             }
         }
 
@@ -120,7 +135,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return (PersonType)int.Parse(pknodData.Substring(40, 1));
+                return (PersonType)GetIntFieldFromPosition(FieldDefinitions.Pknod.PersonIDTyp_0041);
             }
         }
 
@@ -131,7 +146,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(41, 36).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Namn_0042);
             }
         }
 
@@ -142,7 +157,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(77, 27).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Adress_0078);
             }
         }
 
@@ -153,7 +168,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(104, 5).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Postnummer_0105);
             }
         }
 
@@ -164,7 +179,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(109, 13).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Postort_0110);
             }
         }
 
@@ -175,7 +190,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(173, 2);
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Län_0174);
             }
         }
         /// <summary>
@@ -185,7 +200,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(175, 2);
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Kommun_0176);
             }
         }
 
@@ -196,7 +211,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(177, 2);
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Församling_0178);
             }
         }
 
@@ -207,12 +222,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                var code = pknodData.Substring(185, 1);
-                if (code == " ")
-                {
-                    return null;
-                }
-                return (Avgångskod)int.Parse(code);
+                return (Avgångskod?)GetIntFieldFromPosition(FieldDefinitions.Pknod.Avgångskod_0186);
             }
         }
 
@@ -223,7 +233,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                var rawDate = pknodData.Substring(144, 1);
+                var rawDate = GetStringFieldFromPosition(FieldDefinitions.Pknod.Civilstånd_0145);
                 switch (rawDate)
                 {
                     case "A":
@@ -254,13 +264,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                var rawDate = pknodData.Substring(145, 8);
-                DateTime date;
-                if (DateTime.TryParseExact(rawDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-                {
-                    return date;
-                }
-                return null;
+                return GetDateFieldFromPosition(FieldDefinitions.Pknod.Civilståndsdatum_0146);
             }
         }
 
@@ -272,13 +276,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                var rawDate = pknodData.Substring(187, 8);
-                DateTime date;
-                if (DateTime.TryParseExact(rawDate, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-                {
-                    return date;
-                }
-                return null;
+                return GetDateFieldFromPosition(FieldDefinitions.Pknod.Senaste_reg_datum_0188);
             }
         }
 
@@ -289,7 +287,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(586, 8).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.Pknod.Basområde_från_fastighet_eller_församling_0587);
             }
         }
 
@@ -299,3 +297,5 @@ namespace Kentor.PU_Adapter
         }
     }
 }
+
+

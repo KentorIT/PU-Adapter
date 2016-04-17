@@ -18,7 +18,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(704, 80).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Förnamn_0705);
             }
         }
 
@@ -29,7 +29,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(784, 40).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Mellannamn_0785);
             }
         }
 
@@ -40,7 +40,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(824, 60).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Efternamn_0825);
             }
         }
 
@@ -51,7 +51,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(919, 35).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Folkbokföringsutdelningsadress1_0920);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(919, 35).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Folkbokföringsutdelningsadress1_0920);
             }
         }
 
@@ -73,7 +73,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(954, 35).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Folkbokföringsutdelningsadress2_0955);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(989, 5).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Folkbokföringspostnummer_0990);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return pknodData.Substring(994, 27).Trim();
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Folkbokföringspostort_0995);
             }
         }
     }
