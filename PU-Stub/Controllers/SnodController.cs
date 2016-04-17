@@ -70,7 +70,7 @@ namespace PU_Stub.Controllers
 
         private HttpResponseMessage SetCacheOneDay(HttpResponseMessage response)
         {
-            response.Headers.CacheControl = new CacheControlHeaderValue()
+            response.Headers.CacheControl = new CacheControlHeaderValue
             {
                 Public = true,
                 MaxAge = new TimeSpan(1, 0, 0, 0),
@@ -91,7 +91,7 @@ namespace PU_Stub.Controllers
             string result;
             if (!TestPersons.TryGetValue(arg, out result))
             {
-                if (arg.StartsWith("99"))
+                if (arg.StartsWith("99", StringComparison.Ordinal))
                 {
                     // Returkod: 0102 = Sökt reservnummer saknas i registren 
                     result = "13270102                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      _";

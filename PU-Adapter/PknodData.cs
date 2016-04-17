@@ -39,7 +39,7 @@ namespace Kentor.PU_Adapter
 
             if (pknodData.Length != dataLength)
             {
-                throw new ArgumentException("PKNOD Data should be exactly " + dataLength.ToString() + " bytes", nameof(pknodData));
+                throw new ArgumentException("PKNOD Data should be exactly " + dataLength + " bytes", nameof(pknodData));
             }
         }
 

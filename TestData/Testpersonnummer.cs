@@ -12,8 +12,7 @@ namespace Kentor.PU_Adapter.TestData
     /// </summary>
     public static class Testpersonnummer
     {
-        public static readonly string[] Nummer = new[]
-        {
+        public static readonly string[] Nummer = {
             "194408139089",
             "199006022397",
             "199107172380",

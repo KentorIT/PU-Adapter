@@ -69,7 +69,7 @@ namespace Kentor.PU_Adapter
             var requestUrl = new Uri(PknodUrl, serviceName + "?arg=" + Uri.EscapeDataString(personnummer));
             Console.WriteLine(requestUrl);
 
-            HttpWebRequest request = HttpWebRequest.CreateHttp(requestUrl);
+            HttpWebRequest request = WebRequest.CreateHttp(requestUrl);
             if (!string.IsNullOrEmpty(UserName))
             {
                 request.PreAuthenticate = true;
@@ -98,7 +98,7 @@ namespace Kentor.PU_Adapter
             // -----------------------------------------------------
             // (between the dashed lines). We need to pick the first long line. Lets say long as > 100 characters
             var dataAsRows = data.Split(new[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-            return dataAsRows.Where(l => l.Length >= 100).FirstOrDefault();
+            return dataAsRows.FirstOrDefault(l => l.Length >= 100);
         }
 
         private static bool ValidateUntrustedCert(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)

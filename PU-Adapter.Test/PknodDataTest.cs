@@ -22,22 +22,22 @@ namespace Kentor.PU_Adapter.Test
         public void CantCreateInvalidLengths()
         {
             Action a1 = () => new PknodData(CommonData.TolvanPknodResult + "PAD");
-            a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter does not match content length"));
+            a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter does not match content length", StringComparison.Ordinal));
 
             Action a2 = () => new PknodPlusData(CommonData.TolvanPknodPlusResult + "PAD");
-            a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter does not match content length"));
+            a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter does not match content length", StringComparison.Ordinal));
 
             Action a3 = () => new PknodData(null);
             a3.ShouldThrow<ArgumentNullException>();
 
             Action a4 = () => new PknodPlusData("   ");
-            a4.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD data can't be empty"));
+            a4.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD data can't be empty", StringComparison.Ordinal));
 
             Action a5 = () => new PknodData("0010xxxxx_");
-            a5.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD Data should be exactly 704 bytes"));
+            a5.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD Data should be exactly 704 bytes", StringComparison.Ordinal));
 
             Action a6 = () => new PknodPlusData("0010xxxxx_");
-            a6.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD Data should be exactly 1327 bytes"));
+            a6.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD Data should be exactly 1327 bytes", StringComparison.Ordinal));
 
         }
 
@@ -45,10 +45,10 @@ namespace Kentor.PU_Adapter.Test
         public void MakeSureEndingCharacterIsUnderscore()
         {
             Action a1 = () => new PknodData(CommonData.TolvanPknodResult.Replace("_", "-"));
-            a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("Invalid end marker"));
+            a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("Invalid end marker", StringComparison.Ordinal));
 
             Action a2 = () => new PknodPlusData(CommonData.TolvanPknodPlusResult.Replace("_", "-"));
-            a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("Invalid end marker"));
+            a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("Invalid end marker", StringComparison.Ordinal));
         }
 
         [TestMethod]

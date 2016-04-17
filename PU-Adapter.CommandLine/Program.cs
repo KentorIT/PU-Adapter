@@ -12,7 +12,7 @@ namespace Kentor.PU_Adapter.CommandLine
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var fetcher = new PU_Adapter.PknodFetcher();
             if (string.IsNullOrEmpty(fetcher.UserName))
@@ -63,7 +63,7 @@ namespace Kentor.PU_Adapter.CommandLine
                 else
                 {
                     Console.WriteLine("Error on fetch:");
-                    Console.WriteLine(parsedData.Field_Returkod.ToString());
+                    Console.WriteLine(parsedData.Field_Returkod);
                 }
 
                 Console.WriteLine("--Plus--");
@@ -79,7 +79,7 @@ namespace Kentor.PU_Adapter.CommandLine
                 else
                 {
                     Console.WriteLine("Error on fetch:");
-                    Console.WriteLine(parsedDataPlus.Field_Returkod.ToString());
+                    Console.WriteLine(parsedDataPlus.Field_Returkod);
                 }
 
                 if (historyDate.HasValue)
@@ -98,7 +98,7 @@ namespace Kentor.PU_Adapter.CommandLine
                     else
                     {
                         Console.WriteLine("Error on fetch:");
-                        Console.WriteLine(parsedHData.Field_Returkod.ToString());
+                        Console.WriteLine(parsedHData.Field_Returkod);
                     }
                 }
 

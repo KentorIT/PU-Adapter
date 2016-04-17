@@ -73,8 +73,8 @@ namespace Kentor.PU_Adapter
             {
                 return Enumerable.Empty<string>();
             }
-            var firstSlash = fornamnString.IndexOf("/");
-            var lastSlash = fornamnString.LastIndexOf("/");
+            var firstSlash = fornamnString.IndexOf("/", StringComparison.Ordinal);
+            var lastSlash = fornamnString.LastIndexOf("/", StringComparison.Ordinal);
             var afterLastSlash = lastSlash + 1;
             if (firstSlash >= 0)
             {
