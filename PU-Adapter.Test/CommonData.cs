@@ -103,6 +103,17 @@ namespace Kentor.PU_Adapter.Test
             }
         }
 
+        public static string TolvanWithSpaceInTillsalsnamn
+        {
+            get
+            {
+                var sb = new System.Text.StringBuilder(TolvanPknodResult);
+                sb
+                    .OverWrite(041, "TOLVANSSON, TOLVAN/LARS OLA/BENGT");
+                return sb.ToString();
+            }
+        }
+
         public static string TolvanPlusWithTillsalsnamn
         {
             get

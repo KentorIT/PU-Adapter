@@ -65,6 +65,15 @@ namespace Kentor.PU_Adapter.Test
         }
 
         [TestMethod]
+        public void FörnamnWithSpaceInTilltalsnamn()
+        {
+            // Badly truncated data
+            var interpreter = new PknodInterpreter(CommonData.TolvanWithSpaceInTillsalsnamn);
+            interpreter.Förnamn.ShouldBeEquivalentTo(new[] { "TOLVAN", "LARS OLA", "BENGT" });
+            interpreter.Tilltalsnamn.Should().Be("LARS OLA");
+        }
+
+        [TestMethod]
         public void Tilltalsnamn()
         {
             var interpreter = new PknodInterpreter(CommonData.TolvanWithTillsalsnamn);

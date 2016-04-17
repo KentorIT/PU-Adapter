@@ -65,40 +65,47 @@ namespace Kentor.PU_Adapter
             }
         }
 
-        private IEnumerable<string> FörnamnListRaw
+        private IEnumerable<string> ParseFörnamnListRaw(out int tilltalsnamnIndex)
         {
-            get
+            tilltalsnamnIndex = 0;
+            var fornamnString = FörnamnString;
+            if (fornamnString == null)
             {
-                var fornamnString = FörnamnString;
-                if (fornamnString == null)
+                return Enumerable.Empty<string>();
+            }
+            var firstSlash = fornamnString.IndexOf("/");
+            var lastSlash = fornamnString.LastIndexOf("/");
+            var afterLastSlash = lastSlash + 1;
+            if (firstSlash >= 0)
+            {
+                if (lastSlash == firstSlash)
                 {
-                    return Enumerable.Empty<string>();
+                    // No end slash, assume tilltalsnamn is until the end of the string
+                    lastSlash = fornamnString.Length;
+                    afterLastSlash = lastSlash;
                 }
-                var firstSlash = fornamnString.IndexOf("/");
-                var lastSlash = fornamnString.LastIndexOf("/");
-                var afterLastSlash = lastSlash + 1;
-                if (firstSlash >= 0)
-                {
-                    if (lastSlash == firstSlash)
-                    {
-                        // No end slash, assume tilltalsnamn is until the end of the string
-                        lastSlash = fornamnString.Length;
-                        afterLastSlash = lastSlash;
-                    }
-                    var part1 = fornamnString.Substring(0, firstSlash);
-                    var part2 = fornamnString.Substring(firstSlash + 1, lastSlash - firstSlash - 1);
-                    var part3 = fornamnString.Substring(afterLastSlash);
-                    fornamnString = part1 + " /" + part2.Trim() + "/ " + part3;
-                }
+                var part1 = fornamnString.Substring(0, firstSlash);
+                var part2 = fornamnString.Substring(firstSlash + 1, lastSlash - firstSlash - 1);
+                var part3 = fornamnString.Substring(afterLastSlash);
 
+                var part1List = part1.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var part3List = part3.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                tilltalsnamnIndex = part1List.Count();
+                // Don't split tilltalsnamn, since it may contain spaces, like "Lars Ola"
+                return part1List.Concat(new[] { part2 }).Concat(part3List);
+            }
+            else
+            {
                 return fornamnString.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             }
         }
+
         public IEnumerable<string> Förnamn
         {
             get
             {
-                return FörnamnListRaw.Select(f => f.Trim('/'));
+                int tmp;
+                return ParseFörnamnListRaw(out tmp);
             }
         }
 
@@ -114,12 +121,9 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                var idx = FörnamnListRaw.ToList().FindIndex(f => f.StartsWith("/"));
-                if (idx >= 0)
-                {
-                    return idx;
-                }
-                return 0; // First namn is implicit "tilltalsnamn"
+                int idx;
+                ParseFörnamnListRaw(out idx);
+                return idx;
             }
         }
 
