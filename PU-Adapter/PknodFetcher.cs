@@ -67,7 +67,6 @@ namespace Kentor.PU_Adapter
         private string FetchFromPu(string personnummer, string serviceName)
         {
             var requestUrl = new Uri(PknodUrl, serviceName + "?arg=" + Uri.EscapeDataString(personnummer));
-            Console.WriteLine(requestUrl);
 
             HttpWebRequest request = WebRequest.CreateHttp(requestUrl);
             if (!string.IsNullOrEmpty(UserName))
