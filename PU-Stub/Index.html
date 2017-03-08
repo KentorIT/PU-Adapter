@@ -13,9 +13,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var translateType = function (typeId) {
-                if (typeId === 1)
+                if (typeId === 1 || typeId === 'Uppgift_från_RSV__ordinarie_personnummer')
                     return "Pnr";
-                if (typeId === 3)
+                if (typeId === 3 || typeId === 'Reservnummer_med_namnuppgift')
                     return "ResNr";
                 return typeId;
             };

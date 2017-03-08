@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Kentor.PU_Adapter
 {
@@ -131,6 +133,7 @@ namespace Kentor.PU_Adapter
         /// <summary>
         /// Personidentitetstyp
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public PersonType Field_PersonIDTyp
         {
             get
@@ -219,6 +222,7 @@ namespace Kentor.PU_Adapter
         /// <summary>
         /// Avgångskod
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public Avgångskod? Field_Avgångskod
         {
             get
@@ -230,6 +234,7 @@ namespace Kentor.PU_Adapter
         /// <summary>
         /// Civilståndsdatum
         /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
         public Enums.Civilstånd? Field_Civilstånd
         {
             get
