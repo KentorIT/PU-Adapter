@@ -11,7 +11,7 @@ namespace Kentor.PU_Adapter
 {
     public class PknodFetcher
     {
-        private static string PuProdCertThumbPrint = "69FAB3533811F39A04CB14B0D5DA3DC6A6351776";
+        private static readonly byte[] PuProdCertThumbPrint = { (byte)105, (byte)250, (byte)179, (byte)83, (byte)56, (byte)17, (byte)243, (byte)154, (byte)4, (byte)203, (byte)20, (byte)176, (byte)213, (byte)218, (byte)61, (byte)198, (byte)166, (byte)53, (byte)23, (byte)118 };
 
         public string Password { get; set; }
         public Uri PknodUrl { get; set; }
@@ -105,7 +105,7 @@ namespace Kentor.PU_Adapter
 
         private static bool ValidateUntrustedCert(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
         {
-            if (certificate.GetCertHashString() == PuProdCertThumbPrint)
+            if (certificate.GetCertHash().SequenceEqual(PuProdCertThumbPrint))
             {
                 if (Properties.Settings.Default.AllowUnsafePuProdCert)
                 {
