@@ -50,7 +50,7 @@ namespace Kentor.PU_Adapter.CommandLine
                     historyDate = DateTime.Parse(dateString);
                 }
 
-                var result = fetcher.FetchPknodString(input);
+                var result = fetcher.FetchPknodString(input).Result;
                 Console.WriteLine(result);
                 Console.WriteLine("----------------------------------------------");
                 var parsedData = new PknodData(result);
@@ -67,7 +67,7 @@ namespace Kentor.PU_Adapter.CommandLine
                 }
 
                 Console.WriteLine("--Plus--");
-                var resultPlus = fetcher.FetchPknodPlusString(input);
+                var resultPlus = fetcher.FetchPknodPlusString(input).Result;
                 Console.WriteLine(resultPlus);
                 Console.WriteLine("----------------------------------------------");
                 var parsedDataPlus = new PknodPlusData(resultPlus);
@@ -85,7 +85,7 @@ namespace Kentor.PU_Adapter.CommandLine
                 if (historyDate.HasValue)
                 {
                     Console.WriteLine("--History--");
-                    var resultH = fetcher.FetchPknodHString(input, historyDate.Value);
+                    var resultH = fetcher.FetchPknodHString(input, historyDate.Value).Result;
                     Console.WriteLine(resultH);
                     Console.WriteLine("----------------------------------------------");
                     var parsedHData = new PknodData(resultH);
@@ -112,7 +112,7 @@ namespace Kentor.PU_Adapter.CommandLine
             foreach (var pnr in Testpersonnummer.Nummer)
             {
                 var sw = System.Diagnostics.Stopwatch.StartNew();
-                var result = fetcher.FetchPknodPlusString(pnr);
+                var result = fetcher.FetchPknodPlusString(pnr).Result;
                 sw.Stop();
                 Console.WriteLine("Time: " + sw.Elapsed);
                 results.Add(result);

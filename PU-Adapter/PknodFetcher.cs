@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Kentor.PU_Adapter
 {
@@ -21,37 +23,37 @@ namespace Kentor.PU_Adapter
             this.Password = Properties.Settings.Default.Password;
         }
 
-        public PknodPlusInterpreter FetchPknodPlusInterpreter(string personnummer)
+        public async Task<PknodPlusInterpreter> FetchPknodPlusInterpreter(string personnummer)
         {
-            return new PknodPlusInterpreter(FetchPknodPlusString(personnummer));
+            return new PknodPlusInterpreter(await FetchPknodPlusString(personnummer));
         }
 
-        public PknodPlusData FetchPknodPlusData(string personnummer)
+        public async Task<PknodPlusData> FetchPknodPlusData(string personnummer)
         {
-            return new PknodPlusData(FetchPknodPlusString(personnummer));
+            return new PknodPlusData(await FetchPknodPlusString(personnummer));
         }
 
-        public PknodData FetchPkNodHData(string personnummer, DateTime datum)
+        public async Task<PknodData> FetchPkNodHData(string personnummer, DateTime datum)
         {
-            return new PknodData(FetchPknodHString(personnummer, datum));
+            return new PknodData(await FetchPknodHString(personnummer, datum));
         }
 
-        public string FetchPknodPlusString(string personnummer)
+        public async Task<string> FetchPknodPlusString(string personnummer)
         {
             personnummer = VerifyAndFormatPersonNumber(personnummer);
-            return FetchFromPu(personnummer, "PKNODPLUS");
+            return await FetchFromPu(personnummer, "PKNODPLUS");
         }
 
-        public string FetchPknodString(string personnummer)
+        public async Task<string> FetchPknodString(string personnummer)
         {
             personnummer = VerifyAndFormatPersonNumber(personnummer);
-            return FetchFromPu(personnummer, "PKNOD");
+            return await FetchFromPu(personnummer, "PKNOD");
         }
-        public string FetchPknodHString(string personnummer, DateTime datum)
+        public async Task<string> FetchPknodHString(string personnummer, DateTime datum)
         {
             personnummer = VerifyAndFormatPersonNumber(personnummer);
             var arg = personnummer + datum.ToString("yyyyMMdd");
-            return FetchFromPu(arg, "PKNODH");
+            return await FetchFromPu(arg, "PKNODH");
         }
 
         private static string VerifyAndFormatPersonNumber(string personnummer)
@@ -64,26 +66,27 @@ namespace Kentor.PU_Adapter
             return personnummer;
         }
 
-        private string FetchFromPu(string personnummer, string serviceName)
+        private async Task<string> FetchFromPu(string personnummer, string serviceName)
         {
             var requestUrl = new Uri(PknodUrl, serviceName + "?arg=" + Uri.EscapeDataString(personnummer));
 
-            HttpWebRequest request = WebRequest.CreateHttp(requestUrl);
-            if (!string.IsNullOrEmpty(UserName))
-            {
-                request.PreAuthenticate = true;
-                request.Credentials = new NetworkCredential(UserName, Password);
-            }
-            request.ServerCertificateValidationCallback += ValidateUntrustedCert;
-
             string data;
-            using (var response = request.GetResponse())
+            using (var handler = new WebRequestHandler())
             {
-                using (var stream = response.GetResponseStream())
+                handler.ServerCertificateValidationCallback = ValidateUntrustedCert;
+
+                using (var client = new HttpClient(handler))
                 {
-                    using (var sr = new StreamReader(stream, Encoding.GetEncoding("ISO-8859-1")))
+                    var authValue = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.UTF8.GetBytes($"{UserName}:{Password}")));
+
+                    client.DefaultRequestHeaders.Authorization = authValue;
+
+                    using (var stream = await client.GetStreamAsync(requestUrl))
                     {
-                        data = sr.ReadToEnd();
+                        using (var sr = new StreamReader(stream, Encoding.GetEncoding("ISO-8859-1")))
+                        {
+                            data = sr.ReadToEnd();
+                        }
                     }
                 }
             }
