@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -8,609 +8,609 @@ namespace Kentor.PU_Adapter.Enums
 {
     public enum Kommunkoder
     {
-        [Description("LÄN SAKNAS ELLER ÄR FELAKTIGT")]
+        [Display(Description = "LÄN SAKNAS ELLER ÄR FELAKTIGT")]
         SAKNAS_ELLER_FELAKTIGT = -1,
 
         // 01 Stockholms län
-        [Description("Upplands Väsby")]
+        [Display(Description = "Upplands Väsby")]
         Upplands_Väsby = 0114,
-        [Description("Vallentuna")]
+        [Display(Description = "Vallentuna")]
         Vallentuna = 0115,
-        [Description("Österåker")]
+        [Display(Description = "Österåker")]
         Österåker = 0117,
-        [Description("Värmdö")]
+        [Display(Description = "Värmdö")]
         Värmdö = 0120,
-        [Description("Järfälla")]
+        [Display(Description = "Järfälla")]
         Järfälla = 0123,
-        [Description("Ekerö")]
+        [Display(Description = "Ekerö")]
         Ekerö = 0125,
-        [Description("Huddinge")]
+        [Display(Description = "Huddinge")]
         Huddinge = 0126,
-        [Description("Botkyrka")]
+        [Display(Description = "Botkyrka")]
         Botkyrka = 0127,
-        [Description("Salem")]
+        [Display(Description = "Salem")]
         Salem = 0128,
-        [Description("Haninge")]
+        [Display(Description = "Haninge")]
         Haninge = 0136,
-        [Description("Tyresö")]
+        [Display(Description = "Tyresö")]
         Tyresö = 0138,
-        [Description("Upplands-Bro")]
+        [Display(Description = "Upplands-Bro")]
         Upplands_Bro = 0139,
-        [Description("Nykvarn")]
+        [Display(Description = "Nykvarn")]
         Nykvarn = 0140,
-        [Description("Täby")]
+        [Display(Description = "Täby")]
         Täby = 0160,
-        [Description("Danderyd")]
+        [Display(Description = "Danderyd")]
         Danderyd = 0162,
-        [Description("Sollentuna")]
+        [Display(Description = "Sollentuna")]
         Sollentuna = 0163,
-        [Description("Stockholm")]
+        [Display(Description = "Stockholm")]
         Stockholm = 0180,
-        [Description("Södertälje")]
+        [Display(Description = "Södertälje")]
         Södertälje = 0181,
-        [Description("Nacka")]
+        [Display(Description = "Nacka")]
         Nacka = 0182,
-        [Description("Sundbyberg")]
+        [Display(Description = "Sundbyberg")]
         Sundbyberg = 0183,
-        [Description("Solna")]
+        [Display(Description = "Solna")]
         Solna = 0184,
-        [Description("Lidingö")]
+        [Display(Description = "Lidingö")]
         Lidingö = 0186,
-        [Description("Vaxholm")]
+        [Display(Description = "Vaxholm")]
         Vaxholm = 0187,
-        [Description("Norrtälje")]
+        [Display(Description = "Norrtälje")]
         Norrtälje = 0188,
-        [Description("Sigtuna")]
+        [Display(Description = "Sigtuna")]
         Sigtuna = 0191,
-        [Description("Nynäshamn")]
+        [Display(Description = "Nynäshamn")]
         Nynäshamn = 0192,
         // 03 Uppsala län
-        [Description("Håbo")]
+        [Display(Description = "Håbo")]
         Håbo = 0305,
-        [Description("Älvkarleby")]
+        [Display(Description = "Älvkarleby")]
         Älvkarleby = 0319,
-        [Description("Knivsta")]
+        [Display(Description = "Knivsta")]
         Knivsta = 0330,
-        [Description("Heby")]
+        [Display(Description = "Heby")]
         Heby = 0331,
-        [Description("Tierp")]
+        [Display(Description = "Tierp")]
         Tierp = 0360,
-        [Description("Uppsala")]
+        [Display(Description = "Uppsala")]
         Uppsala = 0380,
-        [Description("Enköping")]
+        [Display(Description = "Enköping")]
         Enköping = 0381,
-        [Description("Östhammar")]
+        [Display(Description = "Östhammar")]
         Östhammar = 0382,
         // 04 Södermanlands län
-        [Description("Vingåker")]
+        [Display(Description = "Vingåker")]
         Vingåker = 0428,
-        [Description("Gnesta")]
+        [Display(Description = "Gnesta")]
         Gnesta = 0461,
-        [Description("Nyköping")]
+        [Display(Description = "Nyköping")]
         Nyköping = 0480,
-        [Description("Oxelösund")]
+        [Display(Description = "Oxelösund")]
         Oxelösund = 0481,
-        [Description("Flen")]
+        [Display(Description = "Flen")]
         Flen = 0482,
-        [Description("Katrineholm")]
+        [Display(Description = "Katrineholm")]
         Katrineholm = 0483,
-        [Description("Eskilstuna")]
+        [Display(Description = "Eskilstuna")]
         Eskilstuna = 0484,
-        [Description("Strängnäs")]
+        [Display(Description = "Strängnäs")]
         Strängnäs = 0486,
-        [Description("Trosa")]
+        [Display(Description = "Trosa")]
         Trosa = 0488,
         // 05 Östergötlands län
-        [Description("Ödeshög")]
+        [Display(Description = "Ödeshög")]
         Ödeshög = 0509,
-        [Description("Ydre")]
+        [Display(Description = "Ydre")]
         Ydre = 0512,
-        [Description("Kinda")]
+        [Display(Description = "Kinda")]
         Kinda = 0513,
-        [Description("Boxholm")]
+        [Display(Description = "Boxholm")]
         Boxholm = 0560,
-        [Description("Åtvidaberg")]
+        [Display(Description = "Åtvidaberg")]
         Åtvidaberg = 0561,
-        [Description("Finspång")]
+        [Display(Description = "Finspång")]
         Finspång = 0562,
-        [Description("Valdemarsvik")]
+        [Display(Description = "Valdemarsvik")]
         Valdemarsvik = 0563,
-        [Description("Linköping")]
+        [Display(Description = "Linköping")]
         Linköping = 0580,
-        [Description("Norrköping")]
+        [Display(Description = "Norrköping")]
         Norrköping = 0581,
-        [Description("Söderköping")]
+        [Display(Description = "Söderköping")]
         Söderköping = 0582,
-        [Description("Motala")]
+        [Display(Description = "Motala")]
         Motala = 0583,
-        [Description("Vadstena")]
+        [Display(Description = "Vadstena")]
         Vadstena = 0584,
-        [Description("Mjölby")]
+        [Display(Description = "Mjölby")]
         Mjölby = 0586,
         // 06 Jönköpings län
-        [Description("Aneby")]
+        [Display(Description = "Aneby")]
         Aneby = 0604,
-        [Description("Gnosjö")]
+        [Display(Description = "Gnosjö")]
         Gnosjö = 0617,
-        [Description("Mullsjö")]
+        [Display(Description = "Mullsjö")]
         Mullsjö = 0642,
-        [Description("Habo")]
+        [Display(Description = "Habo")]
         Habo = 0643,
-        [Description("Gislaved")]
+        [Display(Description = "Gislaved")]
         Gislaved = 0662,
-        [Description("Vaggeryd")]
+        [Display(Description = "Vaggeryd")]
         Vaggeryd = 0665,
-        [Description("Jönköping")]
+        [Display(Description = "Jönköping")]
         Jönköping = 0680,
-        [Description("Nässjö")]
+        [Display(Description = "Nässjö")]
         Nässjö = 0682,
-        [Description("Värnamo")]
+        [Display(Description = "Värnamo")]
         Värnamo = 0683,
-        [Description("Sävsjö")]
+        [Display(Description = "Sävsjö")]
         Sävsjö = 0684,
-        [Description("Vetlanda")]
+        [Display(Description = "Vetlanda")]
         Vetlanda = 0685,
-        [Description("Eksjö")]
+        [Display(Description = "Eksjö")]
         Eksjö = 0686,
-        [Description("Tranås")]
+        [Display(Description = "Tranås")]
         Tranås = 0687,
         // 07 Kronobergs län
-        [Description("Uppvidinge")]
+        [Display(Description = "Uppvidinge")]
         Uppvidinge = 0760,
-        [Description("Lessebo")]
+        [Display(Description = "Lessebo")]
         Lessebo = 0761,
-        [Description("Tingsryd")]
+        [Display(Description = "Tingsryd")]
         Tingsryd = 0763,
-        [Description("Alvesta")]
+        [Display(Description = "Alvesta")]
         Alvesta = 0764,
-        [Description("Älmhult")]
+        [Display(Description = "Älmhult")]
         Älmhult = 0765,
-        [Description("Markaryd")]
+        [Display(Description = "Markaryd")]
         Markaryd = 0767,
-        [Description("Växjö")]
+        [Display(Description = "Växjö")]
         Växjö = 0780,
-        [Description("Ljungby")]
+        [Display(Description = "Ljungby")]
         Ljungby = 0781,
         // 08 Kalmar län
-        [Description("Högsby")]
+        [Display(Description = "Högsby")]
         Högsby = 0821,
-        [Description("Torsås")]
+        [Display(Description = "Torsås")]
         Torsås = 0834,
-        [Description("Mörbylånga")]
+        [Display(Description = "Mörbylånga")]
         Mörbylånga = 0840,
-        [Description("Hultsfred")]
+        [Display(Description = "Hultsfred")]
         Hultsfred = 0860,
-        [Description("Mönsterås")]
+        [Display(Description = "Mönsterås")]
         Mönsterås = 0861,
-        [Description("Emmaboda")]
+        [Display(Description = "Emmaboda")]
         Emmaboda = 0862,
-        [Description("Kalmar")]
+        [Display(Description = "Kalmar")]
         Kalmar = 0880,
-        [Description("Nybro")]
+        [Display(Description = "Nybro")]
         Nybro = 0881,
-        [Description("Oskarshamn")]
+        [Display(Description = "Oskarshamn")]
         Oskarshamn = 0882,
-        [Description("Västervik")]
+        [Display(Description = "Västervik")]
         Västervik = 0883,
-        [Description("Vimmerby")]
+        [Display(Description = "Vimmerby")]
         Vimmerby = 0884,
-        [Description("Borgholm")]
+        [Display(Description = "Borgholm")]
         Borgholm = 0885,
         // 09 Gotlands län
-        [Description("Gotland")]
+        [Display(Description = "Gotland")]
         Gotland = 0980,
         // 10 Blekinge län
-        [Description("Olofström")]
+        [Display(Description = "Olofström")]
         Olofström = 1060,
-        [Description("Karlskrona")]
+        [Display(Description = "Karlskrona")]
         Karlskrona = 1080,
-        [Description("Ronneby")]
+        [Display(Description = "Ronneby")]
         Ronneby = 1081,
-        [Description("Karlshamn")]
+        [Display(Description = "Karlshamn")]
         Karlshamn = 1082,
-        [Description("Sölvesborg")]
+        [Display(Description = "Sölvesborg")]
         Sölvesborg = 1083,
         // 12 Skåne län
-        [Description("Svalöv")]
+        [Display(Description = "Svalöv")]
         Svalöv = 1214,
-        [Description("Staffanstorp")]
+        [Display(Description = "Staffanstorp")]
         Staffanstorp = 1230,
-        [Description("Burlöv")]
+        [Display(Description = "Burlöv")]
         Burlöv = 1231,
-        [Description("Vellinge")]
+        [Display(Description = "Vellinge")]
         Vellinge = 1233,
-        [Description("Östra Göinge")]
+        [Display(Description = "Östra Göinge")]
         Östra_Göinge = 1256,
-        [Description("Örkelljunga")]
+        [Display(Description = "Örkelljunga")]
         Örkelljunga = 1257,
-        [Description("Bjuv")]
+        [Display(Description = "Bjuv")]
         Bjuv = 1260,
-        [Description("Kävlinge")]
+        [Display(Description = "Kävlinge")]
         Kävlinge = 1261,
-        [Description("Lomma")]
+        [Display(Description = "Lomma")]
         Lomma = 1262,
-        [Description("Svedala")]
+        [Display(Description = "Svedala")]
         Svedala = 1263,
-        [Description("Skurup")]
+        [Display(Description = "Skurup")]
         Skurup = 1264,
-        [Description("Sjöbo")]
+        [Display(Description = "Sjöbo")]
         Sjöbo = 1265,
-        [Description("Hörby")]
+        [Display(Description = "Hörby")]
         Hörby = 1266,
-        [Description("Höör")]
+        [Display(Description = "Höör")]
         Höör = 1267,
-        [Description("Tomelilla")]
+        [Display(Description = "Tomelilla")]
         Tomelilla = 1270,
-        [Description("Bromölla")]
+        [Display(Description = "Bromölla")]
         Bromölla = 1272,
-        [Description("Osby")]
+        [Display(Description = "Osby")]
         Osby = 1273,
-        [Description("Perstorp")]
+        [Display(Description = "Perstorp")]
         Perstorp = 1275,
-        [Description("Klippan")]
+        [Display(Description = "Klippan")]
         Klippan = 1276,
-        [Description("Åstorp")]
+        [Display(Description = "Åstorp")]
         Åstorp = 1277,
-        [Description("Båstad")]
+        [Display(Description = "Båstad")]
         Båstad = 1278,
-        [Description("Malmö")]
+        [Display(Description = "Malmö")]
         Malmö = 1280,
-        [Description("Lund")]
+        [Display(Description = "Lund")]
         Lund = 1281,
-        [Description("Landskrona")]
+        [Display(Description = "Landskrona")]
         Landskrona = 1282,
-        [Description("Helsingborg")]
+        [Display(Description = "Helsingborg")]
         Helsingborg = 1283,
-        [Description("Höganäs")]
+        [Display(Description = "Höganäs")]
         Höganäs = 1284,
-        [Description("Eslöv")]
+        [Display(Description = "Eslöv")]
         Eslöv = 1285,
-        [Description("Ystad")]
+        [Display(Description = "Ystad")]
         Ystad = 1286,
-        [Description("Trelleborg")]
+        [Display(Description = "Trelleborg")]
         Trelleborg = 1287,
-        [Description("Kristianstad")]
+        [Display(Description = "Kristianstad")]
         Kristianstad = 1290,
-        [Description("Simrishamn")]
+        [Display(Description = "Simrishamn")]
         Simrishamn = 1291,
-        [Description("Ängelholm")]
+        [Display(Description = "Ängelholm")]
         Ängelholm = 1292,
-        [Description("Hässleholm")]
+        [Display(Description = "Hässleholm")]
         Hässleholm = 1293,
         // 13 Hallands län
-        [Description("Hylte")]
+        [Display(Description = "Hylte")]
         Hylte = 1315,
-        [Description("Halmstad")]
+        [Display(Description = "Halmstad")]
         Halmstad = 1380,
-        [Description("Laholm")]
+        [Display(Description = "Laholm")]
         Laholm = 1381,
-        [Description("Falkenberg")]
+        [Display(Description = "Falkenberg")]
         Falkenberg = 1382,
-        [Description("Varberg")]
+        [Display(Description = "Varberg")]
         Varberg = 1383,
-        [Description("Kungsbacka")]
+        [Display(Description = "Kungsbacka")]
         Kungsbacka = 1384,
         // 14 Västra Götalands län
-        [Description("Härryda")]
+        [Display(Description = "Härryda")]
         Härryda = 1401,
-        [Description("Partille")]
+        [Display(Description = "Partille")]
         Partille = 1402,
-        [Description("Öckerö")]
+        [Display(Description = "Öckerö")]
         Öckerö = 1407,
-        [Description("Stenungsund")]
+        [Display(Description = "Stenungsund")]
         Stenungsund = 1415,
-        [Description("Tjörn")]
+        [Display(Description = "Tjörn")]
         Tjörn = 1419,
-        [Description("Orust")]
+        [Display(Description = "Orust")]
         Orust = 1421,
-        [Description("Sotenäs")]
+        [Display(Description = "Sotenäs")]
         Sotenäs = 1427,
-        [Description("Munkedal")]
+        [Display(Description = "Munkedal")]
         Munkedal = 1430,
-        [Description("Tanum")]
+        [Display(Description = "Tanum")]
         Tanum = 1435,
-        [Description("Dals-Ed")]
+        [Display(Description = "Dals-Ed")]
         Dals_Ed = 1438,
-        [Description("Färgelanda")]
+        [Display(Description = "Färgelanda")]
         Färgelanda = 1439,
-        [Description("Ale")]
+        [Display(Description = "Ale")]
         Ale = 1440,
-        [Description("Lerum")]
+        [Display(Description = "Lerum")]
         Lerum = 1441,
-        [Description("Vårgårda")]
+        [Display(Description = "Vårgårda")]
         Vårgårda = 1442,
-        [Description("Bollebygd")]
+        [Display(Description = "Bollebygd")]
         Bollebygd = 1443,
-        [Description("Grästorp")]
+        [Display(Description = "Grästorp")]
         Grästorp = 1444,
-        [Description("Essunga")]
+        [Display(Description = "Essunga")]
         Essunga = 1445,
-        [Description("Karlsborg")]
+        [Display(Description = "Karlsborg")]
         Karlsborg = 1446,
-        [Description("Gullspång")]
+        [Display(Description = "Gullspång")]
         Gullspång = 1447,
-        [Description("Tranemo")]
+        [Display(Description = "Tranemo")]
         Tranemo = 1452,
-        [Description("Bengtsfors")]
+        [Display(Description = "Bengtsfors")]
         Bengtsfors = 1460,
-        [Description("Mellerud")]
+        [Display(Description = "Mellerud")]
         Mellerud = 1461,
-        [Description("Lilla Edet")]
+        [Display(Description = "Lilla Edet")]
         Lilla_Edet = 1462,
-        [Description("Mark")]
+        [Display(Description = "Mark")]
         Mark = 1463,
-        [Description("Svenljunga")]
+        [Display(Description = "Svenljunga")]
         Svenljunga = 1465,
-        [Description("Herrljunga")]
+        [Display(Description = "Herrljunga")]
         Herrljunga = 1466,
-        [Description("Vara")]
+        [Display(Description = "Vara")]
         Vara = 1470,
-        [Description("Götene")]
+        [Display(Description = "Götene")]
         Götene = 1471,
-        [Description("Tibro")]
+        [Display(Description = "Tibro")]
         Tibro = 1472,
-        [Description("Töreboda")]
+        [Display(Description = "Töreboda")]
         Töreboda = 1473,
-        [Description("Göteborg")]
+        [Display(Description = "Göteborg")]
         Göteborg = 1480,
-        [Description("Mölndal")]
+        [Display(Description = "Mölndal")]
         Mölndal = 1481,
-        [Description("Kungälv")]
+        [Display(Description = "Kungälv")]
         Kungälv = 1482,
-        [Description("Lysekil")]
+        [Display(Description = "Lysekil")]
         Lysekil = 1484,
-        [Description("Uddevalla")]
+        [Display(Description = "Uddevalla")]
         Uddevalla = 1485,
-        [Description("Strömstad")]
+        [Display(Description = "Strömstad")]
         Strömstad = 1486,
-        [Description("Vänersborg")]
+        [Display(Description = "Vänersborg")]
         Vänersborg = 1487,
-        [Description("Trollhättan")]
+        [Display(Description = "Trollhättan")]
         Trollhättan = 1488,
-        [Description("Alingsås")]
+        [Display(Description = "Alingsås")]
         Alingsås = 1489,
-        [Description("Borås")]
+        [Display(Description = "Borås")]
         Borås = 1490,
-        [Description("Ulricehamn")]
+        [Display(Description = "Ulricehamn")]
         Ulricehamn = 1491,
-        [Description("Åmål")]
+        [Display(Description = "Åmål")]
         Åmål = 1492,
-        [Description("Mariestad")]
+        [Display(Description = "Mariestad")]
         Mariestad = 1493,
-        [Description("Lidköping")]
+        [Display(Description = "Lidköping")]
         Lidköping = 1494,
-        [Description("Skara")]
+        [Display(Description = "Skara")]
         Skara = 1495,
-        [Description("Skövde")]
+        [Display(Description = "Skövde")]
         Skövde = 1496,
-        [Description("Hjo")]
+        [Display(Description = "Hjo")]
         Hjo = 1497,
-        [Description("Tidaholm")]
+        [Display(Description = "Tidaholm")]
         Tidaholm = 1498,
-        [Description("Falköping")]
+        [Display(Description = "Falköping")]
         Falköping = 1499,
         // 17 Värmlands län
-        [Description("Kil")]
+        [Display(Description = "Kil")]
         Kil = 1715,
-        [Description("Eda")]
+        [Display(Description = "Eda")]
         Eda = 1730,
-        [Description("Torsby")]
+        [Display(Description = "Torsby")]
         Torsby = 1737,
-        [Description("Storfors")]
+        [Display(Description = "Storfors")]
         Storfors = 1760,
-        [Description("Hammarö")]
+        [Display(Description = "Hammarö")]
         Hammarö = 1761,
-        [Description("Munkfors")]
+        [Display(Description = "Munkfors")]
         Munkfors = 1762,
-        [Description("Forshaga")]
+        [Display(Description = "Forshaga")]
         Forshaga = 1763,
-        [Description("Grums")]
+        [Display(Description = "Grums")]
         Grums = 1764,
-        [Description("Årjäng")]
+        [Display(Description = "Årjäng")]
         Årjäng = 1765,
-        [Description("Sunne")]
+        [Display(Description = "Sunne")]
         Sunne = 1766,
-        [Description("Karlstad")]
+        [Display(Description = "Karlstad")]
         Karlstad = 1780,
-        [Description("Kristinehamn")]
+        [Display(Description = "Kristinehamn")]
         Kristinehamn = 1781,
-        [Description("Filipstad")]
+        [Display(Description = "Filipstad")]
         Filipstad = 1782,
-        [Description("Hagfors")]
+        [Display(Description = "Hagfors")]
         Hagfors = 1783,
-        [Description("Arvika")]
+        [Display(Description = "Arvika")]
         Arvika = 1784,
-        [Description("Säffle")]
+        [Display(Description = "Säffle")]
         Säffle = 1785,
         // 18 Örebro län
-        [Description("Lekeberg")]
+        [Display(Description = "Lekeberg")]
         Lekeberg = 1814,
-        [Description("Laxå")]
+        [Display(Description = "Laxå")]
         Laxå = 1860,
-        [Description("Hallsberg")]
+        [Display(Description = "Hallsberg")]
         Hallsberg = 1861,
-        [Description("Degerfors")]
+        [Display(Description = "Degerfors")]
         Degerfors = 1862,
-        [Description("Hällefors")]
+        [Display(Description = "Hällefors")]
         Hällefors = 1863,
-        [Description("Ljusnarsberg")]
+        [Display(Description = "Ljusnarsberg")]
         Ljusnarsberg = 1864,
-        [Description("Örebro")]
+        [Display(Description = "Örebro")]
         Örebro = 1880,
-        [Description("Kumla")]
+        [Display(Description = "Kumla")]
         Kumla = 1881,
-        [Description("Askersund")]
+        [Display(Description = "Askersund")]
         Askersund = 1882,
-        [Description("Karlskoga")]
+        [Display(Description = "Karlskoga")]
         Karlskoga = 1883,
-        [Description("Nora")]
+        [Display(Description = "Nora")]
         Nora = 1884,
-        [Description("Lindesberg")]
+        [Display(Description = "Lindesberg")]
         Lindesberg = 1885,
         // 19 Västmanlands län
-        [Description("Skinnskatteberg")]
+        [Display(Description = "Skinnskatteberg")]
         Skinnskatteberg = 1904,
-        [Description("Surahammar")]
+        [Display(Description = "Surahammar")]
         Surahammar = 1907,
-        [Description("Kungsör")]
+        [Display(Description = "Kungsör")]
         Kungsör = 1960,
-        [Description("Hallstahammar")]
+        [Display(Description = "Hallstahammar")]
         Hallstahammar = 1961,
-        [Description("Norberg")]
+        [Display(Description = "Norberg")]
         Norberg = 1962,
-        [Description("Västerås")]
+        [Display(Description = "Västerås")]
         Västerås = 1980,
-        [Description("Sala")]
+        [Display(Description = "Sala")]
         Sala = 1981,
-        [Description("Fagersta")]
+        [Display(Description = "Fagersta")]
         Fagersta = 1982,
-        [Description("Köping")]
+        [Display(Description = "Köping")]
         Köping = 1983,
-        [Description("Arboga")]
+        [Display(Description = "Arboga")]
         Arboga = 1984,
         // 20 Dalarnas län
-        [Description("Vansbro")]
+        [Display(Description = "Vansbro")]
         Vansbro = 2021,
-        [Description("Malung-Sälen")]
+        [Display(Description = "Malung-Sälen")]
         Malung_Sälen = 2023,
-        [Description("Gagnef")]
+        [Display(Description = "Gagnef")]
         Gagnef = 2026,
-        [Description("Leksand")]
+        [Display(Description = "Leksand")]
         Leksand = 2029,
-        [Description("Rättvik")]
+        [Display(Description = "Rättvik")]
         Rättvik = 2031,
-        [Description("Orsa")]
+        [Display(Description = "Orsa")]
         Orsa = 2034,
-        [Description("Älvdalen")]
+        [Display(Description = "Älvdalen")]
         Älvdalen = 2039,
-        [Description("Smedjebacken")]
+        [Display(Description = "Smedjebacken")]
         Smedjebacken = 2061,
-        [Description("Mora")]
+        [Display(Description = "Mora")]
         Mora = 2062,
-        [Description("Falun")]
+        [Display(Description = "Falun")]
         Falun = 2080,
-        [Description("Borlänge")]
+        [Display(Description = "Borlänge")]
         Borlänge = 2081,
-        [Description("Säter")]
+        [Display(Description = "Säter")]
         Säter = 2082,
-        [Description("Hedemora")]
+        [Display(Description = "Hedemora")]
         Hedemora = 2083,
-        [Description("Avesta")]
+        [Display(Description = "Avesta")]
         Avesta = 2084,
-        [Description("Ludvika")]
+        [Display(Description = "Ludvika")]
         Ludvika = 2085,
         // 21 Gävleborgs län
-        [Description("Ockelbo")]
+        [Display(Description = "Ockelbo")]
         Ockelbo = 2101,
-        [Description("Hofors")]
+        [Display(Description = "Hofors")]
         Hofors = 2104,
-        [Description("Ovanåker")]
+        [Display(Description = "Ovanåker")]
         Ovanåker = 2121,
-        [Description("Nordanstig")]
+        [Display(Description = "Nordanstig")]
         Nordanstig = 2132,
-        [Description("Ljusdal")]
+        [Display(Description = "Ljusdal")]
         Ljusdal = 2161,
-        [Description("Gävle")]
+        [Display(Description = "Gävle")]
         Gävle = 2180,
-        [Description("Sandviken")]
+        [Display(Description = "Sandviken")]
         Sandviken = 2181,
-        [Description("Söderhamn")]
+        [Display(Description = "Söderhamn")]
         Söderhamn = 2182,
-        [Description("Bollnäs")]
+        [Display(Description = "Bollnäs")]
         Bollnäs = 2183,
-        [Description("Hudiksvall")]
+        [Display(Description = "Hudiksvall")]
         Hudiksvall = 2184,
         // 22 Västernorrlands län
-        [Description("Ånge")]
+        [Display(Description = "Ånge")]
         Ånge = 2260,
-        [Description("Timrå")]
+        [Display(Description = "Timrå")]
         Timrå = 2262,
-        [Description("Härnösand")]
+        [Display(Description = "Härnösand")]
         Härnösand = 2280,
-        [Description("Sundsvall")]
+        [Display(Description = "Sundsvall")]
         Sundsvall = 2281,
-        [Description("Kramfors")]
+        [Display(Description = "Kramfors")]
         Kramfors = 2282,
-        [Description("Sollefteå")]
+        [Display(Description = "Sollefteå")]
         Sollefteå = 2283,
-        [Description("Örnsköldsvik")]
+        [Display(Description = "Örnsköldsvik")]
         Örnsköldsvik = 2284,
         // 23 Jämtlands län
-        [Description("Ragunda")]
+        [Display(Description = "Ragunda")]
         Ragunda = 2303,
-        [Description("Bräcke")]
+        [Display(Description = "Bräcke")]
         Bräcke = 2305,
-        [Description("Krokom")]
+        [Display(Description = "Krokom")]
         Krokom = 2309,
-        [Description("Strömsund")]
+        [Display(Description = "Strömsund")]
         Strömsund = 2313,
-        [Description("Åre")]
+        [Display(Description = "Åre")]
         Åre = 2321,
-        [Description("Berg")]
+        [Display(Description = "Berg")]
         Berg = 2326,
-        [Description("Härjedalen")]
+        [Display(Description = "Härjedalen")]
         Härjedalen = 2361,
-        [Description("Östersund")]
+        [Display(Description = "Östersund")]
         Östersund = 2380,
         // 24 Västerbottens län
-        [Description("Nordmaling")]
+        [Display(Description = "Nordmaling")]
         Nordmaling = 2401,
-        [Description("Bjurholm")]
+        [Display(Description = "Bjurholm")]
         Bjurholm = 2403,
-        [Description("Vindeln")]
+        [Display(Description = "Vindeln")]
         Vindeln = 2404,
-        [Description("Robertsfors")]
+        [Display(Description = "Robertsfors")]
         Robertsfors = 2409,
-        [Description("Norsjö")]
+        [Display(Description = "Norsjö")]
         Norsjö = 2417,
-        [Description("Malå")]
+        [Display(Description = "Malå")]
         Malå = 2418,
-        [Description("Storuman")]
+        [Display(Description = "Storuman")]
         Storuman = 2421,
-        [Description("Sorsele")]
+        [Display(Description = "Sorsele")]
         Sorsele = 2422,
-        [Description("Dorotea")]
+        [Display(Description = "Dorotea")]
         Dorotea = 2425,
-        [Description("Vännäs")]
+        [Display(Description = "Vännäs")]
         Vännäs = 2460,
-        [Description("Vilhelmina")]
+        [Display(Description = "Vilhelmina")]
         Vilhelmina = 2462,
-        [Description("Åsele")]
+        [Display(Description = "Åsele")]
         Åsele = 2463,
-        [Description("Umeå")]
+        [Display(Description = "Umeå")]
         Umeå = 2480,
-        [Description("Lycksele")]
+        [Display(Description = "Lycksele")]
         Lycksele = 2481,
-        [Description("Skellefteå")]
+        [Display(Description = "Skellefteå")]
         Skellefteå = 2482,
         // 25 Norrbottens län
-        [Description("Arvidsjaur")]
+        [Display(Description = "Arvidsjaur")]
         Arvidsjaur = 2505,
-        [Description("Arjeplog")]
+        [Display(Description = "Arjeplog")]
         Arjeplog = 2506,
-        [Description("Jokkmokk")]
+        [Display(Description = "Jokkmokk")]
         Jokkmokk = 2510,
-        [Description("Överkalix")]
+        [Display(Description = "Överkalix")]
         Överkalix = 2513,
-        [Description("Kalix")]
+        [Display(Description = "Kalix")]
         Kalix = 2514,
-        [Description("Övertorneå")]
+        [Display(Description = "Övertorneå")]
         Övertorneå = 2518,
-        [Description("Pajala")]
+        [Display(Description = "Pajala")]
         Pajala = 2521,
-        [Description("Gällivare")]
+        [Display(Description = "Gällivare")]
         Gällivare = 2523,
-        [Description("Älvsbyn")]
+        [Display(Description = "Älvsbyn")]
         Älvsbyn = 2560,
-        [Description("Luleå")]
+        [Display(Description = "Luleå")]
         Luleå = 2580,
-        [Description("Piteå")]
+        [Display(Description = "Piteå")]
         Piteå = 2581,
-        [Description("Boden")]
+        [Display(Description = "Boden")]
         Boden = 2582,
-        [Description("Haparanda")]
+        [Display(Description = "Haparanda")]
         Haparanda = 2583,
-        [Description("Kiruna")]
+        [Display(Description = "Kiruna")]
         Kiruna = 2584,
     }
 }

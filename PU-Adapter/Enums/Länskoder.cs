@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -8,50 +8,50 @@ namespace Kentor.PU_Adapter.Enums
 {
     public enum Länskoder
     {
-        [Description("LÄN SAKNAS ELLER ÄR FELAKTIGT")]
+        [Display(Description = "LÄN SAKNAS ELLER ÄR FELAKTIGT")]
         SAKNAS_ELLER_FELAKTIGT = -1,
 
-        [Description("Stockholms län")]
+        [Display(Description = "Stockholms län")]
         Stockholms_län = 01,
-        [Description("Uppsala län")]
+        [Display(Description = "Uppsala län")]
         Uppsala_län = 03,
-        [Description("Södermanlands län")]
+        [Display(Description = "Södermanlands län")]
         Södermanlands_län = 04,
-        [Description("Östergötlands län")]
+        [Display(Description = "Östergötlands län")]
         Östergötlands_län = 05,
-        [Description("Jönköpings län")]
+        [Display(Description = "Jönköpings län")]
         Jönköpings_län = 06,
-        [Description("Kronobergs län")]
+        [Display(Description = "Kronobergs län")]
         Kronobergs_län = 07,
-        [Description("Kalmar län")]
+        [Display(Description = "Kalmar län")]
         Kalmar_län = 08,
-        [Description("Gotlands län")]
+        [Display(Description = "Gotlands län")]
         Gotlands_län = 09,
-        [Description("Blekinge län")]
+        [Display(Description = "Blekinge län")]
         Blekinge_län = 10,
-        [Description("Skåne län")]
+        [Display(Description = "Skåne län")]
         Skåne_län = 12,
-        [Description("Hallands län")]
+        [Display(Description = "Hallands län")]
         Hallands_län = 13,
-        [Description("Västra Götalands län")]
+        [Display(Description = "Västra Götalands län")]
         Västra_Götalands_län = 14,
-        [Description("Värmlands län")]
+        [Display(Description = "Värmlands län")]
         Värmlands_län = 17,
-        [Description("Örebro län")]
+        [Display(Description = "Örebro län")]
         Örebro_län = 18,
-        [Description("Västmanlands län")]
+        [Display(Description = "Västmanlands län")]
         Västmanlands_län = 19,
-        [Description("Dalarnas län")]
+        [Display(Description = "Dalarnas län")]
         Dalarnas_län = 20,
-        [Description("Gävleborgs län")]
+        [Display(Description = "Gävleborgs län")]
         Gävleborgs_län = 21,
-        [Description("Västernorrlands län")]
+        [Display(Description = "Västernorrlands län")]
         Västernorrlands_län = 22,
-        [Description("Jämtlands län")]
+        [Display(Description = "Jämtlands län")]
         Jämtlands_län = 23,
-        [Description("Västerbottens län")]
+        [Display(Description = "Västerbottens län")]
         Västerbottens_län = 24,
-        [Description("Norrbottens län")]
+        [Display(Description = "Norrbottens län")]
         Norrbottens_län = 25,
     }
 }
