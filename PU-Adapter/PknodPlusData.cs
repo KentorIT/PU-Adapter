@@ -51,7 +51,7 @@ namespace Kentor.PU_Adapter
         {
             get
             {
-                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Folkbokföringsutdelningsadress1_0920);
+                return GetStringFieldFromPosition(FieldDefinitions.PknodPlus.Folkbokföring_co_adress_0885);
             }
         }
 
