@@ -1,3 +1,6 @@
+V0.32
+Fix bug: PknodPlusData.Field_Folkbokföring_co_adress returned wrong data
+PknodInterpreter and PknodPlusInterpreter now has property Adress and PknodPlusInterpreter also has property SärskildUtdelningsAdress
 V0.30
 FieldDefinitions with position specification for all fields in the specification.
 V0.28
