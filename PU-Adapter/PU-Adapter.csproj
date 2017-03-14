@@ -50,6 +50,7 @@
     <Compile Include="..\VersionInfo.cs">
       <Link>VersionInfo.cs</Link>
     </Compile>
+    <Compile Include="Composite\Adress.cs" />
     <Compile Include="Enums\Avgångskod.cs" />
     <Compile Include="Enums\Civilstånd.cs" />
     <Compile Include="Enums\Kommunkoder.cs" />

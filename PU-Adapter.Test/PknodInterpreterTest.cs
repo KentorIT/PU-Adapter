@@ -103,6 +103,40 @@ namespace Kentor.PU_Adapter.Test
             avlidenInterpreted.Avliden.Should().BeTrue();
             avlidenInterpreted.AvlidenDatum.Should().Be(new DateTime(2005, 02, 21));
         }
+
+        [TestMethod]
+        public void GetCompositeAdresses()
+        {
+            var interpreter = new PknodInterpreter(CommonData.TolvanPknodResult);
+            interpreter.Adress.AdressRad1.Should().Be("TOLVAR STIGEN");
+            interpreter.Adress.AdressRad2.Should().BeEmpty();
+            interpreter.Adress.Co_adress.Should().BeEmpty();
+            interpreter.Adress.Postnummer.Should().Be("12345");
+            interpreter.Adress.Postort.Should().Be("STOCKHOLM");
+
+            // Fallback to PKNOD data
+            var interpreterPlus = new PknodPlusInterpreter(CommonData.TolvanPknodPlusResult);
+            interpreterPlus.Adress.AdressRad1.Should().Be("TOLVAR STIGEN");
+            interpreterPlus.Adress.AdressRad2.Should().BeEmpty();
+            interpreterPlus.Adress.Co_adress.Should().BeEmpty();
+            interpreterPlus.Adress.Postnummer.Should().Be("12345");
+            interpreterPlus.Adress.Postort.Should().Be("STOCKHOLM");
+            // No utdelningsadress specified
+            interpreterPlus.SärskildUtdelningsAdress.Should().BeNull();
+
+            interpreterPlus = new PknodPlusInterpreter(CommonData.TolvanWithPlusAddress);
+            interpreterPlus.Adress.AdressRad1.Should().Be("Folkbokföringsadress1");
+            interpreterPlus.Adress.AdressRad2.Should().Be("Folkbokföringsadress2");
+            interpreterPlus.Adress.Co_adress.Should().Be("Tolvan_CO_Folkbokföringsadress");
+            interpreterPlus.Adress.Postnummer.Should().Be("98765");
+            interpreterPlus.Adress.Postort.Should().Be("StockholmFolkbokföringsadr.");
+
+            interpreterPlus.SärskildUtdelningsAdress.AdressRad1.Should().Be("SärskildAdress1");
+            interpreterPlus.SärskildUtdelningsAdress.AdressRad2.Should().Be("SärskildAdress2");
+            interpreterPlus.SärskildUtdelningsAdress.Co_adress.Should().Be("Tolvan_CO_SärskildAdress");
+            interpreterPlus.SärskildUtdelningsAdress.Postnummer.Should().Be("45678");
+            interpreterPlus.SärskildUtdelningsAdress.Postort.Should().Be("StockholmSärskildAdr.");
+        }
     }
 }
 

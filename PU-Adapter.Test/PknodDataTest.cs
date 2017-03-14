@@ -133,7 +133,7 @@ namespace Kentor.PU_Adapter.Test
         private static string TolvanInjectCivilstånd(string civilstånd)
         {
             var sb = new System.Text.StringBuilder(CommonData.TolvanPknodResult);
-            sb.OverWrite(145 - 1, civilstånd); // Civilstånd
+            sb.OverWrite(FieldDefinitions.Pknod.Civilstånd_0145.StartPosition - 1, civilstånd); // Civilstånd
             return sb.ToString();
         }
 
@@ -194,9 +194,11 @@ namespace Kentor.PU_Adapter.Test
         public void TestPlusAdress()
         {
             var pknodPlusData = new PknodPlusData(CommonData.TolvanWithPlusAddress);
-            pknodPlusData.Field_Folkbokföringspostort.Should().Be("STOCKHOLMPLUS");
+            pknodPlusData.Field_Folkbokföringspostort.Should().Be("StockholmFolkbokföringsadr.");
             pknodPlusData.Field_Folkbokföringspostnummer.Should().Be("98765");
-            pknodPlusData.Field_Folkbokföringsutdelningsadress2.Should().Be("TOLVAN PLUS STIGEN");
+            pknodPlusData.Field_Folkbokföringsutdelningsadress1.Should().Be("Folkbokföringsadress1");
+            pknodPlusData.Field_Folkbokföringsutdelningsadress2.Should().Be("Folkbokföringsadress2");
+            pknodPlusData.Field_Folkbokföring_co_adress.Should().Be("Tolvan_CO_Folkbokföringsadress");
         }
 
         [TestMethod]

@@ -154,5 +154,20 @@ namespace Kentor.PU_Adapter
                 return null;
             }
         }
+
+        public virtual Composite.Adress Adress
+        {
+            get
+            {
+                return new Composite.Adress
+                {
+                    AdressRad1 = pknodData.Field_Adress,
+                    AdressRad2 = string.Empty,
+                    Co_adress = string.Empty,
+                    Postnummer = pknodData.Field_Postnummer,
+                    Postort = pknodData.Field_Postort,
+                };
+            }
+        }
     }
 }
