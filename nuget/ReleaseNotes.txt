@@ -1,3 +1,5 @@
+V0.34
+AllowUnsafePuProdCert configurable from code
 V0.32
 Fix bug: PknodPlusData.Field_Folkbokföring_co_adress returned wrong data
 PknodInterpreter and PknodPlusInterpreter now has property Adress and PknodPlusInterpreter also has property SärskildUtdelningsAdress

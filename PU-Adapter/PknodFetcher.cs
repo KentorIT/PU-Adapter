@@ -14,11 +14,13 @@ namespace Kentor.PU_Adapter
         public string Password { get; set; }
         public Uri PknodUrl { get; set; }
         public string UserName { get; set; }
+        public bool AllowUnsafePuProdCert { get; set; }
         public PknodFetcher()
         {
             this.PknodUrl = new Uri(Properties.Settings.Default.PknodUrl);
             this.UserName = Properties.Settings.Default.UserName;
             this.Password = Properties.Settings.Default.Password;
+            this.AllowUnsafePuProdCert = Properties.Settings.Default.AllowUnsafePuProdCert;
         }
 
         public PknodPlusInterpreter FetchPknodPlusInterpreter(string personnummer)
@@ -100,11 +102,11 @@ namespace Kentor.PU_Adapter
             return dataAsRows.FirstOrDefault(l => l.Length >= 100);
         }
 
-        private static bool ValidateUntrustedCert(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        private bool ValidateUntrustedCert(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
         {
             if (certificate.GetCertHashString() == PuProdCertThumbPrint)
             {
-                if (Properties.Settings.Default.AllowUnsafePuProdCert)
+                if (AllowUnsafePuProdCert)
                 {
                     return true;
                 }
