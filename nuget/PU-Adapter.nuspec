@@ -10,9 +10,7 @@
     <projectUrl>https://github.com/KentorIT/PU-Adapter</projectUrl>
     <iconUrl>https://raw.github.com/KentorIT/PU-Adapter/master/nuget/kentor.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>
-      A .NET PU Adapter, a replacement for fetching with SNOD/sn32.dll
-    </description>
+    <description>A .NET PU Adapter, a replacement for fetching with SNOD/sn32.dll</description>
     <copyright>Copyright Kentor and contributors 2015</copyright>
     <tags>PU Personuppgifter SNOD</tags>
     <releaseNotes />
