@@ -39,9 +39,12 @@ and
 
 ##PU-Stub
 For testing purposes there is a Stub service. You can either host the PU-Stub project your self or use http://pu-stub.azurewebsites.net/snod/
+A searchable listing of the contents is available on http://pu-stub.azurewebsites.net/
+
 The stub contains a few test persons authorized as test persons by the Swedish Skatteverket.
 An example is Tolvan Tolvansson [http://pu-stub.azurewebsites.net/snod/PKNODPLUS?arg=191212121212](http://pu-stub.azurewebsites.net/snod/PKNODPLUS?arg=191212121212).
 The list of available test person numbers and reserve numbers can be found on [https://github.com/KentorIT/PU-Adapter/blob/master/TestData/Testpersonnummer.cs](https://github.com/KentorIT/PU-Adapter/blob/master/TestData/Testpersonnummer.cs)
+If you need a service that returns data for all person numbers, use http://pu-stub.azurewebsites.net/SnodWithFakeUnknown/ . It return the same data as http://pu-stub.azurewebsites.net/snod/ for data available in the stub, but with a fake persons for unknown persons.
 
 To use the PU-stub, change the configuration to
 
