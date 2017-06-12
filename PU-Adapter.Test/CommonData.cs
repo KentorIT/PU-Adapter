@@ -45,17 +45,17 @@ namespace Kentor.PU_Adapter.Test
                 // When using the PU-Adapter, make sure to use PKNOD address if PKNODPLUS address is empty
                 var sb = new System.Text.StringBuilder(TolvanPknodPlusResult);
                 sb
-                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföringsutdelningsadress1_0920.StartPosition - 1, "Folkbokföringsadress1")
-                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföringsutdelningsadress2_0955.StartPosition - 1, "Folkbokföringsadress2")
-                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföring_co_adress_0885.StartPosition - 1, "Tolvan_CO_Folkbokföringsadress")
-                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföringspostnummer_0990.StartPosition - 1, "98765")
-                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföringspostort_0995.StartPosition - 1, "StockholmFolkbokföringsadr.")
+                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföringsutdelningsadress1_0920, "Folkbokföringsadress1")
+                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföringsutdelningsadress2_0955, "Folkbokföringsadress2")
+                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföring_co_adress_0885, "Tolvan_CO_Folkbokföringsadress")
+                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföringspostnummer_0990, "98765")
+                    .OverWrite(FieldDefinitions.PknodPlus.Folkbokföringspostort_0995, "StockholmFolkbokföringsadr.")
 
-                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_utdelningsadress1_1057.StartPosition - 1, "SärskildAdress1")
-                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_utdelningsadress2_1092.StartPosition - 1, "SärskildAdress2")
-                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_co_adress_1022.StartPosition - 1, "Tolvan_CO_SärskildAdress")
-                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_postnummer_1127.StartPosition - 1, "45678")
-                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_postort_1132.StartPosition - 1, "StockholmSärskildAdr.");
+                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_utdelningsadress1_1057, "SärskildAdress1")
+                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_utdelningsadress2_1092, "SärskildAdress2")
+                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_co_adress_1022, "Tolvan_CO_SärskildAdress")
+                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_postnummer_1127, "45678")
+                    .OverWrite(FieldDefinitions.PknodPlus.Särskild_postort_1132, "StockholmSärskildAdr.");
                 return sb.ToString();
             }
         }
@@ -68,8 +68,8 @@ namespace Kentor.PU_Adapter.Test
                 // When using the PU-Adapter, make sure to use PKNOD address if PKNODPLUS address is empty
                 var sb = new System.Text.StringBuilder(TolvanPknodPlusResult);
                 sb
-                    .OverWrite(FieldDefinitions.Pknod.Namn_0042.StartPosition - 1, "Tolvansson        ")
-                    .OverWrite(FieldDefinitions.PknodPlus.Förnamn_0705.StartPosition - 1, "              ");
+                    .OverWrite(FieldDefinitions.Pknod.Namn_0042, "Tolvansson        ")
+                    .OverWrite(FieldDefinitions.PknodPlus.Förnamn_0705, "              ");
                 return sb.ToString();
             }
         }
@@ -80,8 +80,8 @@ namespace Kentor.PU_Adapter.Test
             {
                 var sb = new System.Text.StringBuilder(TolvanPknodResult);
                 sb
-                    .OverWrite(FieldDefinitions.Pknod.PersonIDTyp_0041.StartPosition - 1, "2") // 2 = Utomlänspatient, ordinarie personnummer
-                    .OverWrite(FieldDefinitions.Pknod.Län_0174.StartPosition - 1, "0821 ");// Kalmar / Högsby
+                    .OverWrite(FieldDefinitions.Pknod.PersonIDTyp_0041, "2") // 2 = Utomlänspatient, ordinarie personnummer
+                    .OverWrite(FieldDefinitions.Pknod.Län_0174, "0821 ");// Kalmar / Högsby
                 return sb.ToString();
             }
         }
@@ -92,7 +92,7 @@ namespace Kentor.PU_Adapter.Test
             {
                 var sb = new System.Text.StringBuilder(TolvanPknodResult);
                 sb
-                    .OverWrite(FieldDefinitions.Pknod.Namn_0042.StartPosition - 1, "TOLVANSSON, TOLVAN/LARS/ERIK");
+                    .OverWrite(FieldDefinitions.Pknod.Namn_0042, "TOLVANSSON, TOLVAN/LARS/ERIK");
                 return sb.ToString();
             }
         }
@@ -106,7 +106,7 @@ namespace Kentor.PU_Adapter.Test
             {
                 var sb = new System.Text.StringBuilder(TolvanPknodResult);
                 sb
-                    .OverWrite(FieldDefinitions.Pknod.Namn_0042.StartPosition - 1, "TOLVANSSON, TOLVAN LARS/ERIK");
+                    .OverWrite(FieldDefinitions.Pknod.Namn_0042, "TOLVANSSON, TOLVAN LARS/ERIK");
                 return sb.ToString();
             }
         }
@@ -117,7 +117,7 @@ namespace Kentor.PU_Adapter.Test
             {
                 var sb = new System.Text.StringBuilder(TolvanPknodResult);
                 sb
-                    .OverWrite(FieldDefinitions.Pknod.Namn_0042.StartPosition - 1, "TOLVANSSON, TOLVAN/LARS OLA/BENGT");
+                    .OverWrite(FieldDefinitions.Pknod.Namn_0042, "TOLVANSSON, TOLVAN/LARS OLA/BENGT");
                 return sb.ToString();
             }
         }
@@ -128,7 +128,7 @@ namespace Kentor.PU_Adapter.Test
             {
                 var sb = new System.Text.StringBuilder(TolvanPknodPlusResult);
                 sb
-                    .OverWrite(FieldDefinitions.PknodPlus.Förnamn_0705.StartPosition - 1, "Tolvan/Lars/Erik");
+                    .OverWrite(FieldDefinitions.PknodPlus.Förnamn_0705, "Tolvan/Lars/Erik");
                 return sb.ToString();
             }
         }

@@ -133,7 +133,7 @@ namespace Kentor.PU_Adapter.Test
         private static string TolvanInjectCivilstånd(string civilstånd)
         {
             var sb = new System.Text.StringBuilder(CommonData.TolvanPknodResult);
-            sb.OverWrite(FieldDefinitions.Pknod.Civilstånd_0145.StartPosition - 1, civilstånd); // Civilstånd
+            sb.OverWrite(FieldDefinitions.Pknod.Civilstånd_0145, civilstånd); // Civilstånd
             return sb.ToString();
         }
 
