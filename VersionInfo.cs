@@ -13,6 +13,6 @@ using System.Reflection;
 // An odd patch number is a development version, an even patch number is
 // a released version.
 
-[assembly: AssemblyVersion("0.0.35")]
-[assembly: AssemblyFileVersion("0.0.35")]
-[assembly: AssemblyInformationalVersion("0.0.35")]
+[assembly: AssemblyVersion("0.0.36")]
+[assembly: AssemblyFileVersion("0.0.36")]
+[assembly: AssemblyInformationalVersion("0.0.36")]
