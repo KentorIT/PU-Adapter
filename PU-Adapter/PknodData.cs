@@ -61,7 +61,12 @@ namespace Kentor.PU_Adapter
             {
                 return null;
             }
-            return int.Parse(parsedString);
+            int result;
+            if (!int.TryParse(parsedString, out result))
+            {
+                throw new InvalidOperationException($"Could not parse \"{parsedString}\" (position {position.StartPosition}) as int");
+            }
+            return result;
         }
 
         public DateTime? GetDateFieldFromPosition(FieldDefinitions.FieldDefinition position)
