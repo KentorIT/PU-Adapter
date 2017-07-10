@@ -79,7 +79,7 @@ namespace Kentor.PU_Adapter
             request.ServerCertificateValidationCallback += ValidateUntrustedCert;
 
             string data;
-            using (var response = request.GetResponse())
+            using (var response = (HttpWebResponse)request.GetResponse())
             {
                 using (var stream = response.GetResponseStream())
                 {
@@ -87,6 +87,10 @@ namespace Kentor.PU_Adapter
                     {
                         data = sr.ReadToEnd();
                     }
+                }
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new WebException($"Fetch from PU responded with {(int)response.StatusCode} - {response.StatusDescription}Data:{Environment.NewLine}{data}");
                 }
             }
 
@@ -99,7 +103,12 @@ namespace Kentor.PU_Adapter
             // -----------------------------------------------------
             // (between the dashed lines). We need to pick the first long line. Lets say long as > 100 characters
             var dataAsRows = data.Split(new[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-            return dataAsRows.FirstOrDefault(l => l.Length >= 100);
+            var significantRows = dataAsRows.Where(l => l.Length >= 100);
+            if (significantRows.Count() != 1)
+            {
+                throw new InvalidOperationException($"PU Response did not contained {significantRows.Count()} significant rows. Expected 1. Data:{Environment.NewLine}----------------{Environment.NewLine}{data}{Environment.NewLine}----------------");
+            }
+            return significantRows.Single();
         }
 
         private bool ValidateUntrustedCert(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
