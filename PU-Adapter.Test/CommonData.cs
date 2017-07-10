@@ -81,7 +81,8 @@ namespace Kentor.PU_Adapter.Test
                 var sb = new System.Text.StringBuilder(TolvanPknodResult);
                 sb
                     .OverWrite(FieldDefinitions.Pknod.PersonIDTyp_0041, "2") // 2 = Utomlänspatient, ordinarie personnummer
-                    .OverWrite(FieldDefinitions.Pknod.Län_0174, "0821 ");// Kalmar / Högsby
+                    .OverWrite(FieldDefinitions.Pknod.Län_0174, "08") // Kalmar
+                    .OverWrite(FieldDefinitions.Pknod.Kommun_0176, "21");// Högsby
                 return sb.ToString();
             }
         }
