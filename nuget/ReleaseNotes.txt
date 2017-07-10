@@ -3,8 +3,8 @@ Improved validation of web response from the PU service
 V0.34
 AllowUnsafePuProdCert configurable from code
 V0.32
-Fix bug: PknodPlusData.Field_Folkbokföring_co_adress returned wrong data
-PknodInterpreter and PknodPlusInterpreter now has property Adress and PknodPlusInterpreter also has property SärskildUtdelningsAdress
+Fix bug: PknodPlusData.Field_FolkbokfÃ¶ring_co_adress returned wrong data
+PknodInterpreter and PknodPlusInterpreter now has property Adress and PknodPlusInterpreter also has property SÃ¤rskildUtdelningsAdress
 V0.30
 FieldDefinitions with position specification for all fields in the specification.
 V0.28
