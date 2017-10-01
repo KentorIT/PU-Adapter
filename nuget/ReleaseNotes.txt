@@ -1,3 +1,5 @@
+V0.38
+Improved information in error messages
 V0.36
 Improved validation of web response from the PU service
 V0.34
