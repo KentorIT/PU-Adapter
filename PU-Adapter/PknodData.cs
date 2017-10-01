@@ -32,16 +32,16 @@ namespace Kentor.PU_Adapter
             }
             if (pknodData.Length != this.Field_Svarslängd)
             {
-                throw new ArgumentException("PKNOD length parameter does not match content length", nameof(pknodData));
+                throw new ArgumentException($"PKNOD length parameter ({this.Field_Svarslängd}) does not match content length ({pknodData.Length})", nameof(pknodData));
             }
             if (pknodData.Last() != '_')
             {
-                throw new ArgumentException("Invalid end marker", nameof(pknodData));
+                throw new ArgumentException($"Invalid end marker '{pknodData.Last()}'", nameof(pknodData));
             }
 
             if (pknodData.Length != dataLength)
             {
-                throw new ArgumentException("PKNOD Data should be exactly " + dataLength + " bytes", nameof(pknodData));
+                throw new ArgumentException($"PKNOD Data should be exactly { dataLength } bytes but was {pknodData.Length} bytes", nameof(pknodData));
             }
         }
 
@@ -64,7 +64,10 @@ namespace Kentor.PU_Adapter
             int result;
             if (!int.TryParse(parsedString, out result))
             {
-                throw new InvalidOperationException($"Could not parse \"{parsedString}\" (position {position.StartPosition}) as int");
+                var ex = new InvalidOperationException($"Could not parse \"{parsedString}\" (position {position.StartPosition}) as int");
+                // Save full parse string in the details
+                ex.Data["PknodData"] = pknodData;
+                throw ex;
             }
             return result;
         }

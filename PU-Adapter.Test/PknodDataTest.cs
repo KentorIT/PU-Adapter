@@ -22,10 +22,10 @@ namespace Kentor.PU_Adapter.Test
         public void CantCreateInvalidLengths()
         {
             Action a1 = () => new PknodData(CommonData.TolvanPknodResult + "PAD");
-            a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter does not match content length", StringComparison.Ordinal));
+            a1.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter (704) does not match content length (707)", StringComparison.Ordinal));
 
             Action a2 = () => new PknodPlusData(CommonData.TolvanPknodPlusResult + "PAD");
-            a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter does not match content length", StringComparison.Ordinal));
+            a2.ShouldThrow<ArgumentException>().Where(ex => ex.Message.StartsWith("PKNOD length parameter (1327) does not match content length", StringComparison.Ordinal));
 
             Action a3 = () => new PknodData(null);
             a3.ShouldThrow<ArgumentNullException>();
