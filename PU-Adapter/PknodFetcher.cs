@@ -139,7 +139,7 @@ This is not enabled by default to make sure you are aware that you trust a self 
                 }
                 throw new ApplicationException(@"PU test does have a self signed certificate.
 To allow the use of the well known self signed certificate add the setting
-      <setting name=""AllowUnsafePuProdCert"" serializeAs=""String"">
+      <setting name=""AllowUnsafePuTestCert"" serializeAs=""String"">
         <value>True</value>
       </setting>
 to your app/web.config

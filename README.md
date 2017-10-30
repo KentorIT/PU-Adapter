@@ -23,13 +23,13 @@ and
     <applicationSettings>
         <Kentor.PU_Adapter.Properties.Settings>
             <setting name="PknodUrl" serializeAs="String">
-                <value name="url">https://prod.pu.sll.se:10443/snod/</value>
+                <value>https://prod.pu.sll.se:10443/snod/</value>
             </setting>
             <setting name="UserName" serializeAs="String">
-                <value name="user">MyUserName</value>
+                <value>MyUserName</value>
             </setting>
             <setting name="Password" serializeAs="String">
-                <value name="password">MyPassword</value>
+                <value>MyPassword</value>
             </setting>
             <setting name="AllowUnsafePuProdCert" serializeAs="String">
                 <value>False</value> <!-- Most likely you want to use the value True -->
@@ -40,19 +40,19 @@ and
 and if you are using the PU test in your test environment add something like this in your test web configuration
   
     <applicationSettings>
-        <Kentor.PU_Adapter.Properties.Settings>
-             <setting name="PknodUrl" serializeAs="String">
-             <value xdt:Locator="Condition(@name='url')" xdt:Transform="Replace">https://192.44.250.74:10443/snod/</value>
-        </setting>
-        <setting name="UserName" serializeAs="String">
-            <value xdt:Locator="Condition(@name='user')" xdt:Transform="Replace">MyPUTestUserName</value>
-        </setting>
-        <setting name="Password" serializeAs="String">
-            <value xdt:Locator="Condition(@name='password')" xdt:Transform="Replace">MyPUTestPassword</value>
-        </setting>
-        <setting name="AllowUnsafePuTestCert" serializeAs="String">
-            <value>True</value>
-        </setting>
+        <Kentor.PU_Adapter.Properties.Settings xdt:Transform="Replace">
+            <setting name="PknodUrl" serializeAs="String">
+                <value>https://192.44.250.74:10443/snod/</value>
+            </setting>
+            <setting name="UserName" serializeAs="String">
+                <value>MyPUTestUserName</value>
+            </setting>
+            <setting name="Password" serializeAs="String">
+                <value>MyPUTestPassword</value>
+            </setting>
+            <setting name="AllowUnsafePuTestCert" serializeAs="String">
+                <value>True</value>
+            </setting>
         </Kentor.PU_Adapter.Properties.Settings>
     </applicationSettings>
 
