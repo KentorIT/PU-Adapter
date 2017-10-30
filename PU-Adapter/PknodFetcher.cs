@@ -133,6 +133,7 @@ This is not enabled by default to make sure you are aware that you trust a self 
             }
             else if (certificateThumbPrint == PuTestCertThumbPrint)
             {
+                if (AllowUnsafePuTestCert)
                 {
                     return true;
                 }
