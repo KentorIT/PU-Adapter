@@ -40,7 +40,7 @@ and
 and if you are using the PU test in your test environment add something like this in your test web configuration
   
     <applicationSettings>
-        <Kentor.PU_Adapter.Properties.Settings xdt:Transform="Replace">
+        <Kentor.PU_Adapter.Properties.Settings>
             <setting name="PknodUrl" serializeAs="String">
                 <value>https://192.44.250.74:10443/snod/</value>
             </setting>
