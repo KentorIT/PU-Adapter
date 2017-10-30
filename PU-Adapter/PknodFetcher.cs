@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,17 +9,20 @@ namespace Kentor.PU_Adapter
     public class PknodFetcher
     {
         private static string PuProdCertThumbPrint = "69FAB3533811F39A04CB14B0D5DA3DC6A6351776";
+        private static string PuTestCertThumbPrint = "66F05F2ACD8B20EDCC570CE595E3ABEEE19B2FEB";
 
         public string Password { get; set; }
         public Uri PknodUrl { get; set; }
         public string UserName { get; set; }
         public bool AllowUnsafePuProdCert { get; set; }
+        public bool AllowUnsafePuTestCert { get; set; }
         public PknodFetcher()
         {
             this.PknodUrl = new Uri(Properties.Settings.Default.PknodUrl);
             this.UserName = Properties.Settings.Default.UserName;
             this.Password = Properties.Settings.Default.Password;
             this.AllowUnsafePuProdCert = Properties.Settings.Default.AllowUnsafePuProdCert;
+            this.AllowUnsafePuTestCert = Properties.Settings.Default.AllowUnsafePuTestCert;
         }
 
         public PknodPlusInterpreter FetchPknodPlusInterpreter(string personnummer)
@@ -113,13 +115,28 @@ namespace Kentor.PU_Adapter
 
         private bool ValidateUntrustedCert(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
         {
-            if (certificate.GetCertHashString() == PuProdCertThumbPrint)
+            var certificateThumbPrint = certificate.GetCertHashString();
+            if (certificateThumbPrint == PuProdCertThumbPrint)
             {
                 if (AllowUnsafePuProdCert)
                 {
                     return true;
                 }
                 throw new ApplicationException(@"PU prod does have a self signed certificate.
+To allow the use of the well known self signed certificate add the setting
+      <setting name=""AllowUnsafePuProdCert"" serializeAs=""String"">
+        <value>True</value>
+      </setting>
+to your app/web.config
+This is not enabled by default to make sure you are aware that you trust a self signed certificate.
+");
+            }
+            else if (certificateThumbPrint == PuTestCertThumbPrint)
+            {
+                {
+                    return true;
+                }
+                throw new ApplicationException(@"PU test does have a self signed certificate.
 To allow the use of the well known self signed certificate add the setting
       <setting name=""AllowUnsafePuProdCert"" serializeAs=""String"">
         <value>True</value>
