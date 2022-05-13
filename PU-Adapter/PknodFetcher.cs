@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Kentor.PU_Adapter
 {
@@ -16,6 +17,7 @@ namespace Kentor.PU_Adapter
         public string UserName { get; set; }
         public bool AllowUnsafePuProdCert { get; set; }
         public bool AllowUnsafePuTestCert { get; set; }
+        public X509Certificate2 Certificate2 { get; set; }
         public PknodFetcher()
         {
             this.PknodUrl = new Uri(Properties.Settings.Default.PknodUrl);
@@ -28,6 +30,11 @@ namespace Kentor.PU_Adapter
         public PknodPlusInterpreter FetchPknodPlusInterpreter(string personnummer)
         {
             return new PknodPlusInterpreter(FetchPknodPlusString(personnummer));
+        }
+
+        public PknodPlusInterpreter FetchPknodPlusInterpreter(string personnummer, X509Certificate2 certificate2) 
+        {
+            return new PknodPlusInterpreter(FetchPknodPlusString(personnummer,certificate2));
         }
 
         public PknodPlusData FetchPknodPlusData(string personnummer)
@@ -44,6 +51,12 @@ namespace Kentor.PU_Adapter
         {
             personnummer = VerifyAndFormatPersonNumber(personnummer);
             return FetchFromPu(personnummer, "PKNODPLUS");
+        }
+
+        public string FetchPknodPlusString(string personnummer, X509Certificate2 certificate)
+        {
+            personnummer = VerifyAndFormatPersonNumber(personnummer);
+            return FetchFromPUWithCert(personnummer, "PKNODPLUS", certificate);
         }
 
         public string FetchPknodString(string personnummer)
@@ -66,6 +79,52 @@ namespace Kentor.PU_Adapter
             }
             personnummer = personnummer.Replace("-", "").Replace(" ", "");
             return personnummer;
+        }
+
+        private string FetchFromPUWithCert(string personnummer, string serviceName, X509Certificate2 certificate) 
+        {
+            var requestUrl = new Uri(PknodUrl, serviceName + "?arg=" + Uri.EscapeDataString(personnummer));
+
+            HttpWebRequest request = WebRequest.CreateHttp(requestUrl);
+            if (!string.IsNullOrEmpty(UserName))
+            {
+                request.PreAuthenticate = true;
+                request.Credentials = new NetworkCredential(UserName, Password);
+            }
+            request.ServerCertificateValidationCallback += ValidateUntrustedCert;                            
+            request.ClientCertificates.Add(certificate);            
+            
+            string data;
+            using (var response = (HttpWebResponse)request.GetResponse())
+            {
+                using (var stream = response.GetResponseStream())
+                {
+                    using (var sr = new StreamReader(stream, Encoding.GetEncoding("ISO-8859-1")))
+                    {
+                        data = sr.ReadToEnd();
+                    }
+                }
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new WebException($"Fetch from PU responded with {(int)response.StatusCode} - {response.StatusDescription}Data:{Environment.NewLine}{data}");
+                }
+            }
+
+            // Data is in the format
+            // -----------------------------------------------------
+            //0
+            //0
+            //704
+            //07040000191212121212191212121912121212121TOLVANSSON, TOLVAN TOLVAR STIGEN              12345STOCKHOLM                           00000000000000000000    0000018019200244  200801162008011600000000                                                                                                                                                                                    00000000000000000000        132204  03132204  V[STRA KUNGSHOLMEN            17101648M22V[STRA KUNGSHOLMEN                                STOCKHOLM / EKER\     1734    CENTRALA STOCKHOLMS PSYKIATRIS1329999                                               8                                                              _
+            // -----------------------------------------------------
+            // (between the dashed lines). We need to pick the first long line. Lets say long as > 100 characters
+            var dataAsRows = data.Split(new[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var significantRows = dataAsRows.Where(l => l.Length >= 100);
+            if (significantRows.Count() != 1)
+            {
+                throw new InvalidOperationException($"PU Response did not contained {significantRows.Count()} significant rows. Expected 1. Data:{Environment.NewLine}----------------{Environment.NewLine}{data}{Environment.NewLine}----------------");
+            }
+            return significantRows.Single();
         }
 
         private string FetchFromPu(string personnummer, string serviceName)
