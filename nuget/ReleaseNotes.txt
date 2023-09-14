@@ -1,3 +1,5 @@
+V0.42
+Extended support for test server certificate
 V0.40
 Support for test server certificate
 V0.38
